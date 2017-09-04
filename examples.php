@@ -5,6 +5,7 @@ namespace ooDateTime;
 require_once 'autoload.php';
 
 use ooDateTime\src\comparison\DateTimeComparisonResult;
+use ooDateTime\src\comparison\Max;
 use ooDateTime\src\formattedDateTime\ToMilliseconds;
 use ooDateTime\src\ISO8601DateTime\FromMilliseconds;
 use ooDateTime\src\ISO8601Interval\FromRange;
@@ -14,8 +15,11 @@ use ooDateTime\src\timeline\Now;
 use ooDateTime\src\ISO8601DateTime\FromISO8601;
 use ooDateTime\src\ISO8601Interval\FromISO8601 as ISO8601Interval;
 
+
+// outputs true
+
 var_dump(
-    (new DateTimeComparisonResult(
+    (new Max(
         new Future(
             new Past(
                 new FromMilliseconds(
@@ -30,25 +34,25 @@ var_dump(
         ),
         new Now()
     ))
-        ->secondOneIsGreater()
+        ->equalsTo(new Now())
 );
 
-//var_dump(
-//    (new DateTimeComparisonResult(
-//        new Future(
-//            new Past(
-//                new Now(),
-//                new FromRange(
-//                    new Now(),
-//                    new Future(
-//                        new Now(),
-//                        new ISO8601Interval('PT1S')
-//                    )
-//                )
-//            ),
-//            new ISO8601Interval('PT1S')
-//        ),
-//        new Now()
-//    ))
-//        ->areEqual()
-//);
+
+// outputs true
+
+var_dump(
+    (new Future(
+        new Past(
+            new Now(),
+            new FromRange(
+                new Now(),
+                new Future(
+                    new Now(),
+                    new ISO8601Interval('PT1S')
+                )
+            )
+        ),
+        new ISO8601Interval('PT1S')
+    ))
+        ->equalsTo(new Now())
+);
