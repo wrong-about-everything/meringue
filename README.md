@@ -2,6 +2,8 @@
 
 ## Examples
 
+
+```
 // outputs true
 
 var_dump(
@@ -42,3 +44,4 @@ var_dump(
     ))
         ->equalsTo(new Now())
 );
+```
