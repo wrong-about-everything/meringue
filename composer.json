@@ -9,6 +9,6 @@
     }
   ],
   "require" : {
-    "wrong-about-everything/ooDateTime" : "dev-master"
+    "wrong-about-everything/oo-date-time" : "dev-master"
   }
 }
