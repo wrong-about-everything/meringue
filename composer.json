@@ -1,0 +1,14 @@
+{
+  "name" : "wrong-about-everything/oo-date-time",
+  "description" : "Object-oriented php DateTime implementation",
+  "keywords" : ["OOP", "DateTime", "Date", "Time"],
+  "repositories" : [
+    {
+      "type": "vcs",
+      "url": "https://github.com/wrong-about-everything/ooDateTime.git"
+    }
+  ],
+  "require" : {
+    "wrong-about-everything/ooDateTime" : "dev-master"
+  }
+}
