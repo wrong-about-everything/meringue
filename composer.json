@@ -8,7 +8,12 @@
       "url": "https://github.com/wrong-about-everything/ooDateTime.git"
     }
   ],
-  "require" : {
-    "wrong-about-everything/oo-date-time" : "dev-master"
+  "autoload": {
+    "psr-4": {
+      "ooDateTime\\": "ooDateTime/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.5"
   }
 }
