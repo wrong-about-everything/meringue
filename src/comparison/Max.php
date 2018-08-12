@@ -1,9 +1,9 @@
 <?php
 
-namespace ooDateTime\src\comparison;
+namespace src\comparison;
 
 use DateTimeImmutable as PHPDateTime;
-use ooDateTime\src\ISO8601DateTime;
+use src\ISO8601DateTime;
 
 class Max implements ISO8601DateTime
 {
@@ -16,17 +16,17 @@ class Max implements ISO8601DateTime
         $this->datetime2 = $dateTime2;
     }
 
-    public function value()
+    public function value(): string
     {
         return
             (new PHPDateTime($this->datetime1->value()) > new PHPDateTime($this->datetime2->value()))
-                ? $this->datetime1
-                : $this->datetime2
+                ? $this->datetime1->value()
+                : $this->datetime2->value()
             ;
     }
 
     public function equalsTo(ISO8601DateTime $dateTime)
     {
-        return new PHPDateTime($this->value()->value()) == new PHPDateTime($dateTime->value());
+        return new PHPDateTime($this->value()) == new PHPDateTime($dateTime->value());
     }
 }

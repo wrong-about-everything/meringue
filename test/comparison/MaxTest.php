@@ -2,10 +2,10 @@
 
 namespace ooDateTime\test\comparison;
 
-use ooDateTime\src\comparison\Max;
-use ooDateTime\src\ISO8601Interval\FromISO8601;
-use ooDateTime\src\timeline\Now;
-use ooDateTime\src\timeline\Past;
+use src\comparison\Max;
+use src\ISO8601Interval\FromISO8601;
+use src\timeline\Now;
+use src\timeline\Past;
 use PHPUnit\Framework\TestCase;
 
 class MaxTest extends TestCase

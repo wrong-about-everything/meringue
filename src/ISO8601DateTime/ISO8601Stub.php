@@ -1,9 +1,9 @@
 <?php
 
-namespace ooDateTime\src\ISO8601DateTime;
+namespace src\ISO8601DateTime;
 
 use Exception;
-use ooDateTime\src\ISO8601DateTime;
+use src\ISO8601DateTime;
 
 class ISO8601Stub implements ISO8601DateTime
 {
@@ -14,7 +14,7 @@ class ISO8601Stub implements ISO8601DateTime
         $this->datetime = $datetime;
     }
 
-    public function value()
+    public function value(): string
     {
         return $this->datetime;
     }

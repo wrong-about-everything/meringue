@@ -1,11 +1,11 @@
 <?php
 
-namespace ooDateTime\src\timeline;
+namespace src\timeline;
 
 use DateInterval as PHPDateInterval;
 use DateTimeImmutable as PHPDateTime;
-use ooDateTime\src\ISO8601Interval;
-use ooDateTime\src\ISO8601DateTime;
+use src\ISO8601Interval;
+use src\ISO8601DateTime;
 
 class Future implements ISO8601DateTime
 {
@@ -18,7 +18,7 @@ class Future implements ISO8601DateTime
         $this->i = $i;
     }
 
-    public function value()
+    public function value(): string
     {
         return
             (new PHPDateTime($this->dt->value()))

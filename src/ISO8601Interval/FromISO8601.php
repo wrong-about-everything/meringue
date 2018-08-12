@@ -1,9 +1,9 @@
 <?php
 
-namespace ooDateTime\src\ISO8601Interval;
+namespace src\ISO8601Interval;
 
 use Exception;
-use ooDateTime\src\ISO8601Interval;
+use src\ISO8601Interval;
 
 class FromISO8601 implements ISO8601Interval
 {

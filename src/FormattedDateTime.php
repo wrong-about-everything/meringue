@@ -1,6 +1,6 @@
 <?php
 
-namespace ooDateTime\src;
+namespace src;
 
 interface FormattedDateTime
 {

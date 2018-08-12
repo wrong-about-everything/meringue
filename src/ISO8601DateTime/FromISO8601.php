@@ -1,9 +1,9 @@
 <?php
 
-namespace ooDateTime\src\ISO8601DateTime;
+namespace src\ISO8601DateTime;
 
 use Exception;
-use ooDateTime\src\ISO8601DateTime;
+use src\ISO8601DateTime;
 
 class FromISO8601 implements ISO8601DateTime
 {
@@ -14,7 +14,7 @@ class FromISO8601 implements ISO8601DateTime
         $this->s = $s;
     }
 
-    public function value()
+    public function value(): string
     {
         if (
             !preg_match(

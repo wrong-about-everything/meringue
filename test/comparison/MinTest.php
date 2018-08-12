@@ -2,10 +2,10 @@
 
 namespace ooDateTime\test\comparison;
 
-use ooDateTime\src\comparison\Min;
-use ooDateTime\src\ISO8601Interval\FromISO8601;
-use ooDateTime\src\timeline\Future;
-use ooDateTime\src\timeline\Now;
+use src\comparison\Min;
+use src\ISO8601Interval\FromISO8601;
+use src\timeline\Future;
+use src\timeline\Now;
 use PHPUnit\Framework\TestCase;
 
 class MinTest extends TestCase

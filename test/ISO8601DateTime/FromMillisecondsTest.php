@@ -2,7 +2,7 @@
 
 namespace ooDateTime\test\ISO8601DateTime;
 
-use ooDateTime\src\ISO8601DateTime\FromMilliseconds;
+use src\ISO8601DateTime\FromMilliseconds;
 use PHPUnit\Framework\TestCase;
 use \Exception;
 

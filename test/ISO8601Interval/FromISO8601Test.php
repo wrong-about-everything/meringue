@@ -2,7 +2,7 @@
 
 namespace ooDateTime\test\ISO8601Interval;
 
-use ooDateTime\src\ISO8601Interval\FromISO8601;
+use src\ISO8601Interval\FromISO8601;
 use PHPUnit\Framework\TestCase;
 
 class FromISO8601Test extends TestCase

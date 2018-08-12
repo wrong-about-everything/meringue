@@ -1,11 +1,11 @@
 <?php
 
-namespace ooDateTime\src\ISO8601Interval;
+namespace src\ISO8601Interval;
 
 use DateTimeImmutable as PHPDateTime;
 use Exception;
-use ooDateTime\src\ISO8601DateTime;
-use ooDateTime\src\ISO8601Interval;
+use src\ISO8601DateTime;
+use src\ISO8601Interval;
 
 class FromRange implements ISO8601Interval
 {

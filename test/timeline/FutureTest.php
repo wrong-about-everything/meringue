@@ -2,9 +2,9 @@
 
 namespace ooDateTime\test\ISO8601DateTime;
 
-use ooDateTime\src\ISO8601DateTime\ISO8601Stub;
-use ooDateTime\src\ISO8601Interval\FromISO8601;
-use ooDateTime\src\timeline\Future;
+use src\ISO8601DateTime\ISO8601Stub;
+use src\ISO8601Interval\FromISO8601;
+use src\timeline\Future;
 use PHPUnit\Framework\TestCase;
 
 class FutureTest extends TestCase

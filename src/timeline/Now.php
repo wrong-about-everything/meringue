@@ -1,9 +1,9 @@
 <?php
 
-namespace ooDateTime\src\timeline;
+namespace src\timeline;
 
 use DateTimeImmutable as PHPDateTime;
-use ooDateTime\src\ISO8601DateTime;
+use src\ISO8601DateTime;
 
 class Now implements ISO8601DateTime
 {
@@ -11,7 +11,7 @@ class Now implements ISO8601DateTime
     {
     }
 
-    public function value()
+    public function value(): string
     {
         return (new PHPDateTime('now'))->format('c');
     }

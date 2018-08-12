@@ -1,10 +1,10 @@
 <?php
 
-namespace ooDateTime\src\formattedDateTime;
+namespace src\formattedDateTime;
 
 use DateTimeImmutable as PHPDateTime;
-use ooDateTime\src\FormattedDateTime;
-use ooDateTime\src\ISO8601DateTime;
+use src\FormattedDateTime;
+use src\ISO8601DateTime;
 
 class ToISO8601 implements FormattedDateTime
 {

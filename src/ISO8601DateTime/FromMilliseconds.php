@@ -1,10 +1,10 @@
 <?php
 
-namespace ooDateTime\src\ISO8601DateTime;
+namespace src\ISO8601DateTime;
 
 use DateTimeImmutable as PHPDateTime;
 use Exception;
-use ooDateTime\src\ISO8601DateTime;
+use src\ISO8601DateTime;
 
 class FromMilliseconds implements ISO8601DateTime
 {
@@ -15,7 +15,7 @@ class FromMilliseconds implements ISO8601DateTime
         $this->ms = $ms;
     }
 
-    public function value()
+    public function value(): string
     {
         if (!ctype_digit($this->ms)) {
             throw new Exception();

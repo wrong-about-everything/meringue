@@ -2,8 +2,8 @@
 
 namespace ooDateTime\test\formattedDateTime;
 
-use ooDateTime\src\formattedDateTime\ToMilliseconds;
-use ooDateTime\src\ISO8601DateTime\ISO8601Stub;
+use src\formattedDateTime\ToMilliseconds;
+use src\ISO8601DateTime\ISO8601Stub;
 use PHPUnit\Framework\TestCase;
 
 class ToMillisecondsTest extends TestCase
