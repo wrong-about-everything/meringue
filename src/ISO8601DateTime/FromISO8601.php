@@ -28,7 +28,7 @@ class FromISO8601 implements ISO8601DateTime
         return $this->s;
     }
 
-    public function equalsTo(ISO8601DateTime $dateTime)
+    public function equalsTo(ISO8601DateTime $dateTime): bool
     {
         return new PHPDateTime($this->value()) == new PHPDateTime($dateTime->value());
     }

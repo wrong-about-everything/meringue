@@ -6,7 +6,7 @@ require_once 'vendor/autoload.php';
 
 use src\comparison\DateTimeComparisonResult;
 use src\comparison\Max;
-use src\formattedDateTime\ToMilliseconds;
+use src\formattedDateTime\ToSeconds;
 use src\ISO8601DateTime\FromMilliseconds;
 use src\ISO8601Interval\FromRange;
 use src\timeline\Future;
@@ -23,7 +23,7 @@ var_dump(
         new Future(
             new Past(
                 new FromMilliseconds(
-                    (new ToMilliseconds(
+                    (new ToSeconds(
                         new FromISO8601('2017-08-18T15:08:13+04:00')
                     ))
                         ->value()

@@ -14,7 +14,7 @@ class FromISO8601 implements ISO8601Interval
         $this->i = $i;
     }
 
-    public function value()
+    public function value(): string
     {
         if (
             !preg_match(

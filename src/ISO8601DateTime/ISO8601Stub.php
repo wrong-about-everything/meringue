@@ -19,7 +19,7 @@ class ISO8601Stub implements ISO8601DateTime
         return $this->datetime;
     }
 
-    public function equalsTo(ISO8601DateTime $dateTime)
+    public function equalsTo(ISO8601DateTime $dateTime): bool
     {
         return new PHPDateTime($this->value()) == new PHPDateTime($dateTime->value());
     }

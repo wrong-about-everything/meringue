@@ -1,6 +1,6 @@
 <?php
 
-namespace ooDateTime\test\ISO8601Interval;
+namespace test\ISO8601Interval;
 
 use src\ISO8601Interval\FromISO8601;
 use PHPUnit\Framework\TestCase;

@@ -6,5 +6,5 @@ interface ISO8601DateTime
 {
     public function value(): string;
 
-    public function equalsTo(ISO8601DateTime $dateTime);
+    public function equalsTo(ISO8601DateTime $dateTime): bool;
 }

@@ -1,7 +1,8 @@
 <?php
 
-namespace ooDateTime\test\ISO8601DateTime;
+namespace test\timeline;
 
+use src\comparison\Min;
 use src\ISO8601Interval\FromISO8601;
 use src\timeline\Future;
 use src\timeline\Now;
@@ -18,7 +19,7 @@ class NowTest extends TestCase
                     new Now(),
                     new FromISO8601('PT1S')
                 ),
-                Min(
+                new Min(
                     new Now(),
                     new Future(
                         new Now(),

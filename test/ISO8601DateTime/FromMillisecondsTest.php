@@ -1,6 +1,6 @@
 <?php
 
-namespace ooDateTime\test\ISO8601DateTime;
+namespace test\ISO8601DateTime;
 
 use src\ISO8601DateTime\FromMilliseconds;
 use PHPUnit\Framework\TestCase;
@@ -22,6 +22,7 @@ class FromMillisecondsTest extends TestCase
         try {
             (new FromMilliseconds('sdf4564df'))->value();
         } catch (Exception $e) {
+            $this->assertTrue(true);
             return;
         }
 

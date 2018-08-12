@@ -4,28 +4,63 @@ namespace src\comparison;
 
 use DateTimeImmutable as PHPDateTime;
 use src\ISO8601DateTime;
+use \Exception;
 
 class Min implements ISO8601DateTime
 {
-    private $datetime1;
-    private $datetime2;
+    /**
+     * @var ISO8601DateTime[] $dateTimes
+     */
+    private $dateTimes;
 
-    public function __construct(ISO8601DateTime $dateTime1, ISO8601DateTime $dateTime2)
+    /**
+     * Min constructor.
+     * @param ISO8601DateTime ...$dateTimes
+     * @throws Exception In the following cases:
+     *  1. Non-ISO8601DateTime value passed
+     *  2. There are less than two values passed
+     */
+    public function __construct(...$dateTimes)
     {
-        $this->datetime1 = $dateTime1;
-        $this->datetime2 = $dateTime2;
+        array_walk(
+            $dateTimes,
+            function ($dt) {
+                if (!($dt instanceof ISO8601DateTime)) {
+                    throw new Exception('Non ISO8601DateTime value passed.');
+                }
+            }
+        );
+
+        if (count($dateTimes) < 2) {
+            throw new Exception('Nothing to find since a single value passed.');
+        }
+
+        $this->dateTimes = $dateTimes;
     }
 
     public function value(): string
     {
-        return
-            (new PHPDateTime($this->datetime1->value()) < new PHPDateTime($this->datetime2->value()))
-                ? $this->datetime1->value()
-                : $this->datetime2->value()
-            ;
+        $dts = $this->dateTimes;
+
+        usort(
+            $dts,
+            function ($left, $right) {
+                if (new PHPDateTime($left->value()) === new PHPDateTime($right->value())) {
+                    return 0;
+                }
+
+                return
+                    (new PHPDateTime($left->value()) < new PHPDateTime($right->value()))
+                        ? -1
+                        : 1
+                    ;
+            }
+        );
+
+        return $dts[0]->value();
     }
 
-    public function equalsTo(ISO8601DateTime $dateTime)
+    public function equalsTo(ISO8601DateTime $dateTime): bool
     {
         return new PHPDateTime($this->value()) == new PHPDateTime($dateTime->value());
     }

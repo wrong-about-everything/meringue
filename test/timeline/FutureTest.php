@@ -1,6 +1,6 @@
 <?php
 
-namespace ooDateTime\test\ISO8601DateTime;
+namespace test\timeline;
 
 use src\ISO8601DateTime\ISO8601Stub;
 use src\ISO8601Interval\FromISO8601;

@@ -24,7 +24,7 @@ class FromMilliseconds implements ISO8601DateTime
         return PHPDateTime::createFromFormat('U', $this->ms)->format('c');
     }
 
-    public function equalsTo(ISO8601DateTime $dateTime)
+    public function equalsTo(ISO8601DateTime $dateTime): bool
     {
         return
             new PHPDateTime($this->value())

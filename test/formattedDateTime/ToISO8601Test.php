@@ -1,6 +1,6 @@
 <?php
 
-namespace ooDateTime\test\formattedDateTime;
+namespace test\formattedDateTime;
 
 use src\formattedDateTime\ToISO8601;
 use src\ISO8601DateTime\ISO8601Stub;

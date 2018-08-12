@@ -1,6 +1,6 @@
 <?php
 
-namespace ooDateTime\test\ISO8601Interval;
+namespace test\ISO8601Interval;
 
 use src\ISO8601DateTime\ISO8601Stub;
 use src\ISO8601Interval\FromRange;
@@ -30,6 +30,7 @@ class FromRangeTest extends TestCase
             ))
                 ->value();
         } catch (Exception $e) {
+            $this->assertTrue(true);
             return;
         }
 

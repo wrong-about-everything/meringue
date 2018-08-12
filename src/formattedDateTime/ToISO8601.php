@@ -3,10 +3,9 @@
 namespace src\formattedDateTime;
 
 use DateTimeImmutable as PHPDateTime;
-use src\FormattedDateTime;
 use src\ISO8601DateTime;
 
-class ToISO8601 implements FormattedDateTime
+class ToISO8601
 {
     private $s;
 
@@ -15,7 +14,7 @@ class ToISO8601 implements FormattedDateTime
         $this->s = $s;
     }
 
-    public function value()
+    public function value(): string
     {
         return (new PHPDateTime($this->s->value()))->format('c');
     }
