@@ -16,6 +16,6 @@ class ToISO8601
 
     public function value(): string
     {
-        return (new PHPDateTime($this->s->value()))->format('c');
+        return $this->s->value();
     }
 }

@@ -6,7 +6,7 @@ use src\formattedDateTime\ToSeconds;
 use src\ISO8601DateTime\ISO8601Stub;
 use PHPUnit\Framework\TestCase;
 
-class ToMillisecondsTest extends TestCase
+class ToSecondsTest extends TestCase
 {
     public function testEquals()
     {
