@@ -25,4 +25,12 @@ class MonthTest extends TestCase
             (new Month(new FromISO8601('2017-07-03T14:27:39+00:00')))->fullName()
         );
     }
+
+    public function testNumberOfDays()
+    {
+        $this->assertEquals(
+            31,
+            (new Month(new FromISO8601('2017-07-03T14:27:39+00:00')))->numberOfDays()
+        );
+    }
 }

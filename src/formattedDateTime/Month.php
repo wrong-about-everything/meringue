@@ -28,4 +28,9 @@ class Month
     {
         return strftime('%b', (new ToSeconds($this->dt))->value());
     }
+
+    public function numberOfDays()
+    {
+        return (new PHPDateTime($this->dt->value()))->format('t');
+    }
 }
