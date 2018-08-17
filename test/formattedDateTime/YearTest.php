@@ -12,7 +12,7 @@ class YearTest extends TestCase
     {
         $this->assertEquals(
             2017,
-            (new Year(new FromISO8601('2017-07-03T14:27:39+00:00')))->full()
+            (Year::fromIso8601DateTime(new FromISO8601('2017-07-03T14:27:39+00:00')))->full()
         );
     }
 
@@ -20,7 +20,7 @@ class YearTest extends TestCase
     {
         $this->assertEquals(
             true,
-            (new Year(new FromISO8601('2016-07-03T14:27:39+00:00')))->isLeap()
+            (Year::fromIso8601DateTime(new FromISO8601('2016-07-03T14:27:39+00:00')))->isLeap()
         );
     }
 
@@ -28,7 +28,14 @@ class YearTest extends TestCase
     {
         $this->assertEquals(
             false,
-            (new Year(new FromISO8601('2017-07-03T14:27:39+00:00')))->isLeap()
+            (Year::fromIso8601DateTime(new FromISO8601('2017-07-03T14:27:39+00:00')))->isLeap()
+        );
+    }
+
+    public function testEquality()
+    {
+        $this->assertTrue(
+            (Year::fromIso8601DateTime(new FromISO8601('2017-07-03T14:27:39+00:00')))->equalsTo(Year::fromInt(2017))
         );
     }
 }

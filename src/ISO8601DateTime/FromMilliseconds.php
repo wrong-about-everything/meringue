@@ -10,17 +10,13 @@ class FromMilliseconds implements ISO8601DateTime
 {
     private $ms;
 
-    public function __construct($ms)
+    public function __construct(int $ms)
     {
         $this->ms = $ms;
     }
 
     public function value(): string
     {
-        if (!ctype_digit($this->ms)) {
-            throw new Exception();
-        }
-
         return PHPDateTime::createFromFormat('U', $this->ms)->format('c');
     }
 
