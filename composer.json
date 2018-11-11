@@ -1,5 +1,6 @@
 {
   "name" : "wrong-about-everything/meringue",
+  "type": "library",
   "description" : "Object-oriented php DateTime implementation",
   "keywords" : ["OOP", "DateTime", "Date", "Time"],
   "repositories" : [
@@ -12,6 +13,9 @@
     "psr-4": {
       "Meringue\\": "src/"
     }
+  },
+  "require": {
+    "php": "^7.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^7.3"
