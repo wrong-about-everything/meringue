@@ -1,9 +1,9 @@
 <?php
 
-namespace src\formattedDateTime;
+namespace Meringue\formattedDateTime;
 
 use DateTimeImmutable as PHPDateTime;
-use src\ISO8601DateTime;
+use Meringue\ISO8601DateTime;
 
 class ToISO8601
 {

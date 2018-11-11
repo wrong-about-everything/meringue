@@ -1,10 +1,10 @@
 <?php
 
-namespace src\ISO8601DateTime;
+namespace Meringue\ISO8601DateTime;
 
 use DateTimeImmutable as PHPDateTime;
 use Exception;
-use src\ISO8601DateTime;
+use Meringue\ISO8601DateTime;
 
 class FromMilliseconds implements ISO8601DateTime
 {

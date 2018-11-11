@@ -1,9 +1,9 @@
 <?php
 
-namespace src\ISO8601DateTime;
+namespace Meringue\ISO8601DateTime;
 
 use Exception;
-use src\ISO8601DateTime;
+use Meringue\ISO8601DateTime;
 
 class FromISO8601 implements ISO8601DateTime
 {

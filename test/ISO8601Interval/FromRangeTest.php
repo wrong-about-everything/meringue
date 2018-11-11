@@ -2,8 +2,8 @@
 
 namespace test\ISO8601Interval;
 
-use src\ISO8601DateTime\ISO8601Stub;
-use src\ISO8601Interval\FromRange;
+use Meringue\ISO8601DateTime\ISO8601Stub;
+use Meringue\ISO8601Interval\FromRange;
 use PHPUnit\Framework\TestCase;
 use \Exception;
 

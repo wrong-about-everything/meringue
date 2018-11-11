@@ -1,6 +1,6 @@
 <?php
 
-namespace src;
+namespace Meringue;
 
 interface ISO8601Interval
 {

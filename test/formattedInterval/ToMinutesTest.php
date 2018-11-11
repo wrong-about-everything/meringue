@@ -3,10 +3,10 @@
 namespace test\formattedInterval;
 
 use PHPUnit\Framework\TestCase;
-use src\formattedInterval\ToMinutes;
-use src\ISO8601DateTime\FromISO8601;
-use src\ISO8601Interval\FromRange;
-use src\WithFixedStartDateTime;
+use Meringue\formattedInterval\ToMinutes;
+use Meringue\ISO8601DateTime\FromISO8601;
+use Meringue\ISO8601Interval\FromRange;
+use Meringue\WithFixedStartDateTime;
 
 class ToMinutesTest extends TestCase
 {

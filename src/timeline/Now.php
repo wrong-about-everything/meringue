@@ -1,9 +1,9 @@
 <?php
 
-namespace src\timeline;
+namespace Meringue\timeline;
 
 use DateTimeImmutable as PHPDateTime;
-use src\ISO8601DateTime;
+use Meringue\ISO8601DateTime;
 
 class Now implements ISO8601DateTime
 {

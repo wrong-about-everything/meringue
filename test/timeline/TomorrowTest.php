@@ -3,7 +3,7 @@
 namespace test\timeline;
 
 use PHPUnit\Framework\TestCase;
-use src\ISO8601DateTime\FromISO8601;
+use Meringue\ISO8601DateTime\FromISO8601;
 
 class TomorrowTest extends TestCase
 {

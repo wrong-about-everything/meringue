@@ -4,16 +4,16 @@ namespace ooDateTime;
 
 require_once 'vendor/autoload.php';
 
-use src\comparison\DateTimeComparisonResult;
-use src\comparison\Max;
-use src\formattedDateTime\ToSeconds;
-use src\ISO8601DateTime\FromMilliseconds;
-use src\ISO8601Interval\FromRange;
-use src\timeline\Future;
-use src\timeline\Past;
-use src\timeline\Now;
-use src\ISO8601DateTime\FromISO8601;
-use src\ISO8601Interval\FromISO8601 as ISO8601Interval;
+use Meringue\comparison\DateTimeComparisonResult;
+use Meringue\comparison\Max;
+use Meringue\formattedDateTime\ToSeconds;
+use Meringue\ISO8601DateTime\FromMilliseconds;
+use Meringue\ISO8601Interval\FromRange;
+use Meringue\timeline\Future;
+use Meringue\timeline\Past;
+use Meringue\timeline\Now;
+use Meringue\ISO8601DateTime\FromISO8601;
+use Meringue\ISO8601Interval\FromISO8601 as ISO8601Interval;
 
 
 // outputs true

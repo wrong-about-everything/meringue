@@ -2,8 +2,8 @@
 
 namespace test\formattedDateTime;
 
-use src\formattedDateTime\ToISO8601;
-use src\ISO8601DateTime\ISO8601Stub;
+use Meringue\formattedDateTime\ToISO8601;
+use Meringue\ISO8601DateTime\ISO8601Stub;
 use PHPUnit\Framework\TestCase;
 
 class ToISO8601Test extends TestCase

@@ -1,12 +1,12 @@
 <?php
 
-namespace src\ISO8601Interval;
+namespace Meringue\ISO8601Interval;
 
 use DateTimeImmutable as PHPDateTime;
-use src\ISO8601DateTime;
-use src\ISO8601Interval;
-use src\timeline\Future;
-use src\WithFixedStartDateTime;
+use Meringue\ISO8601DateTime;
+use Meringue\ISO8601Interval;
+use Meringue\timeline\Future;
+use Meringue\WithFixedStartDateTime;
 
 class FromStartDateTimeAndInterval implements WithFixedStartDateTime
 {

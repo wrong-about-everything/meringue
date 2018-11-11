@@ -1,6 +1,6 @@
 <?php
 
-namespace src;
+namespace Meringue;
 
 interface WithFixedStartDateTime extends ISO8601Interval
 {

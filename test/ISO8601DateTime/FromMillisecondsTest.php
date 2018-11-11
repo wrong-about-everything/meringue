@@ -2,7 +2,7 @@
 
 namespace test\ISO8601DateTime;
 
-use src\ISO8601DateTime\FromMilliseconds;
+use Meringue\ISO8601DateTime\FromMilliseconds;
 use PHPUnit\Framework\TestCase;
 use \Exception;
 

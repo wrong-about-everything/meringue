@@ -2,11 +2,11 @@
 
 namespace test\comparison;
 
-use src\comparison\Max;
-use src\ISO8601DateTime\FromISO8601;
-use src\ISO8601Interval\FromISO8601 as ISO8601Interval;
-use src\timeline\Now;
-use src\timeline\Past;
+use Meringue\comparison\Max;
+use Meringue\ISO8601DateTime\FromISO8601;
+use Meringue\ISO8601Interval\FromISO8601 as ISO8601Interval;
+use Meringue\timeline\Now;
+use Meringue\timeline\Past;
 use PHPUnit\Framework\TestCase;
 use \Exception;
 

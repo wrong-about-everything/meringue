@@ -1,9 +1,9 @@
 <?php
 
-namespace src\comparison;
+namespace Meringue\comparison;
 
 use DateTimeImmutable as PHPDateTime;
-use src\ISO8601DateTime;
+use Meringue\ISO8601DateTime;
 use \Exception;
 
 class Min implements ISO8601DateTime

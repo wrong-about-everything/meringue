@@ -1,9 +1,9 @@
 <?php
 
-namespace src\formattedInterval;
+namespace Meringue\formattedInterval;
 
-use src\formattedDateTime\ToSeconds;
-use src\WithFixedStartDateTime;
+use Meringue\formattedDateTime\ToSeconds;
+use Meringue\WithFixedStartDateTime;
 
 class ToHours
 {

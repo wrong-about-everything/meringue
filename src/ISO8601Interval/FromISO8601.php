@@ -1,9 +1,9 @@
 <?php
 
-namespace src\ISO8601Interval;
+namespace Meringue\ISO8601Interval;
 
 use Exception;
-use src\ISO8601Interval;
+use Meringue\ISO8601Interval;
 
 class FromISO8601 implements ISO8601Interval
 {

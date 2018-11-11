@@ -1,11 +1,11 @@
 <?php
 
-namespace src\ISO8601Interval;
+namespace Meringue\ISO8601Interval;
 
 use DateTimeImmutable as PHPDateTime;
 use Exception;
-use src\ISO8601DateTime;
-use src\WithFixedStartDateTime;
+use Meringue\ISO8601DateTime;
+use Meringue\WithFixedStartDateTime;
 
 class FromRange implements WithFixedStartDateTime
 {

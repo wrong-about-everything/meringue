@@ -2,7 +2,7 @@
 
 namespace test\ISO8601Interval;
 
-use src\ISO8601Interval\FromISO8601;
+use Meringue\ISO8601Interval\FromISO8601;
 use PHPUnit\Framework\TestCase;
 
 class FromISO8601Test extends TestCase

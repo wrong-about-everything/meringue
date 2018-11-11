@@ -2,9 +2,9 @@
 
 namespace test\timeline;
 
-use src\ISO8601DateTime\ISO8601Stub;
-use src\ISO8601Interval\FromISO8601;
-use src\timeline\Past;
+use Meringue\ISO8601DateTime\ISO8601Stub;
+use Meringue\ISO8601Interval\FromISO8601;
+use Meringue\timeline\Past;
 use PHPUnit\Framework\TestCase;
 
 class PastTest extends TestCase

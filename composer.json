@@ -1,5 +1,5 @@
 {
-  "name" : "wrong-about-everything/oo-date-time",
+  "name" : "wrong-about-everything/meringue",
   "description" : "Object-oriented php DateTime implementation",
   "keywords" : ["OOP", "DateTime", "Date", "Time"],
   "repositories" : [
@@ -10,7 +10,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "src\\": "src/"
+      "Meringue\\": "src/"
     }
   },
   "require-dev": {

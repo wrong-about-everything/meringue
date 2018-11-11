@@ -3,10 +3,10 @@
 namespace test\formattedInterval;
 
 use PHPUnit\Framework\TestCase;
-use src\formattedInterval\ToDays;
-use src\ISO8601DateTime\FromISO8601;
-use src\ISO8601Interval\FromRange;
-use src\WithFixedStartDateTime;
+use Meringue\formattedInterval\ToDays;
+use Meringue\ISO8601DateTime\FromISO8601;
+use Meringue\ISO8601Interval\FromRange;
+use Meringue\WithFixedStartDateTime;
 
 class ToDaysTest extends TestCase
 {

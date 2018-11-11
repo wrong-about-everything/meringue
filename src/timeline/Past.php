@@ -1,11 +1,11 @@
 <?php
 
-namespace src\timeline;
+namespace Meringue\timeline;
 
 use DateInterval as PHPDateInterval;
 use DateTimeImmutable as PHPDateTime;
-use src\ISO8601DateTime;
-use src\ISO8601Interval;
+use Meringue\ISO8601DateTime;
+use Meringue\ISO8601Interval;
 
 class Past implements ISO8601DateTime
 {

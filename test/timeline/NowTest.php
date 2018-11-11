@@ -2,11 +2,11 @@
 
 namespace test\timeline;
 
-use src\comparison\Min;
-use src\ISO8601Interval\FromISO8601;
-use src\timeline\Future;
-use src\timeline\Now;
-use src\timeline\Past;
+use Meringue\comparison\Min;
+use Meringue\ISO8601Interval\FromISO8601;
+use Meringue\timeline\Future;
+use Meringue\timeline\Now;
+use Meringue\timeline\Past;
 use PHPUnit\Framework\TestCase;
 
 class NowTest extends TestCase
