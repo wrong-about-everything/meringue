@@ -3,10 +3,10 @@
 namespace test\formattedDateTime;
 
 use PHPUnit\Framework\TestCase;
-use src\formattedDateTime\DayOfWeek;
-use src\formattedDateTime\WithCallback;
-use src\ISO8601DateTime;
-use src\ISO8601DateTime\FromISO8601;
+use Meringue\formattedDateTime\DayOfWeek;
+use Meringue\formattedDateTime\WithCallback;
+use Meringue\ISO8601DateTime;
+use Meringue\ISO8601DateTime\FromISO8601;
 
 class WithCallbackTest extends TestCase
 {

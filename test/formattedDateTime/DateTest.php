@@ -3,8 +3,8 @@
 namespace test\formattedDateTime;
 
 use PHPUnit\Framework\TestCase;
-use src\formattedDateTime\Date;
-use src\ISO8601DateTime\FromISO8601;
+use Meringue\formattedDateTime\Date;
+use Meringue\ISO8601DateTime\FromISO8601;
 
 class DateTest extends TestCase
 {

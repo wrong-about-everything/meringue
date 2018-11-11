@@ -3,8 +3,8 @@
 namespace test\formattedDateTime;
 
 use PHPUnit\Framework\TestCase;
-use src\formattedDateTime\DayOfWeek;
-use src\ISO8601DateTime\FromISO8601;
+use Meringue\formattedDateTime\DayOfWeek;
+use Meringue\ISO8601DateTime\FromISO8601;
 
 class DayOfWeekTest extends TestCase
 {

@@ -4,14 +4,14 @@ namespace test\ISO8601DateTime;
 
 use Meringue\ISO8601DateTime\FromMilliseconds;
 use PHPUnit\Framework\TestCase;
-use \Exception;
+use \Throwable;
 
 class FromMillisecondsTest extends TestCase
 {
     public function testCorrectFormat()
     {
         $this->assertEquals(
-            (new FromMilliseconds('1504534440'))
+            (new FromMilliseconds(1504534440))
                 ->value(),
             '2017-09-04T14:14:00+00:00'
         );
@@ -21,7 +21,7 @@ class FromMillisecondsTest extends TestCase
     {
         try {
             (new FromMilliseconds('sdf4564df'))->value();
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             $this->assertTrue(true);
             return;
         }

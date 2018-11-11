@@ -9,7 +9,7 @@ class FromISO8601 implements ISO8601Interval
 {
     private $i;
 
-    public function __construct($i)
+    public function __construct(string $i)
     {
         $this->i = $i;
     }

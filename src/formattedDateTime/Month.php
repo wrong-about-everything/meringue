@@ -1,8 +1,8 @@
 <?php
 
-namespace src\formattedDateTime;
+namespace Meringue\formattedDateTime;
 
-use src\ISO8601DateTime;
+use Meringue\ISO8601DateTime;
 use DateTimeImmutable as PHPDateTime;
 
 class Month

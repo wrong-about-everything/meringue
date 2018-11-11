@@ -3,8 +3,8 @@
 namespace test\formattedDateTime;
 
 use PHPUnit\Framework\TestCase;
-use src\formattedDateTime\DayOfMonth;
-use src\ISO8601DateTime\FromISO8601;
+use Meringue\formattedDateTime\DayOfMonth;
+use Meringue\ISO8601DateTime\FromISO8601;
 
 class DayOfMonthTest extends TestCase
 {

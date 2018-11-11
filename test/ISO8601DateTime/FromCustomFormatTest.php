@@ -3,8 +3,8 @@
 namespace test\ISO8601DateTime;
 
 use PHPUnit\Framework\TestCase;
-use src\formattedDateTime\Year;
-use src\ISO8601DateTime\FromCustomFormat;
+use Meringue\formattedDateTime\Year;
+use Meringue\ISO8601DateTime\FromCustomFormat;
 
 class FromCustomFormatTest extends TestCase
 {

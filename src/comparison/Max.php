@@ -16,21 +16,10 @@ class Max implements ISO8601DateTime
     /**
      * Max constructor.
      * @param ISO8601DateTime ...$dateTimes
-     * @throws Exception In the following cases:
-     *  1. Non-ISO8601DateTime value passed
-     *  2. There are less than two values passed
+     * @throws Exception In case when there are less than two values passed
      */
-    public function __construct(... $dateTimes)
+    public function __construct(ISO8601DateTime ... $dateTimes)
     {
-        array_walk(
-            $dateTimes,
-            function ($dt) {
-                if (!($dt instanceof ISO8601DateTime)) {
-                    throw new Exception('Non ISO8601DateTime value passed.');
-                }
-            }
-        );
-
         if (count($dateTimes) < 2) {
             throw new Exception('Nothing to find since a single value passed.');
         }

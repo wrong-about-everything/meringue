@@ -9,6 +9,7 @@ use Meringue\timeline\Now;
 use Meringue\timeline\Past;
 use PHPUnit\Framework\TestCase;
 use \Exception;
+use Throwable;
 
 class MaxTest extends TestCase
 {
@@ -55,7 +56,7 @@ class MaxTest extends TestCase
                 '2017-09-01T06:04:31+00:00',
                 '2018-08-17T06:04:31+00:00'
             );
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             $this->assertTrue(true);
             return;
         }

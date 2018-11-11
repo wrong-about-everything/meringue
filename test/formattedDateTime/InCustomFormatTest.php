@@ -3,9 +3,9 @@
 namespace test\formattedDateTime;
 
 use PHPUnit\Framework\TestCase;
-use src\formattedDateTime\InCustomFormat;
-use src\formattedDateTime\Time;
-use src\ISO8601DateTime\FromISO8601;
+use Meringue\formattedDateTime\InCustomFormat;
+use Meringue\formattedDateTime\Time;
+use Meringue\ISO8601DateTime\FromISO8601;
 
 class InCustomFormatTest extends TestCase
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace src\ISO8601DateTime;
+namespace Meringue\ISO8601DateTime;
 
-use src\ISO8601DateTime;
+use Meringue\ISO8601DateTime;
 use DateTimeImmutable as PHPDateTime;
 
 class FromCustomFormat implements ISO8601DateTime

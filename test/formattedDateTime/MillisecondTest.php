@@ -3,9 +3,9 @@
 namespace test\formattedDateTime;
 
 use PHPUnit\Framework\TestCase;
-use src\formattedDateTime\Minute;
-use src\formattedDateTime\Second;
-use src\ISO8601DateTime\FromISO8601;
+use Meringue\formattedDateTime\Minute;
+use Meringue\formattedDateTime\Second;
+use Meringue\ISO8601DateTime\FromISO8601;
 
 class MillisecondTest extends TestCase
 {

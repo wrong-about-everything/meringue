@@ -3,9 +3,9 @@
 namespace test\formattedDateTime;
 
 use PHPUnit\Framework\TestCase;
-use src\formattedDateTime\AtomFormatted;
-use src\formattedDateTime\Year;
-use src\ISO8601DateTime\FromISO8601;
+use Meringue\formattedDateTime\AtomFormatted;
+use Meringue\formattedDateTime\Year;
+use Meringue\ISO8601DateTime\FromISO8601;
 
 class AtomFormattedTest extends TestCase
 {
