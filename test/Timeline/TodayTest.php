@@ -1,13 +1,14 @@
 <?php
 
-namespace Meringue\Tests\ISO8601DateTime;
+namespace Meringue\Tests\Timeline;
 
 use PHPUnit\Framework\TestCase;
 
-class FromAtomTest extends TestCase
+class TodayTest extends TestCase
 {
     public function test()
     {
         $this->markTestIncomplete();
+        $this->assertTrue(true);
     }
 }

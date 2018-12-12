@@ -1,6 +1,6 @@
 <?php
 
-namespace test\ISO8601Interval;
+namespace Meringue\Tests\ISO8601Interval;
 
 use Meringue\ISO8601DateTime\ISO8601Stub;
 use Meringue\ISO8601Interval\FromRange;

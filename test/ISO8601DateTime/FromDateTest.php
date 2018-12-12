@@ -1,6 +1,6 @@
 <?php
 
-namespace test\ISO8601DateTime;
+namespace Meringue\Tests\ISO8601DateTime;
 
 use PHPUnit\Framework\TestCase;
 

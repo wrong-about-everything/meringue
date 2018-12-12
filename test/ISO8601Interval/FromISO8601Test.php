@@ -1,6 +1,6 @@
 <?php
 
-namespace test\ISO8601Interval;
+namespace Meringue\Tests\ISO8601Interval;
 
 use Meringue\ISO8601Interval\FromISO8601;
 use PHPUnit\Framework\TestCase;

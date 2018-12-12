@@ -1,10 +1,10 @@
 <?php
 
-namespace Meringue\Tests\ISO8601DateTime;
+namespace Meringue\Tests\FormattedInterval;
 
 use PHPUnit\Framework\TestCase;
 
-class FromAtomTest extends TestCase
+class ToYearsTest extends TestCase
 {
     public function test()
     {

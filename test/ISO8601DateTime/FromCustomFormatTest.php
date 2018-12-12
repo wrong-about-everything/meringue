@@ -1,9 +1,9 @@
 <?php
 
-namespace test\ISO8601DateTime;
+namespace Meringue\Tests\ISO8601DateTime;
 
 use PHPUnit\Framework\TestCase;
-use Meringue\formattedDateTime\Year;
+use Meringue\FormattedDateTime\Year;
 use Meringue\ISO8601DateTime\FromCustomFormat;
 
 class FromCustomFormatTest extends TestCase

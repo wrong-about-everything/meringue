@@ -5,7 +5,7 @@ namespace Meringue\ISO8601Interval;
 use DateTimeImmutable as PHPDateTime;
 use Meringue\ISO8601DateTime;
 use Meringue\ISO8601Interval;
-use Meringue\timeline\Future;
+use Meringue\Timeline\Future;
 use Meringue\WithFixedStartDateTime;
 
 class FromStartDateTimeAndInterval implements WithFixedStartDateTime

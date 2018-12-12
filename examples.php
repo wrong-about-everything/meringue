@@ -4,14 +4,14 @@ namespace ooDateTime;
 
 require_once 'vendor/autoload.php';
 
-use Meringue\comparison\DateTimeComparisonResult;
-use Meringue\comparison\Max;
-use Meringue\formattedDateTime\ToSeconds;
+use Meringue\Comparison\DateTimeComparisonResult;
+use Meringue\Comparison\Max;
+use Meringue\FormattedDateTime\ToSeconds;
 use Meringue\ISO8601DateTime\FromMilliseconds;
 use Meringue\ISO8601Interval\FromRange;
-use Meringue\timeline\Future;
-use Meringue\timeline\Past;
-use Meringue\timeline\Now;
+use Meringue\Timeline\Future;
+use Meringue\Timeline\Past;
+use Meringue\Timeline\Now;
 use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\ISO8601Interval\FromISO8601 as ISO8601Interval;
 
