@@ -24,16 +24,15 @@ class FromRangeTest extends TestCase
     public function testWrongFormat()
     {
         try {
-            (new FromRange(
+            new FromRange(
                 new ISO8601Stub('2017-09-03T14:27:39+00:00'),
                 new ISO8601Stub('2017-08-28T14:29:47+00:00')
-            ))
-                ->value();
+            );
         } catch (Exception $e) {
             $this->assertTrue(true);
             return;
         }
 
-        $this->fail('End date is larger than start date.');
+        $this->fail('End date can not be less than start date.');
     }
 }
