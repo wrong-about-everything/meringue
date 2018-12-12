@@ -14,7 +14,7 @@ class FromRange implements WithFixedStartDateTime
 
     public function __construct(ISO8601DateTime $dt1, ISO8601DateTime $dt2)
     {
-        if ($dt2->value() <= $dt1->value()) {
+        if (new PHPDateTime($dt2->value()) <= new PHPDateTime($dt1->value())) {
             throw new Exception('Interval end date can not be less than start date.');
         }
 
