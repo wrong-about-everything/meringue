@@ -5,7 +5,7 @@ namespace Meringue\ISO8601DateTime;
 use Meringue\ISO8601DateTime;
 use DateTimeImmutable as PHPDateTime;
 
-class FromCustomFormat implements ISO8601DateTime
+class FromCustomFormat extends ISO8601DateTime
 {
     private $format;
     private $dateTime;
@@ -19,10 +19,5 @@ class FromCustomFormat implements ISO8601DateTime
     public function value(): string
     {
         return PHPDateTime::createFromFormat($this->format, $this->dateTime)->format('c');
-    }
-
-    public function equalsTo(ISO8601DateTime $dateTime): bool
-    {
-        return new PHPDateTime($this->value()) == new PHPDateTime($dateTime->value());
     }
 }

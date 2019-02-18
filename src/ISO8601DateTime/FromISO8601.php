@@ -4,10 +4,8 @@ namespace Meringue\ISO8601DateTime;
 
 use Exception;
 use Meringue\ISO8601DateTime;
-use Throwable;
-use DateTime;
 
-class FromISO8601 implements ISO8601DateTime
+class FromISO8601 extends ISO8601DateTime
 {
     private $s;
 
@@ -28,10 +26,5 @@ class FromISO8601 implements ISO8601DateTime
     public function value(): string
     {
         return $this->s;
-    }
-
-    public function equalsTo(ISO8601DateTime $dateTime): bool
-    {
-        return new PHPDateTime($this->value()) == new PHPDateTime($dateTime->value());
     }
 }

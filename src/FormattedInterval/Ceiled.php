@@ -18,6 +18,6 @@ class Ceiled
 
     public function value(): int
     {
-        return (int) ceil((float) (new ToFloat($this->interval))->value());
+        return (int) ceil((new ToFloat($this->interval))->value());
     }
 }

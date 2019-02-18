@@ -6,7 +6,7 @@ use DateTimeImmutable as PHPDateTime;
 use Meringue\ISO8601DateTime;
 use \Exception;
 
-class Min implements ISO8601DateTime
+class Min extends ISO8601DateTime
 {
     /**
      * @var ISO8601DateTime[] $dateTimes
@@ -58,10 +58,5 @@ class Min implements ISO8601DateTime
         );
 
         return $dts[0]->value();
-    }
-
-    public function equalsTo(ISO8601DateTime $dateTime): bool
-    {
-        return new PHPDateTime($this->value()) == new PHPDateTime($dateTime->value());
     }
 }

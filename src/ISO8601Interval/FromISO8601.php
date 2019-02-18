@@ -11,19 +11,20 @@ class FromISO8601 implements ISO8601Interval
 
     public function __construct(string $i)
     {
+        if (
+            !preg_match(
+                '/P((([0-9]*\.?[0-9]*)Y)?(([0-9]*\.?[0-9]*)M)?(([0-9]*\.?[0-9]*)W)?(([0-9]*\.?[0-9]*)D)?)?(T(([0-9]*\.?[0-9]*)H)?(([0-9]*\.?[0-9]*)M)?(([0-9]*\.?[0-9]*)S)?)?/',
+                $i
+            )
+        ) {
+            throw new Exception();
+        }
+
         $this->i = $i;
     }
 
     public function value(): string
     {
-        if (
-            !preg_match(
-                '/P((([0-9]*\.?[0-9]*)Y)?(([0-9]*\.?[0-9]*)M)?(([0-9]*\.?[0-9]*)W)?(([0-9]*\.?[0-9]*)D)?)?(T(([0-9]*\.?[0-9]*)H)?(([0-9]*\.?[0-9]*)M)?(([0-9]*\.?[0-9]*)S)?)?/',
-                $this->i
-            )
-        ) {
-            throw new Exception();
-        }
 
         return $this->i;
     }

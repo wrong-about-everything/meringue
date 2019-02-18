@@ -14,10 +14,10 @@ class ToFloat
         $this->interval = $interval;
     }
 
-    public function value(): string
+    public function value(): float
     {
         return
-            bcdiv(
+            (float) bcdiv(
                 (new ToSeconds($this->interval->ends()))->value() - (new ToSeconds($this->interval->starts()))->value(),
                 60,
                 2

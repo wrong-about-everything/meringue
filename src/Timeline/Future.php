@@ -7,7 +7,7 @@ use DateTimeImmutable as PHPDateTime;
 use Meringue\ISO8601Interval;
 use Meringue\ISO8601DateTime;
 
-class Future implements ISO8601DateTime
+class Future extends ISO8601DateTime
 {
     private $dt;
     private $i;
@@ -26,13 +26,5 @@ class Future implements ISO8601DateTime
                     new PHPDateInterval($this->i->value())
                 )
                 ->format('c');
-    }
-
-    public function equalsTo(ISO8601DateTime $dateTime): bool
-    {
-        return
-            new PHPDateTime($this->value())
-                ==
-            new PHPDateTime($dateTime->value());
     }
 }

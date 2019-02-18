@@ -2,9 +2,14 @@
 
 namespace Meringue;
 
-interface ISO8601DateTime
-{
-    public function value(): string;
+use DateTimeImmutable as PHPDateTime;
 
-    public function equalsTo(ISO8601DateTime $dateTime): bool;
+abstract class ISO8601DateTime
+{
+    abstract public function value(): string;
+
+    public function equalsTo(ISO8601DateTime $dateTime): bool
+    {
+        return new PHPDateTime($this->value()) == new PHPDateTime($dateTime->value());
+    }
 }
