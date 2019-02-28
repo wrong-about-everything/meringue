@@ -52,7 +52,7 @@ class FromISO8601Test extends TestCase
         try {
             (new FromISO8601($dateTime));
         } catch (Exception $e) {
-            $this->assertTrue(true);
+            $this->assertEquals(sprintf('Wrong format of DateTime. The "%s" was passed.', $dateTime), $e->getMessage());
             return;
         }
 
