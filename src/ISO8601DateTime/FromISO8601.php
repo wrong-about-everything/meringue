@@ -17,7 +17,7 @@ class FromISO8601 extends ISO8601DateTime
                 $s
             )
         ) {
-            throw new Exception('Input date is not in ISO8601 format.');
+            throw new Exception(sprintf('Wrong format of DateTime. The "%s" was passed.', $s));
         }
 
         $this->s = $s;
