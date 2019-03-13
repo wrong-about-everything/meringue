@@ -7,7 +7,7 @@ namespace Meringue\Time;
 use Exception;
 use Meringue\Time;
 
-class DefaultTime implements Time
+class DefaultTime extends Time
 {
     private $hours;
     private $minutes;

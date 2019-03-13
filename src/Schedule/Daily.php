@@ -16,6 +16,9 @@ class Daily implements Schedule
     private $from;
     private $till;
 
+    /**
+     * If $till is less than $from, it's implied that it belongs to the next day.
+     */
     public function __construct(Time $from, Time $till)
     {
         $this->from = $from;
@@ -24,7 +27,13 @@ class Daily implements Schedule
 
     public function isHit(ISO8601DateTime $dateTime): bool
     {
-        return $this->dateTimeIsGreaterOrEqualsToFrom($dateTime) && $this->dateTimeIsLessOrEqualsToTill($dateTime);
+        if ($this->till->greaterThan($this->from)) {
+            return $this->dateTimeIsGreaterOrEqualsToFrom($dateTime) && $this->dateTimeIsLessOrEqualsToTill($dateTime);
+        } elseif ($this->from->greaterThan($this->till)) {
+            return $this->dateTimeIsGreaterOrEqualsToFrom($dateTime) || $this->dateTimeIsLessOrEqualsToTill($dateTime);
+        }
+
+        return true;
     }
 
     private function dateTimeIsGreaterOrEqualsToFrom(ISO8601DateTime $dateTime)
