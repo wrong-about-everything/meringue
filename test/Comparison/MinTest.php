@@ -20,7 +20,7 @@ class MinTest extends TestCase
             (new Min(
                 $now,
                 new Future(
-                    new Now(),
+                    $now,
                     new ISO8601Interval('PT1S')
                 )
             ))

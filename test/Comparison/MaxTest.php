@@ -15,11 +15,12 @@ class MaxTest extends TestCase
 {
     public function testWithTwoArgs()
     {
+        $now = new Now();
         $this->assertTrue(
             (new Max(
-                new Now(),
+                $now,
                 new Past(
-                    new Now(),
+                    $now,
                     new ISO8601Interval('PT1S')
                 )
             ))
