@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Meringue\FormattedInterval;
 
-use Meringue\FormattedInterval\Minutes\ToFloat;
+use Meringue\FormattedInterval\ToMinutes;
 use Meringue\WithFixedStartDateTime;
 
 class Ceiled
@@ -18,6 +18,6 @@ class Ceiled
 
     public function value(): int
     {
-        return (int) ceil((new ToFloat($this->interval))->value());
+        return (int) ceil((new ToMinutes($this->interval))->value());
     }
 }

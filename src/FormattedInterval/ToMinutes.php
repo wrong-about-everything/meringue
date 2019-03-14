@@ -1,11 +1,11 @@
 <?php
 
-namespace Meringue\FormattedInterval\Minutes;
+namespace Meringue\FormattedInterval;
 
 use Meringue\FormattedDateTime\ToSeconds;
 use Meringue\WithFixedStartDateTime;
 
-class ToFloat
+class ToMinutes
 {
     private $interval;
 
