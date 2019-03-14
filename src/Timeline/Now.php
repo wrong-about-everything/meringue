@@ -13,6 +13,6 @@ class Now extends ISO8601DateTime
 
     public function value(): string
     {
-        return (new PHPDateTime('now'))->format('c');
+        return (PHPDateTime::createFromFormat('U.u', microtime(true)))->format('Y-m-d\TH:i:s.uP');
     }
 }
