@@ -2,7 +2,7 @@
 
 namespace Meringue\FormattedInterval;
 
-use Meringue\FormattedDateTime\ToSeconds as Seconds;
+use Meringue\FormattedDateTime\ToMicroseconds as Microseconds;
 use Meringue\WithFixedStartDateTime;
 
 class ToMicroseconds
@@ -18,8 +18,8 @@ class ToMicroseconds
     {
         return
             bcsub(
-                (new Seconds($this->interval->ends()))->value(),
-                (new Seconds($this->interval->starts()))->value()
+                (new Microseconds($this->interval->ends()))->value(),
+                (new Microseconds($this->interval->starts()))->value()
             );
     }
 }

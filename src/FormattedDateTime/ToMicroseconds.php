@@ -5,7 +5,7 @@ namespace Meringue\FormattedDateTime;
 use DateTimeImmutable as PHPDateTime;
 use Meringue\ISO8601DateTime;
 
-class ToMilliseconds
+class ToMicroseconds
 {
     private $s;
 
@@ -16,6 +16,6 @@ class ToMilliseconds
 
     public function value(): string
     {
-        return (new PHPDateTime($this->s->value()))->format('u');
+        return (new PHPDateTime($this->s->value()))->format('Uu');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Meringue\Tests\FormattedInterval;
 
+use Meringue\FormattedInterval\ToMicroseconds;
 use Meringue\FormattedInterval\ToSeconds;
 use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\ISO8601Interval\FromRange;
@@ -17,7 +18,7 @@ class ToMicrosecondsTest extends TestCase
     {
         $this->assertEquals(
             $expectedSeconds,
-            (new ToSeconds(
+            (new ToMicroseconds(
                 $range
             ))
                 ->value()
@@ -30,31 +31,31 @@ class ToMicrosecondsTest extends TestCase
             [
                 [
                     new FromRange(
-                        new FromISO8601('2017-07-03T14:27:39+00:00'),
-                        new FromISO8601('2017-07-05T14:27:39+00:00')
+                        new FromISO8601('2017-07-03T14:27:39.123456+00:00'),
+                        new FromISO8601('2017-07-05T14:27:39.123457+00:00')
                     ),
-                    172800
+                    172800000001
                 ],
                 [
                     new FromRange(
-                        new FromISO8601('2017-07-03T14:27:39+00:00'),
-                        new FromISO8601('2017-07-05T14:27:38+00:00')
+                        new FromISO8601('2017-07-03T14:27:39.123456+00:00'),
+                        new FromISO8601('2017-07-05T14:27:38.987654+00:00')
                     ),
-                    172799
+                    172799864198
                 ],
                 [
                     new FromRange(
                         new FromISO8601('2017-07-03T14:27:39+00:00'),
                         new FromISO8601('2017-07-05T14:27:40+00:00')
                     ),
-                    172801
+                    172801000000
                 ],
                 [
                     new FromRange(
                         new FromISO8601('2017-07-05T14:27:39+00:00'),
-                        new FromISO8601('2017-07-05T14:27:40+00:00')
+                        new FromISO8601('2017-07-05T14:27:40.000001+00:00')
                     ),
-                    1
+                    1000001
                 ],
             ];
     }
