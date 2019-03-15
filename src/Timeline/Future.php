@@ -20,11 +20,24 @@ class Future extends ISO8601DateTime
 
     public function value(): string
     {
+        $from = new PHPDateTime($this->dt->value());
+
+        if ((int) $from->format('u') != 0) {
+            return
+                $from
+                    ->add(
+                        new PHPDateInterval($this->i->value())
+                    )
+                        ->format('Y-m-d\TH:i:s.uP')
+                ;
+        }
+
         return
-            (new PHPDateTime($this->dt->value()))
+            $from
                 ->add(
                     new PHPDateInterval($this->i->value())
                 )
-                ->format('c');
+                    ->format('c')
+            ;
     }
 }

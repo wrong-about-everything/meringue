@@ -16,6 +16,7 @@ class MaxTest extends TestCase
     public function testWithTwoArgs()
     {
         $now = new Now();
+
         $this->assertTrue(
             (new Max(
                 $now,
@@ -24,7 +25,7 @@ class MaxTest extends TestCase
                     new ISO8601Interval('PT1S')
                 )
             ))
-                ->equalsTo(new Now())
+                ->equalsTo($now)
         );
     }
 

@@ -16,6 +16,11 @@ class ToSeconds
 
     public function value(): string
     {
-        return (new PHPDateTime($this->s->value()))->format('U');
+        $phpDateTime = new PHPDateTime($this->s->value());
+        if ((int) $phpDateTime->format('u') != 0) {
+            return $phpDateTime->format('U.u');
+        }
+
+        return $phpDateTime->format('U');
     }
 }

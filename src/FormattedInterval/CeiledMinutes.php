@@ -7,7 +7,7 @@ namespace Meringue\FormattedInterval;
 use Meringue\FormattedInterval\ToMinutes;
 use Meringue\WithFixedStartDateTime;
 
-class Ceiled
+class CeiledMinutes
 {
     private $interval;
 
