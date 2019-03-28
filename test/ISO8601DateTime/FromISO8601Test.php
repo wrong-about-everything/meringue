@@ -23,6 +23,9 @@ class FromISO8601Test extends TestCase
     public function correctlyFormattedDateTimes()
     {
         return [
+            ['2014'],
+            ['2014-11'],
+            ['2014-11-21'],
             ['2014-11-21T06:04:31+00:00'],
             ['2014-11-21T06:04:31+04:30'],
             ['2014-11-21 06:04:31+00:00'],
