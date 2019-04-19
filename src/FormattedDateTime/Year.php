@@ -12,12 +12,12 @@ class Year
 
     static public function fromIso8601DateTime(ISO8601DateTime $dateTime)
     {
-        return new Year($dateTime);
+        return new self($dateTime);
     }
 
     static public function fromInt(int $int)
     {
-        return new Year(new FromCustomFormat('Y', (string) $int));
+        return new self(new FromCustomFormat('Y-m-d', sprintf('%d-%02d-%02d', (string) $int, 1, 1)));
     }
 
     private function __construct(ISO8601DateTime $dateTime)
@@ -30,11 +30,6 @@ class Year
         return (new PHPDateTime($this->dt->value()))->format('Y');
     }
 
-    public function twoLastDigits()
-    {
-        return strftime('%y', (new ToSeconds($this->dt))->value());
-    }
-
     public function isLeap()
     {
         return (int) ((new PHPDateTime($this->dt->value()))->format('L')) === 1;
@@ -42,6 +37,6 @@ class Year
 
     public function equalsTo(Year $year)
     {
-        return $this->full() == $year->full();
+        return $this->full() === $year->full();
     }
 }

@@ -4,6 +4,7 @@ namespace Meringue\ISO8601DateTime;
 
 use Meringue\ISO8601DateTime;
 use DateTimeImmutable as PHPDateTime;
+use Exception;
 
 class FromCustomFormat extends ISO8601DateTime
 {
@@ -18,6 +19,17 @@ class FromCustomFormat extends ISO8601DateTime
 
     public function value(): string
     {
-        return PHPDateTime::createFromFormat($this->format, $this->dateTime)->format('c');
+        if (!$this->isValid()) {
+            throw new Exception('Datetime has an invalid format');
+        }
+
+        return $this->dateTime;
+    }
+
+    public function isValid(): bool
+    {
+        $date = PHPDateTime::createFromFormat($this->format, $this->dateTime);
+
+        return $date && $date->format($this->format) === $this->dateTime;
     }
 }

@@ -35,7 +35,12 @@ class YearTest extends TestCase
     public function testEquality()
     {
         $this->assertTrue(
-            (Year::fromIso8601DateTime(new FromISO8601('2017-07-03T14:27:39+00:00')))->equalsTo(Year::fromInt(2017))
+            (Year::fromIso8601DateTime(
+                new FromISO8601('2017-07-03T14:27:39+00:00')
+            ))
+                ->equalsTo(
+                    Year::fromInt(2017)
+                )
         );
     }
 }
