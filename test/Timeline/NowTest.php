@@ -13,22 +13,24 @@ class NowTest extends TestCase
 {
     public function testCorrectFormat()
     {
-        $now = new Now();
-        $this->assertTrue(
-            Max(
-                new Past(
-                    $now,
-                    new FromISO8601('PT1S')
-                ),
-                new Min(
-                    $now,
-                    new Future(
+        for ($i = 0; $i < 100000; $i++) {
+            $now = new Now();
+            $this->assertTrue(
+                Max(
+                    new Past(
                         $now,
                         new FromISO8601('PT1S')
+                    ),
+                    new Min(
+                        $now,
+                        new Future(
+                            $now,
+                            new FromISO8601('PT1S')
+                        )
                     )
                 )
-            )
-                ->equalsTo($now)
-        );
+                    ->equalsTo($now)
+            );
+        }
     }
 }

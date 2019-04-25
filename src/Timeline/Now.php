@@ -11,8 +11,8 @@ class Now extends ISO8601DateTime
 
     public function __construct()
     {
-        $now = null;
-        while (is_null($now)) {
+        $now = false;
+        while (!$now) {
             $now = PHPDateTime::createFromFormat('U.u', microtime(true));
         }
 
