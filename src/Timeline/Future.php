@@ -4,6 +4,7 @@ namespace Meringue\Timeline;
 
 use DateInterval as PHPDateInterval;
 use DateTimeImmutable as PHPDateTime;
+use Meringue\FormattedDateTime\CanonicalISO8601DateTime;
 use Meringue\ISO8601Interval;
 use Meringue\ISO8601DateTime;
 
@@ -20,24 +21,14 @@ class Future extends ISO8601DateTime
 
     public function value(): string
     {
-        $from = new PHPDateTime($this->dt->value());
-
-        if ((int) $from->format('u') != 0) {
-            return
-                $from
+        return
+            (new CanonicalISO8601DateTime(
+                (new PHPDateTime($this->dt->value()))
                     ->add(
                         new PHPDateInterval($this->i->value())
                     )
-                        ->format('Y-m-d\TH:i:s.uP')
-                ;
-        }
-
-        return
-            $from
-                ->add(
-                    new PHPDateInterval($this->i->value())
-                )
-                    ->format('c')
+            ))
+                ->value()
             ;
     }
 }

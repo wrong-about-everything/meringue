@@ -4,6 +4,7 @@ namespace Meringue\Timeline;
 
 use DateInterval as PHPDateInterval;
 use DateTimeImmutable as PHPDateTime;
+use Meringue\FormattedDateTime\CanonicalISO8601DateTime;
 use Meringue\ISO8601DateTime;
 use Meringue\ISO8601Interval;
 
@@ -21,12 +22,14 @@ class Past extends ISO8601DateTime
     public function value(): string
     {
         return
-            (new PHPDateTime(
-                $this->dt->value()
+            (new CanonicalISO8601DateTime(
+                (new PHPDateTime(
+                    $this->dt->value()
+                ))
+                    ->sub(
+                        new PHPDateInterval($this->i->value())
+                    )
             ))
-                ->sub(
-                    new PHPDateInterval($this->i->value())
-                )
-                ->format('c');
+                ->value();
     }
 }

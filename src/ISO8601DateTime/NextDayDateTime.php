@@ -3,9 +3,10 @@
 namespace Meringue\ISO8601DateTime;
 
 use Exception;
-use Meringue\FormattedDateTime\Date;
+use Meringue\FormattedDateTime\CanonicalISO8601DateTime;
 use Meringue\FormattedDateTime\ToSeconds;
 use Meringue\ISO8601DateTime;
+use DateTimeImmutable;
 
 class NextDayDateTime extends ISO8601DateTime
 {
@@ -35,11 +36,12 @@ class NextDayDateTime extends ISO8601DateTime
     public function value(): string
     {
         return
-            (new FromISO8601(
-                date('Y-m-d', strtotime(' +1 day', (new ToSeconds($this->givenDay))->value())) .
-                sprintf('T%02d:%02d:%02d', $this->hours, $this->minutes, $this->seconds)
+            (new CanonicalISO8601DateTime(
+                new DateTimeImmutable(
+                    date('Y-m-d', strtotime(' +1 day', (new ToSeconds($this->givenDay))->value())) .
+                    sprintf('T%02d:%02d:%02d', $this->hours, $this->minutes, $this->seconds)
+                )
             ))
-                ->value()
-            ;
+                ->value();
     }
 }

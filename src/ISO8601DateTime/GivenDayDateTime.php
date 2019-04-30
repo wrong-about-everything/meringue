@@ -3,8 +3,10 @@
 namespace Meringue\ISO8601DateTime;
 
 use Exception;
+use Meringue\FormattedDateTime\CanonicalISO8601DateTime;
 use Meringue\FormattedDateTime\Date;
 use Meringue\ISO8601DateTime;
+use DateTimeImmutable;
 
 class GivenDayDateTime extends ISO8601DateTime
 {
@@ -34,9 +36,11 @@ class GivenDayDateTime extends ISO8601DateTime
     public function value(): string
     {
         return
-            (new FromISO8601(
-                (new Date($this->givenDay))->value() .
-                sprintf('T%02d:%02d:%02d', $this->hours, $this->minutes, $this->seconds)
+            (new CanonicalISO8601DateTime(
+                new DateTimeImmutable(
+                    (new Date($this->givenDay))->value() .
+                    sprintf('T%02d:%02d:%02d', $this->hours, $this->minutes, $this->seconds)
+                )
             ))
                 ->value()
             ;

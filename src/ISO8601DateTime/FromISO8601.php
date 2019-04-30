@@ -3,7 +3,9 @@
 namespace Meringue\ISO8601DateTime;
 
 use Exception;
+use Meringue\FormattedDateTime\CanonicalISO8601DateTime;
 use Meringue\ISO8601DateTime;
+use DateTimeImmutable;
 
 class FromISO8601 extends ISO8601DateTime
 {
@@ -25,6 +27,6 @@ class FromISO8601 extends ISO8601DateTime
 
     public function value(): string
     {
-        return $this->s;
+        return (new CanonicalISO8601DateTime(new DateTimeImmutable($this->s)))->value();
     }
 }

@@ -13,7 +13,7 @@ class NowTest extends TestCase
 {
     public function testCorrectFormat()
     {
-        for ($i = 0; $i < 100000; $i++) {
+        for ($i = 0; $i < 1000; $i++) {
             $now = new Now();
             $this->assertTrue(
                 Max(

@@ -29,9 +29,9 @@ class GivenDayDateTimeTest extends TestCase
     public function correctlyFormattedDateTimes()
     {
         return [
-            [new FromISO8601('2014-11-21'), 7, 1, 5, '2014-11-21T07:01:05'],
-            [new FromISO8601('2014-11-21'), 0, 0, 0, '2014-11-21T00:00:00'],
-            [new FromISO8601('2014-11-21'), 0, 0, 0, '2014-11-21T00:00:00'],
+            [new FromISO8601('2014-11-21'), 7, 1, 5, '2014-11-21T07:01:05+00:00'],
+            [new FromISO8601('2014-11-21'), 0, 0, 0, '2014-11-21T00:00:00+00:00'],
+            [new FromISO8601('2014-11-21'), 0, 0, 0, '2014-11-21T00:00:00+00:00'],
         ];
     }
 }

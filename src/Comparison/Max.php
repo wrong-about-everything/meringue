@@ -3,8 +3,10 @@
 namespace Meringue\Comparison;
 
 use DateTimeImmutable as PHPDateTime;
+use Meringue\FormattedDateTime\CanonicalISO8601DateTime;
 use Meringue\ISO8601DateTime;
-use \Exception;
+use Exception;
+use DateTimeImmutable;
 
 class Max extends ISO8601DateTime
 {
@@ -46,6 +48,10 @@ class Max extends ISO8601DateTime
             }
         );
 
-        return $dts[0]->value();
+        return
+            (new CanonicalISO8601DateTime(
+                new DateTimeImmutable($dts[0]->value())
+            ))
+                ->value();
     }
 }

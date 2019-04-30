@@ -2,6 +2,7 @@
 
 namespace Meringue\ISO8601DateTime;
 
+use Meringue\FormattedDateTime\CanonicalISO8601DateTime;
 use Meringue\ISO8601DateTime;
 use DateTimeImmutable as PHPDateTime;
 use Exception;
@@ -23,7 +24,12 @@ class FromCustomFormat extends ISO8601DateTime
             throw new Exception('Datetime has an invalid format');
         }
 
-        return $this->dateTime;
+        return
+            (new CanonicalISO8601DateTime(
+                PHPDateTime::createFromFormat($this->format, $this->dateTime)
+            ))
+                ->value()
+            ;
     }
 
     public function isValid(): bool
