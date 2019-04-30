@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Meringue\Tests\ScheduleTest;
 
 use Meringue\ISO8601DateTime;
-use Meringue\ISO8601DateTime\FromMilliseconds;
+use Meringue\ISO8601DateTime\FromTimestamp;
 use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\Schedule\TwentyFourSeven;
 use PHPUnit\Framework\TestCase;
@@ -26,7 +26,7 @@ class TwentyFourSevenTest extends TestCase
     public function dateTimes()
     {
         return [
-            [new FromMilliseconds(0)],
+            [new FromTimestamp(0)],
             [new FromISO8601('2019-01-01 00:00:00')],
         ];
     }

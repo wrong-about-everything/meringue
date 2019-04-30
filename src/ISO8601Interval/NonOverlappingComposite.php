@@ -4,7 +4,7 @@ namespace Meringue\ISO8601Interval;
 
 use DateTimeImmutable as PHPDateTime;
 use Meringue\ISO8601DateTime;
-use Meringue\ISO8601DateTime\FromMilliseconds;
+use Meringue\ISO8601DateTime\FromTimestamp;
 use Meringue\WithFixedStartDateTime;
 use Exception;
 
@@ -39,8 +39,8 @@ class NonOverlappingComposite implements WithFixedStartDateTime
                 return $next;
             },
             new FromRange(
-                new FromMilliseconds(0),
-                new FromMilliseconds(1)
+                new FromTimestamp(0),
+                new FromTimestamp(1)
             )
         );
 

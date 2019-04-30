@@ -7,7 +7,7 @@ require_once 'vendor/autoload.php';
 use Meringue\Comparison\DateTimeComparisonResult;
 use Meringue\Comparison\Max;
 use Meringue\FormattedDateTime\ToSeconds;
-use Meringue\ISO8601DateTime\FromMilliseconds;
+use Meringue\ISO8601DateTime\FromTimestamp;
 use Meringue\ISO8601Interval\FromRange;
 use Meringue\Timeline\Future;
 use Meringue\Timeline\Past;
@@ -22,7 +22,7 @@ var_dump(
     (new Max(
         new Future(
             new Past(
-                new FromMilliseconds(
+                new FromTimestamp(
                     (new ToSeconds(
                         new FromISO8601('2017-08-18T15:08:13+04:00')
                     ))

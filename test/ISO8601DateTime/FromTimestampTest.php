@@ -2,16 +2,16 @@
 
 namespace Meringue\Tests\ISO8601DateTime;
 
-use Meringue\ISO8601DateTime\FromMilliseconds;
+use Meringue\ISO8601DateTime\FromTimestamp;
 use PHPUnit\Framework\TestCase;
 use \Throwable;
 
-class FromMillisecondsTest extends TestCase
+class FromTimestampTest extends TestCase
 {
     public function testCorrectFormat()
     {
         $this->assertEquals(
-            (new FromMilliseconds(1504534440))
+            (new FromTimestamp(1504534440))
                 ->value(),
             '2017-09-04T14:14:00+00:00'
         );
@@ -20,7 +20,7 @@ class FromMillisecondsTest extends TestCase
     public function testWrongFormat()
     {
         try {
-            (new FromMilliseconds('sdf4564df'))->value();
+            (new FromTimestamp('sdf4564df'))->value();
         } catch (Throwable $e) {
             $this->assertTrue(true);
             return;

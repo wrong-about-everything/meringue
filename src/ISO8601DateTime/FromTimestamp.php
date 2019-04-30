@@ -6,7 +6,7 @@ use DateTimeImmutable as PHPDateTime;
 use Meringue\FormattedDateTime\CanonicalISO8601DateTime;
 use Meringue\ISO8601DateTime;
 
-class FromMilliseconds extends ISO8601DateTime
+class FromTimestamp extends ISO8601DateTime
 {
     private $ms;
 
