@@ -18,4 +18,12 @@ class Date
     {
         return (new PHPDateTime($this->dt->value()))->format('Y-m-d');
     }
+
+    public function equalsTo(ISO8601DateTime $dateTime): bool
+    {
+        return
+            $this->value()
+                ===
+            (new PHPDateTime($dateTime->value()))->format('Y-m-d');
+    }
 }
