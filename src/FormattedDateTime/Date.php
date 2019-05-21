@@ -23,7 +23,7 @@ class Date
     {
         return
             $this->value()
-                ==
+                ===
             (new PHPDateTime($dateTime->value()))->format('Y-m-d');
     }
 }
