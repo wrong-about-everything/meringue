@@ -38,8 +38,8 @@ class GivenDayDateTime extends ISO8601DateTime
         return
             (new CanonicalISO8601DateTime(
                 new DateTimeImmutable(
-                    (new Date($this->givenDay))->value() .
-                    sprintf('T%02d:%02d:%02d', $this->hours, $this->minutes, $this->seconds)
+                    (new Date($this->givenDay))->value() . sprintf('T%02d:%02d:%02d', $this->hours, $this->minutes, $this->seconds),
+                    (new DateTimeImmutable($this->givenDay->value()))->getTimezone()
                 )
             ))
                 ->value()
