@@ -11,6 +11,7 @@ use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\Schedule;
 use Meringue\Time;
 use DateTimeImmutable as PHPDateTime;
+use Exception;
 
 class ByWeekDays implements Schedule
 {
@@ -64,6 +65,9 @@ class ByWeekDays implements Schedule
 
             case 6:
                 return $this->saturday->isHit($dateTime);
+
+            default:
+                throw new Exception();
         }
     }
 }
