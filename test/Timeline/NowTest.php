@@ -4,9 +4,9 @@ namespace Meringue\Tests\Timeline;
 
 use Meringue\Comparison\Min;
 use Meringue\ISO8601Interval\FromISO8601;
-use Meringue\Timeline\Future;
-use Meringue\Timeline\Now;
-use Meringue\Timeline\Past;
+use Meringue\Timeline\Point\Future;
+use Meringue\Timeline\Point\Now;
+use Meringue\Timeline\Point\Past;
 use PHPUnit\Framework\TestCase;
 
 class NowTest extends TestCase

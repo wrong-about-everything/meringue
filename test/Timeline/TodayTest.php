@@ -4,7 +4,7 @@ namespace Meringue\Tests\Timeline;
 
 use DateTimeImmutable;
 use Meringue\ISO8601DateTime\FromCustomFormat;
-use Meringue\Timeline\Today;
+use Meringue\Timeline\Point\Today;
 use PHPUnit\Framework\TestCase;
 
 class TodayTest extends TestCase

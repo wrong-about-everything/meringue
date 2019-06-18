@@ -1,6 +1,6 @@
 <?php
 
-namespace Meringue\Timeline;
+namespace Meringue\Timeline\Point;
 
 use DateTimeImmutable as PHPDateTime;
 use Meringue\FormattedDateTime\CanonicalISO8601DateTime;

@@ -5,8 +5,8 @@ namespace Meringue\Tests\Comparison;
 use Meringue\Comparison\Min;
 use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\ISO8601Interval\FromISO8601 as ISO8601Interval;
-use Meringue\Timeline\Future;
-use Meringue\Timeline\Now;
+use Meringue\Timeline\Point\Future;
+use Meringue\Timeline\Point\Now;
 use PHPUnit\Framework\TestCase;
 use \Exception;
 

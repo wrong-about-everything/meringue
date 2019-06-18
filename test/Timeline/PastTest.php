@@ -4,7 +4,7 @@ namespace Meringue\Tests\Timeline;
 
 use Meringue\ISO8601DateTime\ISO8601Stub;
 use Meringue\ISO8601Interval\FromISO8601;
-use Meringue\Timeline\Past;
+use Meringue\Timeline\Point\Past;
 use PHPUnit\Framework\TestCase;
 
 class PastTest extends TestCase

@@ -5,7 +5,7 @@ namespace Meringue;
 use DateTimeImmutable as PHPDateTime;
 use Meringue\FormattedDateTime\Date;
 use Meringue\ISO8601DateTime\FromISO8601;
-use Meringue\Timeline\Now;
+use Meringue\Timeline\Point\Now;
 
 abstract class Time
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Meringue\Timeline;
+namespace Meringue\Timeline\Point;
 
 use DateInterval as PHPDateInterval;
 use DateTimeImmutable as PHPDateTime;

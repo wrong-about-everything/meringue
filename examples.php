@@ -9,9 +9,9 @@ use Meringue\Comparison\Max;
 use Meringue\FormattedDateTime\ToSeconds;
 use Meringue\ISO8601DateTime\FromTimestamp;
 use Meringue\ISO8601Interval\FromRange;
-use Meringue\Timeline\Future;
-use Meringue\Timeline\Past;
-use Meringue\Timeline\Now;
+use Meringue\Timeline\Point\Future;
+use Meringue\Timeline\Point\Past;
+use Meringue\Timeline\Point\Now;
 use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\ISO8601Interval\FromISO8601 as ISO8601Interval;
 
