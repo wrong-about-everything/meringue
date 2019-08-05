@@ -5,15 +5,12 @@ declare(strict_types=1);
 namespace Meringue\Tests\ScheduleTest;
 
 use Meringue\ISO8601DateTime;
-use Meringue\ISO8601DateTime\FromTimestamp;
 use Meringue\ISO8601DateTime\FromISO8601;
-use Meringue\ISO8601Interval;
-use Meringue\ISO8601Interval\FromRange;
 use Meringue\Schedule\TimePeriod;
-use Meringue\Schedule\TwentyFourSeven;
 use Meringue\Time;
 use Meringue\Time\DefaultTime;
 use PHPUnit\Framework\TestCase;
+use Throwable;
 
 class TimePeriodTest extends TestCase
 {
@@ -88,13 +85,13 @@ class TimePeriodTest extends TestCase
                 new DefaultTime(11, 30, 0),
                 new DefaultTime(10, 30, 0)
             ))
-                    ->isHit(
-                        new FromISO8601('2019-01-01 11:29:59')
-                    );
+                ->isHit(
+                    new FromISO8601('2019-01-01 11:29:59')
+                );
 
             $this->fail('Exception expected');
-        } catch (\Throwable $exception) {
-            $this->assertEquals('Till time must be greater that from time. Next day must use multiply schedules.', $exception->getMessage());
+        } catch (Throwable $exception) {
+            $this->assertEquals('"Till" must be greater than "from". Use a separate schedule object for the next day\'s schedule if you need to. See ByWeekDaysTest for details.', $exception->getMessage());
         }
     }
 }

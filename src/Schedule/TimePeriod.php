@@ -23,7 +23,7 @@ class TimePeriod
         $this->till = $till;
 
         if ($this->from->greaterThan($this->till)) {
-            throw new Exception('Till time must be greater that from time. Next day must use multiply schedules.');
+            throw new Exception('"Till" must be greater than "from". Use a separate schedule object for the next day\'s schedule if you need to. See ByWeekDaysTest for details.');
         }
     }
 
