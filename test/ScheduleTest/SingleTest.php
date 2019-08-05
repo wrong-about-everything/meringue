@@ -9,13 +9,13 @@ use Meringue\ISO8601DateTime\FromTimestamp;
 use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\ISO8601Interval;
 use Meringue\ISO8601Interval\FromRange;
-use Meringue\Schedule\Daily;
+use Meringue\Schedule\Single;
 use Meringue\Schedule\TwentyFourSeven;
 use Meringue\Time;
 use Meringue\Time\DefaultTime;
 use PHPUnit\Framework\TestCase;
 
-class DailyTest extends TestCase
+class SingleTest extends TestCase
 {
     /**
      * @dataProvider dateTimesOnSchedule
@@ -23,7 +23,7 @@ class DailyTest extends TestCase
     public function testIsHit(Time $from, Time $till, ISO8601DateTime $dateTime)
     {
         $this->assertTrue(
-            (new Daily($from, $till))
+            (new Single($from, $till))
                 ->isHit($dateTime)
         );
     }
@@ -37,19 +37,19 @@ class DailyTest extends TestCase
                 new FromISO8601('2019-01-01 14:27:59')
             ],
             [
-                new DefaultTime(11, 30, 0),
-                new DefaultTime(6, 0, 0),
-                new FromISO8601('2019-01-31 05:27:59')
+                new DefaultTime(11, 30, 10),
+                new DefaultTime(11, 30, 11),
+                new FromISO8601('2019-01-31 11:30:10')
             ],
             [
-                new DefaultTime(11, 30, 0),
-                new DefaultTime(6, 0, 0),
-                new FromISO8601('2019-01-31 23:12:27')
+                new DefaultTime(11, 30, 10),
+                new DefaultTime(11, 30, 11),
+                new FromISO8601('2019-01-31 11:30:11')
             ],
             [
-                new DefaultTime(11, 30, 0),
-                new DefaultTime(0, 0, 0),
-                new FromISO8601('2019-01-31 23:12:27')
+                new DefaultTime(23, 00, 00),
+                new DefaultTime(23, 59, 59),
+                new FromISO8601('2019-01-31 23:59:59.5')
             ],
         ];
     }
@@ -60,7 +60,7 @@ class DailyTest extends TestCase
     public function testIsNotHit(Time $from, Time $till, ISO8601DateTime $dateTime)
     {
         $this->assertFalse(
-            (new Daily($from, $till))
+            (new Single($from, $till))
                 ->isHit($dateTime)
         );
     }
@@ -75,14 +75,26 @@ class DailyTest extends TestCase
             ],
             [
                 new DefaultTime(11, 30, 0),
-                new DefaultTime(6, 0, 0),
-                new FromISO8601('2019-01-01 10:29:59')
-            ],
-            [
-                new DefaultTime(11, 30, 0),
-                new DefaultTime(0, 0, 0),
-                new FromISO8601('2019-01-01 10:29:59')
+                new DefaultTime(18, 30, 0),
+                new FromISO8601('2019-01-01 18:30:01')
             ],
         ];
+    }
+
+    public function testWithGreaterFromTime()
+    {
+        try {
+            (new Single(
+                new DefaultTime(11, 30, 0),
+                new DefaultTime(10, 30, 0)
+            ))
+                    ->isHit(
+                        new FromISO8601('2019-01-01 11:29:59')
+                    );
+
+            $this->fail('Exception expected');
+        } catch (\Throwable $exception) {
+            $this->assertEquals('Till time must be greater that from time. Next day must use multiply schedules.', $exception->getMessage());
+        }
     }
 }
