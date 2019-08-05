@@ -5,14 +5,10 @@ declare(strict_types=1);
 namespace Meringue\Tests\ScheduleTest;
 
 use Meringue\ISO8601DateTime;
-use Meringue\ISO8601DateTime\FromTimestamp;
 use Meringue\ISO8601DateTime\FromISO8601;
-use Meringue\ISO8601Interval;
-use Meringue\ISO8601Interval\FromRange;
 use Meringue\Schedule\ByWeekDays;
 use Meringue\Schedule\Daily;
-use Meringue\Schedule\TwentyFourSeven;
-use Meringue\Time;
+use Meringue\Schedule\TimePeriod;
 use Meringue\Time\DefaultTime;
 use PHPUnit\Framework\TestCase;
 
@@ -26,32 +22,54 @@ class ByWeekDaysTest extends TestCase
         $this->assertTrue(
             (new ByWeekDays(
                 new Daily(
-                    new DefaultTime(11, 0, 0),
-                    new DefaultTime(12, 30, 0)
+                    new TimePeriod(
+                        new DefaultTime(0, 0, 0),
+                        new DefaultTime(5, 0, 0)
+                    ),
+                    new TimePeriod(
+                        new DefaultTime(11, 0, 0),
+                        new DefaultTime(12, 30, 0)
+                    )
                 ),
                 new Daily(
-                    new DefaultTime(12, 31, 0),
-                    new DefaultTime(13, 47, 0)
+                    new TimePeriod(
+                        new DefaultTime(12, 31, 0),
+                        new DefaultTime(13, 47, 0)
+                    )
                 ),
                 new Daily(
-                    new DefaultTime(14, 8, 0),
-                    new DefaultTime(15, 17, 0)
+                    new TimePeriod(
+                        new DefaultTime(14, 8, 0),
+                        new DefaultTime(15, 17, 0)
+                    )
                 ),
                 new Daily(
-                    new DefaultTime(15, 18, 0),
-                    new DefaultTime(15, 59, 0)
+                    new TimePeriod(
+                        new DefaultTime(15, 18, 0),
+                        new DefaultTime(15, 59, 0)
+                    )
                 ),
                 new Daily(
-                    new DefaultTime(16, 0, 0),
-                    new DefaultTime(17, 30, 0)
+                    new TimePeriod(
+                        new DefaultTime(16, 0, 0),
+                        new DefaultTime(17, 30, 0)
+                    )
                 ),
                 new Daily(
-                    new DefaultTime(17, 31, 0),
-                    new DefaultTime(18, 30, 0)
+                    new TimePeriod(
+                        new DefaultTime(17, 31, 0),
+                        new DefaultTime(18, 30, 0)
+                    )
                 ),
                 new Daily(
-                    new DefaultTime(18, 31, 0),
-                    new DefaultTime(23, 42, 0)
+                    new TimePeriod(
+                        new DefaultTime(0, 0, 0),
+                        new DefaultTime(3, 0, 0)
+                    ),
+                    new TimePeriod(
+                        new DefaultTime(18, 31, 0),
+                        new DefaultTime(23, 59, 59)
+                    )
                 )
             ))
                 ->isHit($dateTime)
@@ -67,7 +85,9 @@ class ByWeekDaysTest extends TestCase
             [new FromISO8601('2019-04-03 15:59:00')],
             [new FromISO8601('2019-04-04 16:27:00')],
             [new FromISO8601('2019-04-05 18:00:00')],
+            [new FromISO8601('2019-04-06 02:59:59')],
             [new FromISO8601('2019-04-06 23:00:01')],
+            [new FromISO8601('2019-04-07 04:59:59')],
         ];
     }
 
@@ -79,32 +99,54 @@ class ByWeekDaysTest extends TestCase
         $this->assertFalse(
             (new ByWeekDays(
                 new Daily(
-                    new DefaultTime(11, 0, 0),
-                    new DefaultTime(12, 30, 0)
+                    new TimePeriod(
+                        new DefaultTime(0, 0, 0),
+                        new DefaultTime(5, 0, 0)
+                    ),
+                    new TimePeriod(
+                        new DefaultTime(11, 0, 0),
+                        new DefaultTime(12, 30, 0)
+                    )
                 ),
                 new Daily(
-                    new DefaultTime(12, 31, 0),
-                    new DefaultTime(13, 47, 0)
+                    new TimePeriod(
+                        new DefaultTime(12, 31, 0),
+                        new DefaultTime(13, 47, 0)
+                    )
                 ),
                 new Daily(
-                    new DefaultTime(14, 8, 0),
-                    new DefaultTime(15, 17, 0)
+                    new TimePeriod(
+                        new DefaultTime(14, 8, 0),
+                        new DefaultTime(15, 17, 0)
+                    )
                 ),
                 new Daily(
-                    new DefaultTime(15, 18, 0),
-                    new DefaultTime(15, 59, 0)
+                    new TimePeriod(
+                        new DefaultTime(15, 18, 0),
+                        new DefaultTime(15, 59, 0)
+                    )
                 ),
                 new Daily(
-                    new DefaultTime(16, 0, 0),
-                    new DefaultTime(17, 30, 0)
+                    new TimePeriod(
+                        new DefaultTime(16, 0, 0),
+                        new DefaultTime(17, 30, 0)
+                    )
                 ),
                 new Daily(
-                    new DefaultTime(17, 31, 0),
-                    new DefaultTime(18, 30, 0)
+                    new TimePeriod(
+                        new DefaultTime(17, 31, 0),
+                        new DefaultTime(18, 30, 0)
+                    )
                 ),
                 new Daily(
-                    new DefaultTime(18, 31, 0),
-                    new DefaultTime(23, 42, 0)
+                    new TimePeriod(
+                        new DefaultTime(0, 0, 0),
+                        new DefaultTime(3, 0, 0)
+                    ),
+                    new TimePeriod(
+                        new DefaultTime(18, 31, 0),
+                        new DefaultTime(23, 59, 59)
+                    )
                 )
             ))
                 ->isHit($dateTime)
@@ -135,8 +177,10 @@ class ByWeekDaysTest extends TestCase
             [new FromISO8601('2019-04-05 17:30:00')],
             [new FromISO8601('2019-04-05 18:30:01')],
 
+            [new FromISO8601('2019-04-06 05:00:01')],
             [new FromISO8601('2019-04-06 18:00:01')],
-            [new FromISO8601('2019-04-06 23:57:01')],
+
+            [new FromISO8601('2019-04-07 05:00:01')],
         ];
     }
 }
