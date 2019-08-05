@@ -9,13 +9,13 @@ use Meringue\ISO8601DateTime\FromTimestamp;
 use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\ISO8601Interval;
 use Meringue\ISO8601Interval\FromRange;
-use Meringue\Schedule\Single;
+use Meringue\Schedule\TimePeriod;
 use Meringue\Schedule\TwentyFourSeven;
 use Meringue\Time;
 use Meringue\Time\DefaultTime;
 use PHPUnit\Framework\TestCase;
 
-class SingleTest extends TestCase
+class TimePeriodTest extends TestCase
 {
     /**
      * @dataProvider dateTimesOnSchedule
@@ -23,7 +23,7 @@ class SingleTest extends TestCase
     public function testIsHit(Time $from, Time $till, ISO8601DateTime $dateTime)
     {
         $this->assertTrue(
-            (new Single($from, $till))
+            (new TimePeriod($from, $till))
                 ->isHit($dateTime)
         );
     }
@@ -60,7 +60,7 @@ class SingleTest extends TestCase
     public function testIsNotHit(Time $from, Time $till, ISO8601DateTime $dateTime)
     {
         $this->assertFalse(
-            (new Single($from, $till))
+            (new TimePeriod($from, $till))
                 ->isHit($dateTime)
         );
     }
@@ -84,7 +84,7 @@ class SingleTest extends TestCase
     public function testWithGreaterFromTime()
     {
         try {
-            (new Single(
+            (new TimePeriod(
                 new DefaultTime(11, 30, 0),
                 new DefaultTime(10, 30, 0)
             ))

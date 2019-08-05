@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace Meringue\Schedule;
 
+use DateTimeImmutable as PHPDateTime;
+use Exception;
 use Meringue\FormattedDateTime\Date;
 use Meringue\FormattedDateTime\InCustomFormat;
 use Meringue\ISO8601DateTime;
-use Meringue\Schedule;
-use Meringue\Time;
-use DateTimeImmutable as PHPDateTime;
 use Meringue\ISO8601DateTime\FromISO8601;
-use Exception;
+use Meringue\Time;
 
-class Single implements Schedule
+class TimePeriod
 {
     private $from;
     private $till;
@@ -40,7 +39,7 @@ class Single implements Schedule
             >=
             new PHPDateTime(
                 (new FromISO8601(
-                    (new Date($dateTime))->value() . ' '. $this->from->value()
+                    (new Date($dateTime))->value() . ' ' . $this->from->value()
                 ))
                     ->value()
             );
@@ -51,7 +50,7 @@ class Single implements Schedule
         return
             new PHPDateTime(
                 (new InCustomFormat(
-                     $dateTime,
+                    $dateTime,
                     "c"
                 ))
                     ->value()
@@ -59,7 +58,7 @@ class Single implements Schedule
             <=
             new PHPDateTime(
                 (new FromISO8601(
-                    (new Date($dateTime))->value() . ' '. $this->till->value()
+                    (new Date($dateTime))->value() . ' ' . $this->till->value()
                 ))
                     ->value()
             );

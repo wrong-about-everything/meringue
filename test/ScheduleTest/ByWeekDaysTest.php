@@ -7,8 +7,8 @@ namespace Meringue\Tests\ScheduleTest;
 use Meringue\ISO8601DateTime;
 use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\Schedule\ByWeekDays;
-use Meringue\Schedule\Multiple;
-use Meringue\Schedule\Single;
+use Meringue\Schedule\Daily;
+use Meringue\Schedule\TimePeriod;
 use Meringue\Time\DefaultTime;
 use PHPUnit\Framework\TestCase;
 
@@ -21,42 +21,52 @@ class ByWeekDaysTest extends TestCase
     {
         $this->assertTrue(
             (new ByWeekDays(
-                new Multiple(
-                    new Single(
+                new Daily(
+                    new TimePeriod(
                         new DefaultTime(0, 0, 0),
                         new DefaultTime(5, 0, 0)
                     ),
-                    new Single(
+                    new TimePeriod(
                         new DefaultTime(11, 0, 0),
                         new DefaultTime(12, 30, 0)
                     )
                 ),
-                new Single(
-                    new DefaultTime(12, 31, 0),
-                    new DefaultTime(13, 47, 0)
+                new Daily(
+                    new TimePeriod(
+                        new DefaultTime(12, 31, 0),
+                        new DefaultTime(13, 47, 0)
+                    )
                 ),
-                new Single(
-                    new DefaultTime(14, 8, 0),
-                    new DefaultTime(15, 17, 0)
+                new Daily(
+                    new TimePeriod(
+                        new DefaultTime(14, 8, 0),
+                        new DefaultTime(15, 17, 0)
+                    )
                 ),
-                new Single(
-                    new DefaultTime(15, 18, 0),
-                    new DefaultTime(15, 59, 0)
+                new Daily(
+                    new TimePeriod(
+                        new DefaultTime(15, 18, 0),
+                        new DefaultTime(15, 59, 0)
+                    )
                 ),
-                new Single(
-                    new DefaultTime(16, 0, 0),
-                    new DefaultTime(17, 30, 0)
+                new Daily(
+                    new TimePeriod(
+                        new DefaultTime(16, 0, 0),
+                        new DefaultTime(17, 30, 0)
+                    )
                 ),
-                new Single(
-                    new DefaultTime(17, 31, 0),
-                    new DefaultTime(18, 30, 0)
+                new Daily(
+                    new TimePeriod(
+                        new DefaultTime(17, 31, 0),
+                        new DefaultTime(18, 30, 0)
+                    )
                 ),
-                new Multiple(
-                    new Single(
+                new Daily(
+                    new TimePeriod(
                         new DefaultTime(0, 0, 0),
                         new DefaultTime(3, 0, 0)
                     ),
-                    new Single(
+                    new TimePeriod(
                         new DefaultTime(18, 31, 0),
                         new DefaultTime(23, 59, 59)
                     )
@@ -88,42 +98,52 @@ class ByWeekDaysTest extends TestCase
     {
         $this->assertFalse(
             (new ByWeekDays(
-                new Multiple(
-                    new Single(
+                new Daily(
+                    new TimePeriod(
                         new DefaultTime(0, 0, 0),
                         new DefaultTime(5, 0, 0)
                     ),
-                    new Single(
+                    new TimePeriod(
                         new DefaultTime(11, 0, 0),
                         new DefaultTime(12, 30, 0)
                     )
                 ),
-                new Single(
-                    new DefaultTime(12, 31, 0),
-                    new DefaultTime(13, 47, 0)
+                new Daily(
+                    new TimePeriod(
+                        new DefaultTime(12, 31, 0),
+                        new DefaultTime(13, 47, 0)
+                    )
                 ),
-                new Single(
-                    new DefaultTime(14, 8, 0),
-                    new DefaultTime(15, 17, 0)
+                new Daily(
+                    new TimePeriod(
+                        new DefaultTime(14, 8, 0),
+                        new DefaultTime(15, 17, 0)
+                    )
                 ),
-                new Single(
-                    new DefaultTime(15, 18, 0),
-                    new DefaultTime(15, 59, 0)
+                new Daily(
+                    new TimePeriod(
+                        new DefaultTime(15, 18, 0),
+                        new DefaultTime(15, 59, 0)
+                    )
                 ),
-                new Single(
-                    new DefaultTime(16, 0, 0),
-                    new DefaultTime(17, 30, 0)
+                new Daily(
+                    new TimePeriod(
+                        new DefaultTime(16, 0, 0),
+                        new DefaultTime(17, 30, 0)
+                    )
                 ),
-                new Single(
-                    new DefaultTime(17, 31, 0),
-                    new DefaultTime(18, 30, 0)
+                new Daily(
+                    new TimePeriod(
+                        new DefaultTime(17, 31, 0),
+                        new DefaultTime(18, 30, 0)
+                    )
                 ),
-                new Multiple(
-                    new Single(
+                new Daily(
+                    new TimePeriod(
                         new DefaultTime(0, 0, 0),
                         new DefaultTime(3, 0, 0)
                     ),
-                    new Single(
+                    new TimePeriod(
                         new DefaultTime(18, 31, 0),
                         new DefaultTime(23, 59, 59)
                     )
