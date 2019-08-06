@@ -5,84 +5,63 @@ declare(strict_types=1);
 namespace Meringue\Tests\Schedule;
 
 use Meringue\ISO8601DateTime;
-use Meringue\ISO8601DateTime\FromTimestamp;
-use Meringue\ISO8601DateTime\FromISO8601;
-use Meringue\ISO8601Interval;
-use Meringue\ISO8601Interval\FromRange;
+use Meringue\Schedule;
 use Meringue\Schedule\Daily;
-use Meringue\Schedule\TwentyFourSeven;
-use Meringue\Time;
 use Meringue\Time\DefaultTime;
+use Meringue\Timeline\Point\Now;
 use PHPUnit\Framework\TestCase;
+use Meringue\Schedule\TimePeriod;
+use Meringue\ISO8601DateTime\FromISO8601;
 
 class DailyTest extends TestCase
 {
-    /**
-     * @dataProvider dateTimesOnSchedule
-     */
-    public function testIsHit(Time $from, Time $till, ISO8601DateTime $dateTime)
+    public function testWithOneSuccessfulSchedule()
     {
         $this->assertTrue(
-            (new Daily($from, $till))
-                ->isHit($dateTime)
-        );
+            (new Daily(
+                $this->timePeriod(10, 12)
+            ))
+                ->isHit(new FromISO8601('2019-01-01T11:00:00')));
     }
 
-    public function dateTimesOnSchedule()
+    public function testWithSomeSuccessfulSchedules()
     {
-        return [
-            [
-                new DefaultTime(11, 30, 0),
-                new DefaultTime(18, 30, 0),
-                new FromISO8601('2019-01-01 14:27:59')
-            ],
-            [
-                new DefaultTime(11, 30, 0),
-                new DefaultTime(6, 0, 0),
-                new FromISO8601('2019-01-31 05:27:59')
-            ],
-            [
-                new DefaultTime(11, 30, 0),
-                new DefaultTime(6, 0, 0),
-                new FromISO8601('2019-01-31 23:12:27')
-            ],
-            [
-                new DefaultTime(11, 30, 0),
-                new DefaultTime(0, 0, 0),
-                new FromISO8601('2019-01-31 23:12:27')
-            ],
-        ];
+        $this->assertTrue(
+            (new Daily(
+                $this->timePeriod(11, 12),
+                $this->timePeriod(10, 13),
+                $this->timePeriod(10, 19)
+            ))
+                ->isHit(new FromISO8601('2019-01-01T11:00:00')));
     }
 
-    /**
-     * @dataProvider dateTimesOutOfSchedule
-     */
-    public function testIsNotHit(Time $from, Time $till, ISO8601DateTime $dateTime)
+    public function testWithSomeSchedulesAndOnlyOneIsSuccessful()
+    {
+        $this->assertTrue(
+            (new Daily(
+                $this->timePeriod(0, 7),
+                $this->timePeriod(11, 12),
+                $this->timePeriod(14, 19)
+            ))
+                ->isHit(new FromISO8601('2019-01-01T11:00:00')));
+    }
+
+    public function testWithFailedSchedules()
     {
         $this->assertFalse(
-            (new Daily($from, $till))
-                ->isHit($dateTime)
-        );
+            (new Daily(
+                $this->timePeriod(0, 7),
+                $this->timePeriod(12, 23)
+            ))
+                ->isHit(new FromISO8601('2019-01-01T11:00:00')));
     }
 
-    public function dateTimesOutOfSchedule()
+    private function timePeriod(int $fromHour, int $toHour)
     {
-        return [
-            [
-                new DefaultTime(11, 30, 0),
-                new DefaultTime(18, 30, 0),
-                new FromISO8601('2019-01-01 11:29:59')
-            ],
-            [
-                new DefaultTime(11, 30, 0),
-                new DefaultTime(6, 0, 0),
-                new FromISO8601('2019-01-01 10:29:59')
-            ],
-            [
-                new DefaultTime(11, 30, 0),
-                new DefaultTime(0, 0, 0),
-                new FromISO8601('2019-01-01 10:29:59')
-            ],
-        ];
+        return
+            new TimePeriod(
+                new DefaultTime($fromHour, 0, 0),
+                new DefaultTime($toHour, 0, 0)
+            );
     }
 }

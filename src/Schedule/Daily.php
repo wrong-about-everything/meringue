@@ -4,61 +4,27 @@ declare(strict_types=1);
 
 namespace Meringue\Schedule;
 
-use Meringue\FormattedDateTime\Date;
 use Meringue\ISO8601DateTime;
-use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\Schedule;
-use Meringue\Time;
-use DateTimeImmutable as PHPDateTime;
 
 class Daily implements Schedule
 {
-    private $from;
-    private $till;
+    private $timePeriods;
 
-    /**
-     * If $till is less than $from, it's implied that it belongs to the next day.
-     */
-    public function __construct(Time $from, Time $till)
+    public function __construct(TimePeriod ...$timePeriods)
     {
-        $this->from = $from;
-        $this->till = $till;
+        $this->timePeriods = $timePeriods;
     }
 
     public function isHit(ISO8601DateTime $dateTime): bool
     {
-        if ($this->till->greaterThan($this->from)) {
-            return $this->dateTimeIsGreaterOrEqualsToFrom($dateTime) && $this->dateTimeIsLessOrEqualsToTill($dateTime);
-        } elseif ($this->from->greaterThan($this->till)) {
-            return $this->dateTimeIsGreaterOrEqualsToFrom($dateTime) || $this->dateTimeIsLessOrEqualsToTill($dateTime);
+        /** @var TimePeriod $timePeriod */
+        foreach ($this->timePeriods as $timePeriod) {
+            if ($timePeriod->isHit($dateTime)) {
+                return true;
+            }
         }
 
-        return true;
-    }
-
-    private function dateTimeIsGreaterOrEqualsToFrom(ISO8601DateTime $dateTime)
-    {
-        return
-            new PHPDateTime($dateTime->value())
-                >=
-            new PHPDateTime(
-                (new FromISO8601(
-                    (new Date($dateTime))->value() . ' '. $this->from->value()
-                ))
-                    ->value()
-            );
-    }
-
-    private function dateTimeIsLessOrEqualsToTill(ISO8601DateTime $dateTime)
-    {
-        return
-            new PHPDateTime($dateTime->value())
-                <=
-            new PHPDateTime(
-                (new FromISO8601(
-                    (new Date($dateTime))->value() . ' '. $this->till->value()
-                ))
-                    ->value()
-            );
+        return false;
     }
 }

@@ -16,18 +16,18 @@ class DefaultTime extends Time
     public function __construct(int $hours, int $minutes, int $seconds)
     {
         if ($hours < 0 || $hours > 23) {
-            throw new Exception(sprintf('Hours should be greater than zero and less then or equal to 24. %s given', $hours));
+            throw new Exception(sprintf('Hours should be greater or equals than zero and less than 24. %s given', $hours));
         }
         if ($minutes < 0 || $minutes > 59) {
-            throw new Exception(sprintf('Minutes should be greater than zero and less then or equal to 60. %s given', $hours));
+            throw new Exception(sprintf('Minutes should be greater or equals than zero and less than 60. %s given', $hours));
         }
         if ($seconds < 0 || $seconds > 59) {
-            throw new Exception(sprintf('Seconds should be greater than zero and less then or equal to 24. %s given', $hours));
+            throw new Exception(sprintf('Seconds should be greater or equals than zero and less than 60. %s given', $hours));
         }
 
         $this->hours = $hours;
         $this->minutes = $minutes;
-        $this->seconds = $seconds;
+        $this->seconds = floor($seconds);
     }
 
     public function value(): string
