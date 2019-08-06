@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace Meringue\Tests\ScheduleTest;
+namespace Meringue\Tests\Schedule;
 
 use Meringue\ISO8601DateTime;
 use Meringue\ISO8601DateTime\FromTimestamp;
 use Meringue\ISO8601DateTime\FromISO8601;
-use Meringue\Schedule\TwentyFourSeven;
+use Meringue\Schedule\ClosedForever;
 use PHPUnit\Framework\TestCase;
 
-class TwentyFourSevenTest extends TestCase
+class ClosedForeverTest extends TestCase
 {
     /**
      * @dataProvider dateTimes
      */
-    public function testIsHit(ISO8601DateTime $dateTime)
+    public function testIsNotHit(ISO8601DateTime $dateTime)
     {
-        $this->assertTrue(
-            (new TwentyFourSeven())
+        $this->assertFalse(
+            (new ClosedForever())
                 ->isHit($dateTime)
         );
     }
