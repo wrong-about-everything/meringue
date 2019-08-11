@@ -23,7 +23,7 @@ class ByWeekDaysTest extends TestCase
             (new ByWeekDays(
                 new Daily(
                     new TimePeriod(
-                        new DefaultTime(0, 0, 0),
+                        new DefaultTime(2, 0, 0),
                         new DefaultTime(5, 0, 0)
                     ),
                     new TimePeriod(
@@ -79,15 +79,17 @@ class ByWeekDaysTest extends TestCase
     public function hitDateTimes()
     {
         return [
-            [new FromISO8601('2019-03-31 11:11:00')],
-            [new FromISO8601('2019-04-01 12:49:54')],
-            [new FromISO8601('2019-04-02 14:08:00')],
-            [new FromISO8601('2019-04-03 15:59:00')],
-            [new FromISO8601('2019-04-04 16:27:00')],
-            [new FromISO8601('2019-04-05 18:00:00')],
-            [new FromISO8601('2019-04-06 02:59:59')],
-            [new FromISO8601('2019-04-06 23:00:01')],
-            [new FromISO8601('2019-04-07 04:59:59')],
+            [new FromISO8601('2019-03-31 01:29:00+03:00')], // Sunday in Moscow, still Saturday in UTC
+            [new FromISO8601('2019-03-31 11:11:00+00:00')], // Sunday in UTC
+            [new FromISO8601('2019-03-31 14:11:00+03:00')], // Sunday in UTC
+            [new FromISO8601('2019-04-01 12:49:54+00:00')],
+            [new FromISO8601('2019-04-02 14:08:00+00:00')],
+            [new FromISO8601('2019-04-03 15:59:00+00:00')],
+            [new FromISO8601('2019-04-04 16:27:00+00:00')],
+            [new FromISO8601('2019-04-05 18:00:00+00:00')],
+            [new FromISO8601('2019-04-06 02:59:59+00:00')],
+            [new FromISO8601('2019-04-06 23:00:01+00:00')],
+            [new FromISO8601('2019-04-07 04:59:59+00:00')],
         ];
     }
 

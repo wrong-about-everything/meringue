@@ -4,7 +4,7 @@ namespace Meringue\FormattedDateTime;
 
 use Meringue\ISO8601DateTime;
 
-class DayOfWeek
+class DayOfWeekInUTC
 {
     private $dt;
 

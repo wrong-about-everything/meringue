@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Meringue\Schedule;
 
 use Meringue\FormattedDateTime\Date;
-use Meringue\FormattedDateTime\DayOfWeek;
+use Meringue\FormattedDateTime\DayOfWeekInUTC;
 use Meringue\ISO8601DateTime;
 use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\Schedule;
@@ -44,7 +44,7 @@ class ByWeekDays implements Schedule
 
     public function isHit(ISO8601DateTime $dateTime): bool
     {
-        switch ((int) (new DayOfWeek($dateTime))->numeric()) {
+        switch ((int) (new DayOfWeekInUTC($dateTime))->numeric()) {
             case 7:
                 return $this->sunday->isHit($dateTime);
 

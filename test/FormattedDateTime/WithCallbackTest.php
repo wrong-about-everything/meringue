@@ -3,7 +3,7 @@
 namespace Meringue\Tests\FormattedDateTime;
 
 use PHPUnit\Framework\TestCase;
-use Meringue\FormattedDateTime\DayOfWeek;
+use Meringue\FormattedDateTime\DayOfWeekInUTC;
 use Meringue\FormattedDateTime\WithCallback;
 use Meringue\ISO8601DateTime;
 use Meringue\ISO8601DateTime\FromISO8601;
@@ -17,7 +17,7 @@ class WithCallbackTest extends TestCase
             (new WithCallback(
                 new FromISO8601('2018-08-16T14:27:39+04:30'),
                 function (ISO8601DateTime $dateTime) {
-                    if ((new DayOfWeek($dateTime))->numeric() == 4) {
+                    if ((new DayOfWeekInUTC($dateTime))->numeric() == 4) {
                         return 'Сегодня четвержочек';
                     }
 
