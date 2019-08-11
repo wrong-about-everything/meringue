@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Meringue\Tests\ScheduleTest;
+namespace Meringue\Tests\Schedule;
 
 use Meringue\ISO8601DateTime;
 use Meringue\ISO8601DateTime\FromISO8601;
