@@ -16,4 +16,36 @@ abstract class ISO8601DateTime
     {
         return new PHPDateTime($this->value()) == new PHPDateTime($dateTime->value());
     }
+
+    public function isBetween(ISO8601DateTime $dateFrom, ISO8601DateTime $dateTo): bool
+    {
+        return
+            $this->greaterOrEquals($dateFrom)
+            &&
+            $this->lessOrEquals($dateTo);
+    }
+
+    private function greaterOrEquals(ISO8601DateTime $dateTime): bool
+    {
+        return
+            new PHPDateTime(
+                $this->value()
+            )
+            >=
+            new PHPDateTime(
+                $dateTime->value()
+            );
+    }
+
+    private function lessOrEquals(ISO8601DateTime $dateTime): bool
+    {
+        return
+            new PHPDateTime(
+                $this->value()
+            )
+            <=
+            new PHPDateTime(
+                $dateTime->value()
+            );
+    }
 }
