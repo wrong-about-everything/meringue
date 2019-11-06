@@ -5,9 +5,9 @@ namespace Meringue\FormattedDateTime;
 use Meringue\ISO8601DateTime;
 
 /**
- * Also check LocalDayOfWeek out, as well as LocalDayOfWeekTest.
+ * Also check DayOfWeekInUTC out, as well as DayOfWeekInUTCTest.
  */
-class DayOfWeekInUTC
+class LocalDayOfWeek
 {
     private $dt;
 
@@ -23,16 +23,16 @@ class DayOfWeekInUTC
      */
     public function numeric()
     {
-        return strftime('%u', (new ToSeconds($this->dt))->value());
+        return (new InCustomFormat($this->dt, 'N'))->value();
     }
 
     public function fullName()
     {
-        return strftime('%A', (new ToSeconds($this->dt))->value());
+        return (new InCustomFormat($this->dt, 'N'))->value();;
     }
 
     public function abbreviated()
     {
-        return strftime('%a', (new ToSeconds($this->dt))->value());
+        return (new InCustomFormat($this->dt, 'N'))->value();;
     }
 }
