@@ -26,4 +26,22 @@ class LocalDayOfWeekTest extends TestCase
             (new LocalDayOfWeek(new FromISO8601('2019-08-11T01:27:39+03:00')))->numeric()
         );
     }
+
+    public function testInSanFrancisco()
+    {
+        // Sunday in San Francisco, already Monday in UTC
+        $this->assertEquals(
+            7,
+            (new LocalDayOfWeek(new FromISO8601('2019-11-03T23:50:00-08:00')))->numeric()
+        );
+    }
+
+    public function testInNovosibirsk()
+    {
+        // Sunday in Novosibirsk, still Saturday anywhere to the west
+        $this->assertEquals(
+            7,
+            (new LocalDayOfWeek(new FromISO8601('2019-11-03T00:50:00+08:00')))->numeric()
+        );
+    }
 }

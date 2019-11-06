@@ -31,17 +31,17 @@ class TimePeriodTest extends TestCase
             [
                 new DefaultTime(11, 30, 0),
                 new DefaultTime(18, 30, 0),
-                new FromISO8601('2019-01-01 14:27:59')
+                new FromISO8601('2019-01-01 14:27:59-08:00')
             ],
             [
                 new DefaultTime(11, 30, 10),
                 new DefaultTime(11, 30, 11),
-                new FromISO8601('2019-01-31 11:30:10')
+                new FromISO8601('2019-01-31 11:30:10+11:30')
             ],
             [
                 new DefaultTime(11, 30, 10),
                 new DefaultTime(11, 30, 11),
-                new FromISO8601('2019-01-31 11:30:11')
+                new FromISO8601('2019-01-31 11:30:11-01:00')
             ],
             [
                 new DefaultTime(23, 00, 00),

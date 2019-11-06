@@ -39,7 +39,7 @@ class TimePeriod
             >=
             new PHPDateTime(
                 (new FromISO8601(
-                    (new Date($dateTime))->value() . ' ' . $this->from->value()
+                    (new Date($dateTime))->value() . ' ' . $this->from->value() . (new InCustomFormat($dateTime, 'P'))->value()
                 ))
                     ->value()
             );
@@ -58,7 +58,7 @@ class TimePeriod
             <=
             new PHPDateTime(
                 (new FromISO8601(
-                    (new Date($dateTime))->value() . ' ' . $this->till->value()
+                    (new Date($dateTime))->value() . ' ' . $this->till->value() . (new InCustomFormat($dateTime, 'P'))->value()
                 ))
                     ->value()
             );

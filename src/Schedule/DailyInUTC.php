@@ -9,7 +9,7 @@ use Meringue\ISO8601DateTime\TimeZone\UTC;
 use Meringue\ISO8601DateTime\InTimeZone;
 use Meringue\Schedule;
 
-class Daily implements Schedule
+class DailyInUTC implements Schedule
 {
     private $timePeriods;
 

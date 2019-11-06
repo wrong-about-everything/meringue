@@ -16,11 +16,13 @@ use Exception;
 /**
  * isHit()'s argument, $dateTime, should be in the same timezone that is implied by daily schedules.
  * For example, consider a schedule for some San Francisco's store, which works only on Sundays from 8 am to 10 pm .
- * It's hit on 2019-11-03T14:50:00-08:00. It's hit as well on 2019-11-04T11:15:00+07:00, because it's Sunday, 8pm in SF.
+ * It's hit on 2019-11-03T14:50:00-08:00, because it's Sunday in SF. It's hit as well on 2019-11-04T11:15:00+07:00, because it's Sunday, 8pm in SF.
  * So it's inherently client's responsibility to reinforce this logical correspondence between implied schedules' timezone
  * and the one of the passed datetime.
+ *
+ * This class is implied to have all the daily schedules in UTC. Passed dateTime is first converted to UTC, then day of week is extracted
  */
-class ByWeekDays implements Schedule
+class UTCScheduleByWeekDays implements Schedule
 {
     private $sunday;
     private $monday;

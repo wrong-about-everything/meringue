@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Meringue\Tests\Schedule;
 
-use Meringue\Schedule\Daily;
+use Meringue\Schedule\DailyInUTC;
 use Meringue\Time\DefaultTime;
 use PHPUnit\Framework\TestCase;
 use Meringue\Schedule\TimePeriod;
 use Meringue\ISO8601DateTime\FromISO8601;
 
-class DailyTest extends TestCase
+class DailyInUTCTest extends TestCase
 {
     public function testWithOneSuccessfulSchedule()
     {
         $this->assertTrue(
-            (new Daily(
+            (new DailyInUTC(
                 $this->timePeriod(10, 12)
             ))
                 ->isHit(
@@ -27,7 +27,7 @@ class DailyTest extends TestCase
     public function testWithSomeSuccessfulSchedules()
     {
         $this->assertTrue(
-            (new Daily(
+            (new DailyInUTC(
                 $this->timePeriod(11, 12),
                 $this->timePeriod(10, 13),
                 $this->timePeriod(10, 19)
@@ -39,7 +39,7 @@ class DailyTest extends TestCase
     public function testWithSeveralSchedulesAndOnlyOneIsSuccessful()
     {
         $this->assertTrue(
-            (new Daily(
+            (new DailyInUTC(
                 $this->timePeriod(0, 7),
                 $this->timePeriod(11, 12),
                 $this->timePeriod(14, 19)
@@ -54,7 +54,7 @@ class DailyTest extends TestCase
     public function testWithDateTimeInMoscowTimeZone(string $dateTime, bool $isHit)
     {
         $this->assertEquals(
-            (new Daily(
+            (new DailyInUTC(
                 new TimePeriod(
                     new DefaultTime(7, 0, 0),
                     new DefaultTime(23, 59, 59)
@@ -87,7 +87,7 @@ class DailyTest extends TestCase
     public function testWithFailedSchedules()
     {
         $this->assertFalse(
-            (new Daily(
+            (new DailyInUTC(
                 $this->timePeriod(0, 7),
                 $this->timePeriod(12, 23)
             ))

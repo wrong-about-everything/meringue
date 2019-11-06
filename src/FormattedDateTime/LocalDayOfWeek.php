@@ -5,6 +5,7 @@ namespace Meringue\FormattedDateTime;
 use Meringue\ISO8601DateTime;
 
 /**
+ * Day of week in a $dateTime's timezone.
  * Also check DayOfWeekInUTC out, as well as DayOfWeekInUTCTest.
  */
 class LocalDayOfWeek
@@ -28,11 +29,11 @@ class LocalDayOfWeek
 
     public function fullName()
     {
-        return (new InCustomFormat($this->dt, 'N'))->value();;
+        return (new InCustomFormat($this->dt, 'N'))->value();
     }
 
     public function abbreviated()
     {
-        return (new InCustomFormat($this->dt, 'N'))->value();;
+        return (new InCustomFormat($this->dt, 'N'))->value();
     }
 }
