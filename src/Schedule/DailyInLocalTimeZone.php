@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Meringue\Schedule;
 
 use Meringue\ISO8601DateTime;
-use Meringue\ISO8601DateTime\TimeZone\UTC;
-use Meringue\ISO8601DateTime\InTimeZone;
 use Meringue\Schedule;
 
 class DailyInLocalTimeZone implements Schedule

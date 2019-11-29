@@ -4,15 +4,11 @@ declare(strict_types=1);
 
 namespace Meringue\Schedule;
 
-use Meringue\FormattedDateTime\Date;
-use Meringue\FormattedDateTime\DayOfWeekInUTC;
 use Meringue\FormattedDateTime\LocalDayOfWeek;
 use Meringue\ISO8601DateTime;
-use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\Schedule;
-use Meringue\Time;
-use DateTimeImmutable as PHPDateTime;
 use Exception;
+use Meringue\WithFixedStartDateTime;
 
 /**
  * isHit()'s argument, $dateTime, should be in the same timezone that is implied by daily schedules.
@@ -79,5 +75,10 @@ class LocalScheduleByWeekDays implements Schedule
             default:
                 throw new Exception();
         }
+    }
+
+    public function for(WithFixedStartDateTime $interval): array
+    {
+        // TODO: Implement for() method.
     }
 }
