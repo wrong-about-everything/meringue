@@ -11,6 +11,7 @@ use Meringue\ISO8601Interval\FromStartDateTimeAndInterval;
 use Meringue\Schedule\DailyInLocalTimeZone;
 use Meringue\Schedule\LocalScheduleByWeekDays;
 use Meringue\Schedule\TimePeriod;
+use Meringue\Time;
 use Meringue\Time\DefaultTime;
 use Meringue\WithFixedStartDateTime;
 use PHPUnit\Framework\TestCase;
@@ -190,75 +191,89 @@ class LocalScheduleByWeekDaysTest extends TestCase
     }
 
     /**
-     * @dataProvider intervals
+     * @dataProvider dateTimes
      */
-    public function testSchedulesForIntervals(WithFixedStartDateTime $interval)
+    public function testSchedulesForSpecificDate(ISO8601DateTime $dateTime, array $expectedSchedule)
     {
-        $this->assertTrue(
-            (new LocalScheduleByWeekDays(
-                new DailyInLocalTimeZone(
-                    new TimePeriod(
-                        new DefaultTime(22, 28, 0),
-                        new DefaultTime(22, 29, 0)
+        $this->assertEquals(
+            $expectedSchedule,
+            array_map(
+                function (TimePeriod $timePeriod) {
+                    return
+                        array_map(
+                            function (Time $time) {
+                                return $time->value();
+                            },
+                            $timePeriod->fromTillPair()
+                        );
+                },
+                (new LocalScheduleByWeekDays(
+                    new DailyInLocalTimeZone(
+                        new TimePeriod(
+                            new DefaultTime(12, 31, 0),
+                            new DefaultTime(13, 47, 0)
+                        )
                     ),
-                    new TimePeriod(
-                        new DefaultTime(11, 0, 0),
-                        new DefaultTime(12, 30, 0)
-                    )
-                ),
-                new DailyInLocalTimeZone(
-                    new TimePeriod(
-                        new DefaultTime(12, 31, 0),
-                        new DefaultTime(13, 47, 0)
-                    )
-                ),
-                new DailyInLocalTimeZone(
-                    new TimePeriod(
-                        new DefaultTime(14, 8, 0),
-                        new DefaultTime(15, 17, 0)
-                    )
-                ),
-                new DailyInLocalTimeZone(
-                    new TimePeriod(
-                        new DefaultTime(15, 18, 0),
-                        new DefaultTime(15, 59, 0)
-                    )
-                ),
-                new DailyInLocalTimeZone(
-                    new TimePeriod(
-                        new DefaultTime(16, 0, 0),
-                        new DefaultTime(17, 30, 0)
-                    )
-                ),
-                new DailyInLocalTimeZone(
-                    new TimePeriod(
-                        new DefaultTime(17, 31, 0),
-                        new DefaultTime(18, 30, 0)
-                    )
-                ),
-                new DailyInLocalTimeZone(
-                    new TimePeriod(
-                        new DefaultTime(0, 0, 0),
-                        new DefaultTime(3, 0, 0)
+                    new DailyInLocalTimeZone(
+                        new TimePeriod(
+                            new DefaultTime(22, 28, 0),
+                            new DefaultTime(22, 29, 0)
+                        ),
+                        new TimePeriod(
+                            new DefaultTime(11, 0, 0),
+                            new DefaultTime(12, 30, 0)
+                        )
                     ),
-                    new TimePeriod(
-                        new DefaultTime(18, 31, 0),
-                        new DefaultTime(23, 59, 59)
+                    new DailyInLocalTimeZone(
+                        new TimePeriod(
+                            new DefaultTime(14, 8, 0),
+                            new DefaultTime(15, 17, 0)
+                        )
+                    ),
+                    new DailyInLocalTimeZone(
+                        new TimePeriod(
+                            new DefaultTime(15, 18, 0),
+                            new DefaultTime(15, 59, 0)
+                        )
+                    ),
+                    new DailyInLocalTimeZone(
+                        new TimePeriod(
+                            new DefaultTime(16, 0, 0),
+                            new DefaultTime(17, 30, 0)
+                        )
+                    ),
+                    new DailyInLocalTimeZone(
+                        new TimePeriod(
+                            new DefaultTime(17, 31, 0),
+                            new DefaultTime(18, 30, 0)
+                        )
+                    ),
+                    new DailyInLocalTimeZone(
+                        new TimePeriod(
+                            new DefaultTime(0, 0, 0),
+                            new DefaultTime(3, 0, 0)
+                        ),
+                        new TimePeriod(
+                            new DefaultTime(18, 31, 0),
+                            new DefaultTime(23, 59, 59)
+                        )
                     )
-                )
-            ))
-                ->schedule($interval)
+                ))
+                    ->for($dateTime)
+            )
         );
     }
 
-    public function intervals()
+    public function dateTimes()
     {
         return [
             [
-                new FromStartDateTimeAndInterval(
-                    new FromISO8601('2019-03-31 12:30:01'),
-                    new Interval('P2D')
-                )
+                new FromISO8601('2019-12-02 00:17:01+0300'),
+                [['22:28:00', '22:29:00'], ['11:00:00', '12:30:00'],]
+            ],
+            [
+                new FromISO8601('2019-11-05 23:17:01-15:00'),
+                [['14:08:00', '15:17:00'], ]
             ],
         ];
     }

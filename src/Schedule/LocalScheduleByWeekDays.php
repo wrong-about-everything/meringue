@@ -77,8 +77,32 @@ class LocalScheduleByWeekDays implements Schedule
         }
     }
 
-    public function for(WithFixedStartDateTime $interval): array
+    public function for(ISO8601DateTime $dateTime): array
     {
-        // TODO: Implement for() method.
+        switch ((int) (new LocalDayOfWeek($dateTime))->numeric()) {
+            case 7:
+                return $this->sunday->for($dateTime);
+
+            case 1:
+                return $this->monday->for($dateTime);
+
+            case 2:
+                return $this->tuesday->for($dateTime);
+
+            case 3:
+                return $this->wednesday->for($dateTime);
+
+            case 4:
+                return $this->thursday->for($dateTime);
+
+            case 5:
+                return $this->friday->for($dateTime);
+
+            case 6:
+                return $this->saturday->for($dateTime);
+
+            default:
+                throw new Exception();
+        }
     }
 }

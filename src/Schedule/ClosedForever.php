@@ -13,4 +13,9 @@ class ClosedForever implements Schedule
     {
         return false;
     }
+
+    public function for(ISO8601DateTime $dateTime): array
+    {
+        return [];
+    }
 }

@@ -9,6 +9,7 @@ use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\Schedule\UTCScheduleByWeekDays;
 use Meringue\Schedule\DailyInUTC;
 use Meringue\Schedule\TimePeriod;
+use Meringue\Time;
 use Meringue\Time\DefaultTime;
 use PHPUnit\Framework\TestCase;
 
@@ -183,6 +184,94 @@ class UTCScheduleByWeekDaysTest extends TestCase
             [new FromISO8601('2019-04-06 18:00:01')],
 
             [new FromISO8601('2019-04-07 05:00:01')],
+        ];
+    }
+
+    /**
+     * @dataProvider dateTimes
+     */
+    public function testSchedulesForSpecificDate(ISO8601DateTime $dateTime, array $expectedSchedule)
+    {
+        $this->assertEquals(
+            $expectedSchedule,
+            array_map(
+                function (TimePeriod $timePeriod) {
+                    return
+                        array_map(
+                            function (Time $time) {
+                                return $time->value();
+                            },
+                            $timePeriod->fromTillPair()
+                        );
+                },
+                (new UTCScheduleByWeekDays(
+                    new DailyInUTC(
+                        new TimePeriod(
+                            new DefaultTime(12, 31, 0),
+                            new DefaultTime(13, 47, 0)
+                        )
+                    ),
+                    new DailyInUTC(
+                        new TimePeriod(
+                            new DefaultTime(22, 28, 0),
+                            new DefaultTime(22, 29, 0)
+                        ),
+                        new TimePeriod(
+                            new DefaultTime(11, 0, 0),
+                            new DefaultTime(12, 30, 0)
+                        )
+                    ),
+                    new DailyInUTC(
+                        new TimePeriod(
+                            new DefaultTime(14, 8, 0),
+                            new DefaultTime(15, 17, 0)
+                        )
+                    ),
+                    new DailyInUTC(
+                        new TimePeriod(
+                            new DefaultTime(15, 18, 0),
+                            new DefaultTime(15, 59, 0)
+                        )
+                    ),
+                    new DailyInUTC(
+                        new TimePeriod(
+                            new DefaultTime(16, 0, 0),
+                            new DefaultTime(17, 30, 0)
+                        )
+                    ),
+                    new DailyInUTC(
+                        new TimePeriod(
+                            new DefaultTime(17, 31, 0),
+                            new DefaultTime(18, 30, 0)
+                        )
+                    ),
+                    new DailyInUTC(
+                        new TimePeriod(
+                            new DefaultTime(0, 0, 0),
+                            new DefaultTime(3, 0, 0)
+                        ),
+                        new TimePeriod(
+                            new DefaultTime(18, 31, 0),
+                            new DefaultTime(23, 59, 59)
+                        )
+                    )
+                ))
+                    ->for($dateTime)
+            )
+        );
+    }
+
+    public function dateTimes()
+    {
+        return [
+            [
+                new FromISO8601('2019-12-02 00:17:01+0300'), // still Sunday in UTC
+                [['12:31:00', '13:47:00'],]
+            ],
+            [
+                new FromISO8601('2019-11-05 23:17:01-15:00'), // already Wednesday in UTC
+                [['15:18:00', '15:59:00'],]
+            ],
         ];
     }
 }

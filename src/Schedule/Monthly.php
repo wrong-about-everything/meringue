@@ -32,4 +32,9 @@ class Monthly implements Schedule
 
         return $this->usual->isHit($dateTime);
     }
+
+    public function for(ISO8601DateTime $dateTime): array
+    {
+        return $this->usual->for($dateTime);
+    }
 }

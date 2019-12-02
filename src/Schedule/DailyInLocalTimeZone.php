@@ -27,4 +27,9 @@ class DailyInLocalTimeZone implements Schedule
 
         return false;
     }
+
+    public function for(ISO8601DateTime $dateTime): array
+    {
+        return $this->timePeriods;
+    }
 }

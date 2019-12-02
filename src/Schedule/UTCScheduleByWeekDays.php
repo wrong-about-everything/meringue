@@ -79,4 +79,33 @@ class UTCScheduleByWeekDays implements Schedule
                 throw new Exception();
         }
     }
+
+    public function for(ISO8601DateTime $dateTime): array
+    {
+        switch ((int) (new DayOfWeekInUTC($dateTime))->numeric()) {
+            case 7:
+                return $this->sunday->for($dateTime);
+
+            case 1:
+                return $this->monday->for($dateTime);
+
+            case 2:
+                return $this->tuesday->for($dateTime);
+
+            case 3:
+                return $this->wednesday->for($dateTime);
+
+            case 4:
+                return $this->thursday->for($dateTime);
+
+            case 5:
+                return $this->friday->for($dateTime);
+
+            case 6:
+                return $this->saturday->for($dateTime);
+
+            default:
+                throw new Exception();
+        }
+    }
 }

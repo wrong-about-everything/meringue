@@ -27,6 +27,11 @@ class TimePeriod
         }
     }
 
+    public function fromTillPair()
+    {
+        return [$this->from, $this->till];
+    }
+
     public function isHit(ISO8601DateTime $dateTime): bool
     {
         return $this->dateTimeIsGreaterOrEqualsToFrom($dateTime) && $this->dateTimeIsLessOrEqualsToTill($dateTime);
