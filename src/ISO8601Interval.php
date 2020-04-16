@@ -6,9 +6,6 @@ use DateTimeImmutable as PHPDateTime;
 
 abstract class ISO8601Interval
 {
-    private $dt1;
-    private $dt2;
-
     abstract public function value(): string;
 
     public function equals()
