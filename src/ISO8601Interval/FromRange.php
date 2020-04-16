@@ -5,9 +5,10 @@ namespace Meringue\ISO8601Interval;
 use DateTimeImmutable as PHPDateTime;
 use Exception;
 use Meringue\ISO8601DateTime;
+use Meringue\ISO8601Interval;
 use Meringue\WithFixedStartDateTime;
 
-class FromRange implements WithFixedStartDateTime
+class FromRange extends ISO8601Interval implements WithFixedStartDateTime
 {
     private $dt1;
     private $dt2;

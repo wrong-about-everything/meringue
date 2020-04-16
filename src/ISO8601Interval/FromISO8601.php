@@ -5,7 +5,7 @@ namespace Meringue\ISO8601Interval;
 use Exception;
 use Meringue\ISO8601Interval;
 
-class FromISO8601 implements ISO8601Interval
+class FromISO8601 extends ISO8601Interval
 {
     private $i;
 
