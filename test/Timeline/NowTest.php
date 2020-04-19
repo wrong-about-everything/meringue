@@ -2,8 +2,8 @@
 
 namespace Meringue\Tests\Timeline;
 
-use Meringue\Comparison\Min;
-use Meringue\ISO8601Interval\FromISO8601;
+use Meringue\ISO8601DateTime\Min;
+use Meringue\ISO8601Interval\Floating\FromISO8601;
 use Meringue\Timeline\Point\Future;
 use Meringue\Timeline\Point\Now;
 use Meringue\Timeline\Point\Past;

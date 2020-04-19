@@ -3,7 +3,7 @@
 namespace Meringue\Timeline\Point;
 
 use DateTimeImmutable as PHPDateTime;
-use Meringue\FormattedDateTime\CanonicalISO8601DateTime;
+use Meringue\ISO8601DateTime\FromPhpDateTime;
 use Meringue\ISO8601DateTime;
 
 class Now extends ISO8601DateTime
@@ -19,7 +19,7 @@ class Now extends ISO8601DateTime
             $now = PHPDateTime::createFromFormat('U', $microtime);
         }
 
-        $this->value = new CanonicalISO8601DateTime($now);
+        $this->value = new FromPhpDateTime($now);
     }
 
     public function value(): string

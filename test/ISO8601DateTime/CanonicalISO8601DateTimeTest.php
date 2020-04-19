@@ -1,8 +1,8 @@
 <?php
 
-namespace Meringue\Tests\FormattedDateTime;
+namespace Meringue\Tests\ISO8601DateTime;
 
-use Meringue\FormattedDateTime\CanonicalISO8601DateTime;
+use Meringue\ISO8601DateTime\FromPhpDateTime;
 use PHPUnit\Framework\TestCase;
 use DateTimeImmutable as PhpDateTime;
 
@@ -14,7 +14,7 @@ class CanonicalISO8601DateTimeTest extends TestCase
     public function testEquals(string $dateTime, string $canonical)
     {
         $this->assertEquals(
-            (new CanonicalISO8601DateTime(
+            (new FromPhpDateTime(
                 new PhpDateTime($dateTime)
             ))
                 ->value(),

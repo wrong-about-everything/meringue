@@ -1,9 +1,9 @@
 <?php
 
-namespace Meringue\Tests\ISO8601Interval;
+namespace Meringue\Tests\ISO8601Interval\WithFixedStartDateTime;
 
 use Meringue\ISO8601DateTime\ISO8601Stub;
-use Meringue\ISO8601Interval\FromRange;
+use Meringue\ISO8601Interval\WithFixedStartDateTime\FromRange;
 use PHPUnit\Framework\TestCase;
 use \Exception;
 

@@ -2,7 +2,6 @@
 
 namespace Meringue;
 
-use DateTimeImmutable as PHPDateTime;
 use Meringue\FormattedDateTime\Date;
 use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\Timeline\Point\Now;
@@ -19,24 +18,22 @@ abstract class Time
         return $this->value() === $time->value();
     }
 
+    // @todo Rename into laterThan
+    // @todo Add earlierThan
     public function greaterThan(Time $time)
     {
         $currentDate = new Date(new Now());
 
         return
-            new PHPDateTime(
-                (new FromISO8601(
-                    $currentDate->value() . ' '. $this->value()
-                ))
-                    ->value()
-            )
-                >
-            new PHPDateTime(
-                (new FromISO8601(
-                    $currentDate->value() . ' '. $time->value()
-                ))
-                    ->value()
-            );
+            (new FromISO8601(
+                $currentDate->value() . ' '. $this->value()
+            ))
+                ->laterThan(
+                    new FromISO8601(
+                        $currentDate->value() . ' '. $time->value()
+                    )
+                )
+            ;
 
     }
 }

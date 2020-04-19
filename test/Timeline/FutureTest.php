@@ -3,7 +3,7 @@
 namespace Meringue\Tests\Timeline;
 
 use Meringue\ISO8601DateTime\ISO8601Stub;
-use Meringue\ISO8601Interval\FromISO8601;
+use Meringue\ISO8601Interval\Floating\FromISO8601;
 use Meringue\Timeline\Point\Future;
 use PHPUnit\Framework\TestCase;
 

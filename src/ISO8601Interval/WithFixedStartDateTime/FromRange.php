@@ -1,20 +1,20 @@
 <?php
 
-namespace Meringue\ISO8601Interval;
+namespace Meringue\ISO8601Interval\WithFixedStartDateTime;
 
 use DateTimeImmutable as PHPDateTime;
 use Exception;
 use Meringue\ISO8601DateTime;
-use Meringue\WithFixedStartDateTime;
+use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
-class FromRange implements WithFixedStartDateTime
+class FromRange extends WithFixedStartDateTime
 {
     private $dt1;
     private $dt2;
 
     public function __construct(ISO8601DateTime $dt1, ISO8601DateTime $dt2)
     {
-        if (new PHPDateTime($dt2->value()) <= new PHPDateTime($dt1->value())) {
+        if ($dt2->earlierThan($dt1)) {
             throw new Exception('Interval end date can not be less than start date.');
         }
 

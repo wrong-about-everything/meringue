@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Meringue\FormattedInterval;
 
-use Meringue\FormattedInterval\ToMinutes;
-use Meringue\WithFixedStartDateTime;
+use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
 class CeiledMinutes
 {

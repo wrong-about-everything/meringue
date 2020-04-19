@@ -2,15 +2,21 @@
 
 namespace Meringue\ISO8601DateTime;
 
+use DateTime;
 use Meringue\ISO8601DateTime;
 
 class ISO8601Stub extends ISO8601DateTime
 {
     private $datetime;
 
-    public function __construct($datetime)
+    // @todo Remove
+    public function __construct(string $datetime)
     {
-        $this->datetime = $datetime;
+        $this->datetime =
+            (new FromPhpDateTime(
+                new DateTime($datetime)
+            ))
+                ->value();
     }
 
     public function value(): string

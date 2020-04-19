@@ -8,7 +8,7 @@ use Meringue\FormattedDateTime\LocalDayOfWeek;
 use Meringue\ISO8601DateTime;
 use Meringue\Schedule;
 use Exception;
-use Meringue\WithFixedStartDateTime;
+use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
 /**
  * isHit()'s argument, $dateTime, should be in the same timezone that is implied by daily schedules.

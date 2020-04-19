@@ -2,7 +2,6 @@
 
 namespace Meringue\FormattedDateTime;
 
-use DateTimeImmutable as PHPDateTime;
 use Meringue\ISO8601DateTime;
 
 class ToISO8601

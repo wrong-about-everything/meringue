@@ -6,14 +6,11 @@ namespace Meringue\Tests\ScheduleTest;
 
 use Meringue\ISO8601DateTime;
 use Meringue\ISO8601DateTime\FromISO8601;
-use Meringue\ISO8601Interval\FromISO8601 as Interval;
-use Meringue\ISO8601Interval\FromStartDateTimeAndInterval;
 use Meringue\Schedule\DailyInLocalTimeZone;
 use Meringue\Schedule\LocalScheduleByWeekDays;
 use Meringue\Schedule\TimePeriod;
 use Meringue\Time;
 use Meringue\Time\DefaultTime;
-use Meringue\WithFixedStartDateTime;
 use PHPUnit\Framework\TestCase;
 
 class LocalScheduleByWeekDaysTest extends TestCase

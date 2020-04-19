@@ -3,7 +3,7 @@
 namespace Meringue\FormattedInterval;
 
 use Meringue\FormattedDateTime\ToSeconds as Seconds;
-use Meringue\WithFixedStartDateTime;
+use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
 class ToSeconds
 {

@@ -10,7 +10,7 @@ class InCustomFormat
     private $dt;
     private $format;
 
-    public function __construct(ISO8601DateTime $dateTime, $format)
+    public function __construct(ISO8601DateTime $dateTime, string $format)
     {
         $this->dt = $dateTime;
         $this->format = $format;

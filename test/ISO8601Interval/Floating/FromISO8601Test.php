@@ -1,8 +1,8 @@
 <?php
 
-namespace Meringue\Tests\ISO8601Interval;
+namespace Meringue\Tests\ISO8601Interval\Floating;
 
-use Meringue\ISO8601Interval\FromISO8601;
+use Meringue\ISO8601Interval\Floating\FromISO8601;
 use PHPUnit\Framework\TestCase;
 
 class FromISO8601Test extends TestCase

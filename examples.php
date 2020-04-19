@@ -5,15 +5,15 @@ namespace ooDateTime;
 require_once 'vendor/autoload.php';
 
 use Meringue\Comparison\DateTimeComparisonResult;
-use Meringue\Comparison\Max;
+use Meringue\ISO8601DateTime\Max;
 use Meringue\FormattedDateTime\ToSeconds;
 use Meringue\ISO8601DateTime\FromTimestamp;
-use Meringue\ISO8601Interval\FromRange;
+use Meringue\ISO8601Interval\WithFixedStartDateTime\FromRange;
 use Meringue\Timeline\Point\Future;
 use Meringue\Timeline\Point\Past;
 use Meringue\Timeline\Point\Now;
 use Meringue\ISO8601DateTime\FromISO8601;
-use Meringue\ISO8601Interval\FromISO8601 as ISO8601Interval;
+use Meringue\ISO8601Interval\Floating\FromISO8601 as ISO8601Interval;
 
 
 // outputs true

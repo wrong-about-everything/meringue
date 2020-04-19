@@ -16,6 +16,6 @@ class StartOfTheDay
 
     public function value()
     {
-        return (new PHPDateTime($this->dt->value()))->format('Y-m-d 00:00:00');
+        return (new PHPDateTime($this->dt->value()))->format('Y-m-d 00:00:00+00:00');
     }
 }

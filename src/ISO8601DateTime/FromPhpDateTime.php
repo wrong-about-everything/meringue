@@ -1,10 +1,11 @@
 <?php
 
-namespace Meringue\FormattedDateTime;
+namespace Meringue\ISO8601DateTime;
 
 use DateTimeInterface;
+use Meringue\ISO8601DateTime;
 
-class CanonicalISO8601DateTime
+class FromPhpDateTime extends ISO8601DateTime
 {
     private $s;
 

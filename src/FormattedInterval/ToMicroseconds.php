@@ -3,7 +3,7 @@
 namespace Meringue\FormattedInterval;
 
 use Meringue\FormattedDateTime\ToMicroseconds as Microseconds;
-use Meringue\WithFixedStartDateTime;
+use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
 class ToMicroseconds
 {

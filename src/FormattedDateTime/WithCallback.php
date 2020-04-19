@@ -3,7 +3,6 @@
 namespace Meringue\FormattedDateTime;
 
 use Meringue\ISO8601DateTime;
-use DateTimeImmutable as PHPDateTime;
 
 class WithCallback
 {

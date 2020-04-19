@@ -1,12 +1,9 @@
 <?php
 
-namespace Meringue\Comparison;
+namespace Meringue\ISO8601DateTime;
 
-use DateTimeImmutable as PHPDateTime;
-use Meringue\FormattedDateTime\CanonicalISO8601DateTime;
 use Meringue\ISO8601DateTime;
 use Exception;
-use DateTimeImmutable;
 
 class Min extends ISO8601DateTime
 {
@@ -20,10 +17,14 @@ class Min extends ISO8601DateTime
      * @param ISO8601DateTime ...$dateTimes
      * @throws Exception In the following cases:
      *  1. Non-ISO8601DateTime value passed
-     *  2. There are less than two values passed
+     *  2. Nothing passed
      */
-    public function __construct(...$dateTimes)
+    public function __construct(... $dateTimes)
     {
+        if (count($dateTimes) < 1) {
+            throw new Exception('At least one datetime is required.');
+        }
+
         array_walk(
             $dateTimes,
             function ($dt) {
@@ -32,10 +33,6 @@ class Min extends ISO8601DateTime
                 }
             }
         );
-
-        if (count($dateTimes) < 2) {
-            throw new Exception('Nothing to find since a single value passed.');
-        }
 
         $this->dateTimes = $dateTimes;
     }
@@ -46,23 +43,19 @@ class Min extends ISO8601DateTime
 
         usort(
             $dts,
-            function ($left, $right) {
-                if (new PHPDateTime($left->value()) === new PHPDateTime($right->value())) {
+            function (ISO8601DateTime $left, ISO8601DateTime $right) {
+                if ($left->equalsTo($right)) {
                     return 0;
                 }
 
                 return
-                    (new PHPDateTime($left->value()) < new PHPDateTime($right->value()))
+                    ($left->earlierThan($right))
                         ? -1
                         : 1
                     ;
             }
         );
 
-        return
-            (new CanonicalISO8601DateTime(
-                new DateTimeImmutable($dts[0]->value())
-            ))
-                ->value();
+        return (new FromISO8601($dts[0]->value()))->value();
     }
 }

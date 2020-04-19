@@ -4,13 +4,9 @@ declare(strict_types=1);
 
 namespace Meringue\Schedule;
 
-use Meringue\FormattedDateTime\Date;
 use Meringue\FormattedDateTime\DayOfWeekInUTC;
 use Meringue\ISO8601DateTime;
-use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\Schedule;
-use Meringue\Time;
-use DateTimeImmutable as PHPDateTime;
 use Exception;
 
 /**

@@ -5,8 +5,8 @@ namespace Meringue\Tests\FormattedInterval;
 use PHPUnit\Framework\TestCase;
 use Meringue\FormattedInterval\ToHours;
 use Meringue\ISO8601DateTime\FromISO8601;
-use Meringue\ISO8601Interval\FromRange;
-use Meringue\WithFixedStartDateTime;
+use Meringue\ISO8601Interval\WithFixedStartDateTime\FromRange;
+use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
 class ToHoursTest extends TestCase
 {

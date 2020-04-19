@@ -1,12 +1,9 @@
 <?php
 
-namespace Meringue\Comparison;
+namespace Meringue\ISO8601DateTime;
 
-use DateTimeImmutable as PHPDateTime;
-use Meringue\FormattedDateTime\CanonicalISO8601DateTime;
 use Meringue\ISO8601DateTime;
 use Exception;
-use DateTimeImmutable;
 
 class Max extends ISO8601DateTime
 {
@@ -16,14 +13,13 @@ class Max extends ISO8601DateTime
     private $dateTimes;
 
     /**
-     * Max constructor.
      * @param ISO8601DateTime ...$dateTimes
      * @throws Exception In case when there are less than two values passed
      */
     public function __construct(ISO8601DateTime ... $dateTimes)
     {
-        if (count($dateTimes) < 2) {
-            throw new Exception('Nothing to find since a single value passed.');
+        if (count($dateTimes) < 1) {
+            throw new Exception('At least one datetime required.');
         }
 
         $this->dateTimes = $dateTimes;
@@ -35,23 +31,19 @@ class Max extends ISO8601DateTime
 
         usort(
             $dts,
-            function ($left, $right) {
-                if (new PHPDateTime($left->value()) === new PHPDateTime($right->value())) {
+            function (ISO8601DateTime $left, ISO8601DateTime $right) {
+                if ($left->equalsTo($right)) {
                     return 0;
                 }
 
                 return
-                    (new PHPDateTime($left->value()) > new PHPDateTime($right->value()))
+                    ($left->laterThan($right))
                         ? -1
                         : 1
                     ;
             }
         );
 
-        return
-            (new CanonicalISO8601DateTime(
-                new DateTimeImmutable($dts[0]->value())
-            ))
-                ->value();
+        return (new FromISO8601($dts[0]->value()))->value();
     }
 }

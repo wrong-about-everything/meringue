@@ -1,11 +1,11 @@
 <?php
 
-namespace Meringue\ISO8601Interval;
+namespace Meringue\ISO8601Interval\Floating;
 
 use Exception;
-use Meringue\ISO8601Interval;
+use Meringue\ISO8601Interval\FloatingInterval;
 
-class FromISO8601 implements ISO8601Interval
+class FromISO8601 implements FloatingInterval
 {
     private $i;
 

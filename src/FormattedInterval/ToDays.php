@@ -3,7 +3,7 @@
 namespace Meringue\FormattedInterval;
 
 use Meringue\FormattedDateTime\ToSeconds;
-use Meringue\WithFixedStartDateTime;
+use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
 class ToDays
 {

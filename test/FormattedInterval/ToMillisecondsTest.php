@@ -6,8 +6,8 @@ use Meringue\FormattedInterval\ToMicroseconds;
 use Meringue\FormattedInterval\ToMilliseconds;
 use Meringue\FormattedInterval\ToSeconds;
 use Meringue\ISO8601DateTime\FromISO8601;
-use Meringue\ISO8601Interval\FromRange;
-use Meringue\WithFixedStartDateTime;
+use Meringue\ISO8601Interval\WithFixedStartDateTime\FromRange;
+use Meringue\ISO8601Interval\WithFixedStartDateTime;
 use PHPUnit\Framework\TestCase;
 
 class ToMillisecondsTest extends TestCase
