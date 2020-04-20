@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Meringue\FormattedInterval;
 
-use Meringue\FormattedDateTime\ToMicroseconds;
+use Meringue\FormattedDateTime\ToSeconds;
 use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
-class Microseconds
+class TotalFullMinutes
 {
     private $interval;
 
@@ -18,6 +18,6 @@ class Microseconds
 
     public function value(): int
     {
-        return (new ToMicroseconds($this->interval->ends()))->value() - (new ToMicroseconds($this->interval->starts()))->value();
+        return (int) floor(((new ToSeconds($this->interval->ends()))->value() - (new ToSeconds($this->interval->starts()))->value()) / 60);
     }
 }

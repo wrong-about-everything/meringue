@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Meringue\FormattedInterval;
 
-use Meringue\FormattedDateTime\ToSeconds as Seconds;
 use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
-class ToSecondsWithMilliseconds
+class TotalSecondsWithMilliseconds
 {
     private $interval;
 
@@ -20,7 +19,7 @@ class ToSecondsWithMilliseconds
     {
         return
             bcdiv(
-                (string) (new Microseconds($this->interval))->value(),
+                (string) (new TotalMicroseconds($this->interval))->value(),
                 '1000000',
                 3
             );

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Meringue\FormattedInterval;
 
-use Meringue\FormattedDateTime\ToSeconds as Seconds;
+use Meringue\FormattedDateTime\ToSeconds;
 use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
-class FullSeconds
+class TotalCeiledMinutes
 {
     private $interval;
 
@@ -18,12 +18,6 @@ class FullSeconds
 
     public function value(): int
     {
-        return
-            (int) floor(
-                bcsub(
-                    (new Seconds($this->interval->ends()))->value(),
-                    (new Seconds($this->interval->starts()))->value()
-                )
-            );
+        return (int) ceil(((new ToSeconds($this->interval->ends()))->value() - (new ToSeconds($this->interval->starts()))->value()) / 60);
     }
 }

@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Meringue\FormattedInterval;
 
+use Meringue\FormattedDateTime\ToMicroseconds;
 use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
-class CeiledMinutes
+class TotalMicroseconds
 {
     private $interval;
 
@@ -17,6 +18,6 @@ class CeiledMinutes
 
     public function value(): int
     {
-        return (int) ceil((new ToMinutes($this->interval))->value());
+        return (new ToMicroseconds($this->interval->ends()))->value() - (new ToMicroseconds($this->interval->starts()))->value();
     }
 }

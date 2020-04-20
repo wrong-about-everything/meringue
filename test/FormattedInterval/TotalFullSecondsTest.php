@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Meringue\Tests\FormattedInterval;
 
-use Meringue\FormattedInterval\FullSeconds;
+use Meringue\FormattedInterval\TotalFullSeconds;
 use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\ISO8601Interval\WithFixedStartDateTime\FromRange;
 use Meringue\ISO8601Interval\WithFixedStartDateTime;
 use PHPUnit\Framework\TestCase;
 
-class FullSecondsTest extends TestCase
+class TotalFullSecondsTest extends TestCase
 {
     /**
      * @dataProvider rangesAndSeconds
@@ -19,7 +19,7 @@ class FullSecondsTest extends TestCase
     {
         $this->assertEquals(
             $expectedSeconds,
-            (new FullSeconds(
+            (new TotalFullSeconds(
                 $range
             ))
                 ->value()

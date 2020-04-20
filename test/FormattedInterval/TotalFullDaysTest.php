@@ -5,28 +5,28 @@ declare(strict_types=1);
 namespace Meringue\Tests\FormattedInterval;
 
 use PHPUnit\Framework\TestCase;
-use Meringue\FormattedInterval\CeiledHours;
+use Meringue\FormattedInterval\TotalFullDays;
 use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\ISO8601Interval\WithFixedStartDateTime\FromRange;
 use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
-class ToHoursTest extends TestCase
+class TotalFullDaysTest extends TestCase
 {
     /**
-     * @dataProvider rangesAndHours
+     * @dataProvider rangesAndDays
      */
     public function test(WithFixedStartDateTime $range, int $days)
     {
         $this->assertEquals(
             $days,
-            (new CeiledHours(
+            (new TotalFullDays(
                 $range
             ))
                 ->value()
         );
     }
 
-    public function rangesAndHours()
+    public function rangesAndDays()
     {
         return
             [
@@ -35,21 +35,21 @@ class ToHoursTest extends TestCase
                         new FromISO8601('2017-07-03T14:27:39+00:00'),
                         new FromISO8601('2017-07-05T14:27:39+00:00')
                     ),
-                    48
+                    2
                 ],
                 [
                     new FromRange(
                         new FromISO8601('2017-07-03T14:27:39+00:00'),
                         new FromISO8601('2017-07-05T14:27:38+00:00')
                     ),
-                    47
+                    1
                 ],
                 [
                     new FromRange(
                         new FromISO8601('2017-07-03T14:27:39+00:00'),
                         new FromISO8601('2017-07-05T14:27:40+00:00')
                     ),
-                    48
+                    2
                 ],
             ];
     }

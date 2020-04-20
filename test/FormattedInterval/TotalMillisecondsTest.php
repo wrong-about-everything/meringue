@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Meringue\Tests\FormattedInterval;
 
-use Meringue\FormattedInterval\Microseconds;
-use Meringue\FormattedInterval\ToMilliseconds;
-use Meringue\FormattedInterval\FullSeconds;
+use Meringue\FormattedInterval\TotalMicroseconds;
+use Meringue\FormattedInterval\TotalMilliseconds;
+use Meringue\FormattedInterval\TotalFullSeconds;
 use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\ISO8601Interval\WithFixedStartDateTime\FromRange;
 use Meringue\ISO8601Interval\WithFixedStartDateTime;
 use PHPUnit\Framework\TestCase;
 
-class ToMillisecondsTest extends TestCase
+class TotalMillisecondsTest extends TestCase
 {
     /**
      * @dataProvider rangesAndSeconds
@@ -21,7 +21,7 @@ class ToMillisecondsTest extends TestCase
     {
         $this->assertEquals(
             $expectedSeconds,
-            (new ToMilliseconds(
+            (new TotalMilliseconds(
                 $range
             ))
                 ->value()

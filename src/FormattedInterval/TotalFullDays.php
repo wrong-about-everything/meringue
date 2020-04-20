@@ -7,7 +7,7 @@ namespace Meringue\FormattedInterval;
 use Meringue\FormattedDateTime\ToSeconds;
 use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
-class FullDays
+class TotalFullDays
 {
     /**
      * @var WithFixedStartDateTime $interval

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Meringue\Tests\FormattedInterval;
 
-use Meringue\FormattedInterval\CeiledDays;
+use Meringue\FormattedInterval\TotalFullMinutes;
 use PHPUnit\Framework\TestCase;
 use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\ISO8601Interval\WithFixedStartDateTime\FromRange;
 use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
-class CeiledDaysTest extends TestCase
+class TotalFullMinutesTest extends TestCase
 {
     /**
      * @dataProvider rangesAndMinutes
@@ -19,7 +19,7 @@ class CeiledDaysTest extends TestCase
     {
         $this->assertEquals(
             $expectedMinutes,
-            (new CeiledDays(
+            (new TotalFullMinutes(
                 $range
             ))
                 ->value()
@@ -35,28 +35,28 @@ class CeiledDaysTest extends TestCase
                         new FromISO8601('2017-07-03T14:27:39+00:00'),
                         new FromISO8601('2017-07-05T14:27:39+00:00')
                     ),
-                    2
+                    2880
                 ],
                 [
                     new FromRange(
                         new FromISO8601('2017-07-03T14:27:39+00:00'),
                         new FromISO8601('2017-07-05T14:27:38+00:00')
                     ),
-                    2
+                    2879
                 ],
                 [
                     new FromRange(
                         new FromISO8601('2017-07-03T14:27:39+00:00'),
                         new FromISO8601('2017-07-05T14:27:40+00:00')
                     ),
-                    3
+                    2880
                 ],
                 [
                     new FromRange(
                         new FromISO8601('2017-07-05T14:27:39+00:00'),
                         new FromISO8601('2017-07-05T14:27:40+00:00')
                     ),
-                    1
+                    0
                 ],
             ];
     }

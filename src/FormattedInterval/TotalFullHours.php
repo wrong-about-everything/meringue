@@ -7,7 +7,7 @@ namespace Meringue\FormattedInterval;
 use Meringue\FormattedDateTime\ToSeconds;
 use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
-class CeiledDays
+class TotalFullHours
 {
     /**
      * @var WithFixedStartDateTime $interval
@@ -21,6 +21,6 @@ class CeiledDays
 
     public function value(): int
     {
-        return (int) ceil(((new ToSeconds($this->interval->ends()))->value() - (new ToSeconds($this->interval->starts()))->value()) / 60 / 60 / 24);
+        return (int) (((new ToSeconds($this->interval->ends()))->value() - (new ToSeconds($this->interval->starts()))->value()) / 60 / 60);
     }
 }

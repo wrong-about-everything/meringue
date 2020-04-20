@@ -7,7 +7,7 @@ namespace Meringue\FormattedInterval;
 use Meringue\FormattedDateTime\ToSeconds as Seconds;
 use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
-class CeiledSeconds
+class TotalCeiledSeconds
 {
     private $interval;
 

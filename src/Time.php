@@ -20,8 +20,6 @@ abstract class Time
         return $this->value() === $time->value();
     }
 
-    // @todo Rename into laterThan
-    // @todo Add earlierThan
     public function greaterThan(Time $time)
     {
         $currentDate = new Date(new Now());
@@ -37,5 +35,10 @@ abstract class Time
                 )
             ;
 
+    }
+
+    public function lessThan(Time $time)
+    {
+        return !$this->equals($time) && !$this->greaterThan($time);
     }
 }

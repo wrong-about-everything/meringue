@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Meringue\FormattedInterval;
 
+use Meringue\FormattedDateTime\ToSeconds as Seconds;
 use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
-class FullMinutes
+class TotalFullSeconds
 {
     private $interval;
 
@@ -17,6 +18,12 @@ class FullMinutes
 
     public function value(): int
     {
-        return (int) floor((new ToMinutes($this->interval))->value());
+        return
+            (int) floor(
+                bcsub(
+                    (new Seconds($this->interval->ends()))->value(),
+                    (new Seconds($this->interval->starts()))->value()
+                )
+            );
     }
 }
