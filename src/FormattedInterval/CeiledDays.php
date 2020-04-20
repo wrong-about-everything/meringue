@@ -7,8 +7,11 @@ namespace Meringue\FormattedInterval;
 use Meringue\FormattedDateTime\ToSeconds;
 use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
-class ToMinutes
+class CeiledDays
 {
+    /**
+     * @var WithFixedStartDateTime $interval
+     */
     private $interval;
 
     public function __construct(WithFixedStartDateTime $interval)
@@ -16,13 +19,8 @@ class ToMinutes
         $this->interval = $interval;
     }
 
-    public function value(): float
+    public function value(): int
     {
-        return
-            (float) bcdiv(
-                (string) ((new ToSeconds($this->interval->ends()))->value() - (new ToSeconds($this->interval->starts()))->value()),
-                '60',
-                2
-            );
+        return (int) ceil(((new ToSeconds($this->interval->ends()))->value() - (new ToSeconds($this->interval->starts()))->value()) / 60 / 60 / 24);
     }
 }

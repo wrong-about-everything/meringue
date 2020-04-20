@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Meringue\Tests\FormattedDateTime;
 
 use Meringue\FormattedDateTime\LocalDayOfWeek;

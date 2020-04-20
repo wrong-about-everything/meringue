@@ -7,7 +7,7 @@ namespace Meringue\FormattedInterval;
 use Meringue\FormattedDateTime\ToSeconds as Seconds;
 use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
-class ToSecondsWithMilliseconds
+class CeiledSeconds
 {
     private $interval;
 
@@ -16,13 +16,15 @@ class ToSecondsWithMilliseconds
         $this->interval = $interval;
     }
 
-    public function value(): string
+    public function value(): int
     {
         return
-            bcdiv(
-                (string) (new Microseconds($this->interval))->value(),
-                '1000000',
-                3
+            (int) ceil(
+                bcsub(
+                    (new Seconds($this->interval->ends()))->value(),
+                    (new Seconds($this->interval->starts()))->value(),
+                    6
+                )
             );
     }
 }

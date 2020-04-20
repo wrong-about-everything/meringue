@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Meringue\Tests\ISO8601DateTime;
 
 use PHPUnit\Framework\TestCase;

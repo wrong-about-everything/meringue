@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Meringue\Tests\FormattedDateTime;
 
 use Meringue\FormattedDateTime\ToSeconds;
-use Meringue\ISO8601DateTime\ISO8601Stub;
+use Meringue\ISO8601DateTime\FromISO8601;
 use PHPUnit\Framework\TestCase;
 
 class ToSecondsTest extends TestCase
@@ -12,7 +14,7 @@ class ToSecondsTest extends TestCase
     {
         $this->assertEquals(
             (new ToSeconds(
-                new ISO8601Stub('2014-11-21T06:04:31+00:00')
+                new FromISO8601('2014-11-21T06:04:31+00:00')
             ))
                 ->value(),
             '1416549871'
@@ -23,7 +25,7 @@ class ToSecondsTest extends TestCase
     {
         $this->assertEquals(
             (new ToSeconds(
-                new ISO8601Stub('2014-11-21T06:04:31.323154+00:00')
+                new FromISO8601('2014-11-21T06:04:31.323154+00:00')
             ))
                 ->value(),
             '1416549871.323154'

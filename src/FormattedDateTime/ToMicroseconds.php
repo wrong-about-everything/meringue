@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Meringue\FormattedDateTime;
 
 use DateTimeImmutable as PHPDateTime;
@@ -14,8 +16,8 @@ class ToMicroseconds
         $this->s = $s;
     }
 
-    public function value(): string
+    public function value(): int
     {
-        return (new PHPDateTime($this->s->value()))->format('Uu');
+        return (int) (new PHPDateTime($this->s->value()))->format('Uu');
     }
 }

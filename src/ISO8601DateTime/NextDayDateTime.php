@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Meringue\ISO8601DateTime;
 
 use Exception;
@@ -37,7 +39,13 @@ class NextDayDateTime extends ISO8601DateTime
         return
             (new FromPhpDateTime(
                 new DateTimeImmutable(
-                    date('Y-m-d', strtotime(' +1 day', (new ToSeconds($this->givenDay))->value())) .
+                    date(
+                        'Y-m-d',
+                        strtotime(
+                            ' +1 day',
+                            (int) (new ToSeconds($this->givenDay))->value()
+                        )
+                    ) .
                     sprintf('T%02d:%02d:%02d', $this->hours, $this->minutes, $this->seconds)
                 )
             ))

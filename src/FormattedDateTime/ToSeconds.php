@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Meringue\FormattedDateTime;
 
 use DateTimeImmutable as PHPDateTime;

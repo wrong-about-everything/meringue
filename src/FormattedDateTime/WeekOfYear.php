@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Meringue\FormattedDateTime;
 
 use Meringue\ISO8601DateTime;
@@ -19,6 +21,6 @@ class WeekOfYear
      */
     public function value()
     {
-        return strftime('%V', (new ToSeconds($this->dt))->value());
+        return strftime('%V', (int) (new ToSeconds($this->dt))->value());
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Meringue\FormattedDateTime;
 
 use Meringue\ISO8601DateTime;
@@ -23,16 +25,16 @@ class DayOfWeekInUTC
      */
     public function numeric()
     {
-        return strftime('%u', (new ToSeconds($this->dt))->value());
+        return strftime('%u', (int) (new ToSeconds($this->dt))->value());
     }
 
     public function fullName()
     {
-        return strftime('%A', (new ToSeconds($this->dt))->value());
+        return strftime('%A', (int) (new ToSeconds($this->dt))->value());
     }
 
     public function abbreviated()
     {
-        return strftime('%a', (new ToSeconds($this->dt))->value());
+        return strftime('%a', (int) (new ToSeconds($this->dt))->value());
     }
 }

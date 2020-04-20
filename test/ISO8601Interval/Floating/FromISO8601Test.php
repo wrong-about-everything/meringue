@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Meringue\Tests\ISO8601Interval\Floating;
 
 use Meringue\ISO8601Interval\Floating\FromISO8601;

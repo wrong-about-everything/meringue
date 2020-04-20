@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Meringue\Tests\FormattedInterval;
 
-use Meringue\FormattedInterval\ToMicroseconds;
+use Meringue\FormattedInterval\Microseconds;
 use Meringue\FormattedInterval\ToMilliseconds;
-use Meringue\FormattedInterval\ToSeconds;
+use Meringue\FormattedInterval\FullSeconds;
 use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\ISO8601Interval\WithFixedStartDateTime\FromRange;
 use Meringue\ISO8601Interval\WithFixedStartDateTime;

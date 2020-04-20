@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Meringue\FormattedDateTime;
 
 use Meringue\ISO8601DateTime;
@@ -21,12 +23,12 @@ class Month
 
     public function fullName()
     {
-        return strftime('%B', (new ToSeconds($this->dt))->value());
+        return strftime('%B', (int) (new ToSeconds($this->dt))->value());
     }
 
     public function abbreviated()
     {
-        return strftime('%b', (new ToSeconds($this->dt))->value());
+        return strftime('%b', (int) (new ToSeconds($this->dt))->value());
     }
 
     public function numberOfDays()

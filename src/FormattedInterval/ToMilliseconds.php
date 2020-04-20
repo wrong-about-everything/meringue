@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Meringue\FormattedInterval;
 
 use Meringue\FormattedDateTime\ToMicroseconds as Microseconds;
@@ -14,15 +16,15 @@ class ToMilliseconds
         $this->interval = $interval;
     }
 
-    public function value(): string
+    public function value(): int
     {
         return
-            bcdiv(
+            (int) bcdiv(
                 bcsub(
-                    (new Microseconds($this->interval->ends()))->value(),
-                    (new Microseconds($this->interval->starts()))->value()
+                    (string) (new Microseconds($this->interval->ends()))->value(),
+                    (string) (new Microseconds($this->interval->starts()))->value()
                 ),
-                1000,
+                '1000',
                 0
             );
     }

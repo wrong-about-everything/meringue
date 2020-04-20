@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Meringue\Tests\Timeline;
 
 use Meringue\ISO8601DateTime\Min;

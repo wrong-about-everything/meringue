@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Meringue\FormattedDateTime;
 
 use Meringue\ISO8601DateTime;
@@ -13,8 +15,8 @@ class DayOfYear
         $this->dt = $dateTime;
     }
 
-    public function value()
+    public function value(): string
     {
-        return strftime('%j', (new ToSeconds($this->dt))->value());
+        return strftime('%j', (int) (new ToSeconds($this->dt))->value());
     }
 }

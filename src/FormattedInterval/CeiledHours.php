@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Meringue\FormattedInterval;
 
 use Meringue\FormattedDateTime\ToSeconds;
 use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
-class ToHours
+class CeiledHours
 {
     /**
      * @var WithFixedStartDateTime $interval
@@ -17,7 +19,7 @@ class ToHours
         $this->interval = $interval;
     }
 
-    public function value()
+    public function value(): int
     {
         return (int) (((new ToSeconds($this->interval->ends()))->value() - (new ToSeconds($this->interval->starts()))->value()) / 60 / 60);
     }

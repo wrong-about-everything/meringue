@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Meringue\Timeline\Point;
 
 use DateInterval as PHPDateInterval;

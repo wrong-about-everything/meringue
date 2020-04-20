@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Meringue\FormattedInterval;
 
 use Meringue\FormattedDateTime\ToSeconds as Seconds;
 use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
-class ToSeconds
+class FullSeconds
 {
     private $interval;
 
@@ -14,12 +16,14 @@ class ToSeconds
         $this->interval = $interval;
     }
 
-    public function value(): string
+    public function value(): int
     {
         return
-            bcsub(
-                (new Seconds($this->interval->ends()))->value(),
-                (new Seconds($this->interval->starts()))->value()
+            (int) floor(
+                bcsub(
+                    (new Seconds($this->interval->ends()))->value(),
+                    (new Seconds($this->interval->starts()))->value()
+                )
             );
     }
 }

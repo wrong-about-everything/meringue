@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Meringue\Tests\ISO8601Interval\WithFixedStartDateTime;
 
-use Meringue\ISO8601DateTime\ISO8601Stub;
+use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\ISO8601Interval\WithFixedStartDateTime\FromRange;
 use PHPUnit\Framework\TestCase;
 use \Exception;
@@ -16,8 +18,8 @@ class FromRangeTest extends TestCase
     {
         $this->assertEquals(
             (new FromRange(
-                new ISO8601Stub($startDate),
-                new ISO8601Stub($endDate)
+                new FromISO8601($startDate),
+                new FromISO8601($endDate)
             ))
                 ->value(),
             $interval
@@ -39,8 +41,8 @@ class FromRangeTest extends TestCase
     {
         try {
             new FromRange(
-                new ISO8601Stub($startDate),
-                new ISO8601Stub($endDate)
+                new FromISO8601($startDate),
+                new FromISO8601($endDate)
             );
         } catch (Exception $e) {
             $this->assertTrue(true);

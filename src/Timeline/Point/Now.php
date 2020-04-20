@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Meringue\Timeline\Point;
 
 use DateTimeImmutable as PHPDateTime;
@@ -12,7 +14,7 @@ class Now extends ISO8601DateTime
 
     public function __construct()
     {
-        $microtime = microtime(true);
+        $microtime = (string) microtime(true);
 
         $now = PHPDateTime::createFromFormat('U.u', $microtime);
         if ($now === false) {

@@ -1,30 +1,32 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Meringue\Tests\FormattedInterval;
 
-use PHPUnit\Framework\TestCase;
-use Meringue\FormattedInterval\ToDays;
+use Meringue\FormattedInterval\FullSeconds;
 use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\ISO8601Interval\WithFixedStartDateTime\FromRange;
 use Meringue\ISO8601Interval\WithFixedStartDateTime;
+use PHPUnit\Framework\TestCase;
 
-class ToDaysTest extends TestCase
+class FullSecondsTest extends TestCase
 {
     /**
-     * @dataProvider rangesAndDays
+     * @dataProvider rangesAndSeconds
      */
-    public function test(WithFixedStartDateTime $range, int $days)
+    public function test(WithFixedStartDateTime $range, int $expectedSeconds)
     {
         $this->assertEquals(
-            $days,
-            (new ToDays(
+            $expectedSeconds,
+            (new FullSeconds(
                 $range
             ))
                 ->value()
         );
     }
 
-    public function rangesAndDays()
+    public function rangesAndSeconds()
     {
         return
             [
@@ -33,21 +35,35 @@ class ToDaysTest extends TestCase
                         new FromISO8601('2017-07-03T14:27:39+00:00'),
                         new FromISO8601('2017-07-05T14:27:39+00:00')
                     ),
-                    2
+                    172800
+                ],
+                [
+                    new FromRange(
+                        new FromISO8601('2017-07-03T14:27:39+00:00'),
+                        new FromISO8601('2017-07-05T14:27:39.92657+00:00')
+                    ),
+                    172800
                 ],
                 [
                     new FromRange(
                         new FromISO8601('2017-07-03T14:27:39+00:00'),
                         new FromISO8601('2017-07-05T14:27:38+00:00')
                     ),
-                    1
+                    172799
                 ],
                 [
                     new FromRange(
                         new FromISO8601('2017-07-03T14:27:39+00:00'),
                         new FromISO8601('2017-07-05T14:27:40+00:00')
                     ),
-                    2
+                    172801
+                ],
+                [
+                    new FromRange(
+                        new FromISO8601('2017-07-05T14:27:39+00:00'),
+                        new FromISO8601('2017-07-05T14:27:40+00:00')
+                    ),
+                    1
                 ],
             ];
     }

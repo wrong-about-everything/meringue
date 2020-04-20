@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Meringue\ISO8601DateTime;
 
 use DateTimeImmutable as PHPDateTime;
@@ -16,6 +18,6 @@ class FromTimestamp extends ISO8601DateTime
 
     public function value(): string
     {
-        return (new FromPhpDateTime(PHPDateTime::createFromFormat('U', $this->ms)))->value();
+        return (new FromPhpDateTime(PHPDateTime::createFromFormat('U', (string) $this->ms)))->value();
     }
 }
