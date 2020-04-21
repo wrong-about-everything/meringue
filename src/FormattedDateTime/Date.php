@@ -16,7 +16,7 @@ class Date
         $this->dt = $dateTime;
     }
 
-    public function value()
+    public function value(): string
     {
         return (new PHPDateTime($this->dt->value()))->format('Y-m-d');
     }

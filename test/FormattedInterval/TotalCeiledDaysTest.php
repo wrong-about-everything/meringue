@@ -15,10 +15,10 @@ class TotalCeiledDaysTest extends TestCase
     /**
      * @dataProvider rangesAndMinutes
      */
-    public function test(WithFixedStartDateTime $range, $expectedMinutes)
+    public function test(WithFixedStartDateTime $range, int $expectedDays)
     {
         $this->assertEquals(
-            $expectedMinutes,
+            $expectedDays,
             (new TotalCeiledDays(
                 $range
             ))

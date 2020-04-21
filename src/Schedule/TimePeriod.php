@@ -7,7 +7,7 @@ namespace Meringue\Schedule;
 use DateTimeImmutable as PHPDateTime;
 use Exception;
 use Meringue\FormattedDateTime\Date;
-use Meringue\FormattedDateTime\InCustomFormat;
+use Meringue\FormattedDateTime\CustomFormatted;
 use Meringue\ISO8601DateTime;
 use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\Time;
@@ -44,7 +44,7 @@ class TimePeriod
             >=
             new PHPDateTime(
                 (new FromISO8601(
-                    (new Date($dateTime))->value() . ' ' . $this->from->value() . (new InCustomFormat($dateTime, 'P'))->value()
+                    (new Date($dateTime))->value() . ' ' . $this->from->value() . (new CustomFormatted($dateTime, 'P'))->value()
                 ))
                     ->value()
             );
@@ -54,7 +54,7 @@ class TimePeriod
     {
         return
             new PHPDateTime(
-                (new InCustomFormat(
+                (new CustomFormatted(
                     $dateTime,
                     "c"
                 ))
@@ -63,7 +63,7 @@ class TimePeriod
             <=
             new PHPDateTime(
                 (new FromISO8601(
-                    (new Date($dateTime))->value() . ' ' . $this->till->value() . (new InCustomFormat($dateTime, 'P'))->value()
+                    (new Date($dateTime))->value() . ' ' . $this->till->value() . (new CustomFormatted($dateTime, 'P'))->value()
                 ))
                     ->value()
             );

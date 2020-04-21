@@ -8,7 +8,7 @@ use Meringue\ISO8601DateTime\FromPhpDateTime;
 use PHPUnit\Framework\TestCase;
 use DateTimeImmutable as PhpDateTime;
 
-class CanonicalISO8601DateTimeTest extends TestCase
+class FromPhpDateTimeTest extends TestCase
 {
     /**
      * @dataProvider validIso8601DateTimesWithCanonicalRepresentation

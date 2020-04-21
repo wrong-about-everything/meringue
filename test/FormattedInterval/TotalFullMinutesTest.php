@@ -15,7 +15,7 @@ class TotalFullMinutesTest extends TestCase
     /**
      * @dataProvider rangesAndMinutes
      */
-    public function test(WithFixedStartDateTime $range, $expectedMinutes)
+    public function test(WithFixedStartDateTime $range, int $expectedMinutes)
     {
         $this->assertEquals(
             $expectedMinutes,

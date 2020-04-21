@@ -26,16 +26,16 @@ class LocalDayOfWeek
      */
     public function numeric()
     {
-        return (new InCustomFormat($this->dt, 'N'))->value();
+        return (new CustomFormatted($this->dt, 'N'))->value();
     }
 
     public function fullName()
     {
-        return (new InCustomFormat($this->dt, 'N'))->value();
+        return (new CustomFormatted($this->dt, 'N'))->value();
     }
 
     public function abbreviated()
     {
-        return (new InCustomFormat($this->dt, 'N'))->value();
+        return (new CustomFormatted($this->dt, 'N'))->value();
     }
 }

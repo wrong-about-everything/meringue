@@ -7,7 +7,7 @@ namespace Meringue\FormattedDateTime;
 use DateTimeImmutable as PHPDateTime;
 use Meringue\ISO8601DateTime;
 
-class ToSeconds
+class SecondsSinceJanuary1st1970
 {
     private $s;
 

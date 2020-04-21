@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Meringue\FormattedInterval;
 
-use Meringue\FormattedDateTime\ToSeconds as Seconds;
+use Meringue\FormattedDateTime\SecondsSinceJanuary1st1970 as Seconds;
 use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
 class TotalFullSeconds

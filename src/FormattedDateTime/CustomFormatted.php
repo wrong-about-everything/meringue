@@ -7,7 +7,7 @@ namespace Meringue\FormattedDateTime;
 use Meringue\ISO8601DateTime;
 use DateTimeImmutable as PHPDateTime;
 
-class InCustomFormat
+class CustomFormatted
 {
     private $dt;
     private $format;
@@ -18,7 +18,7 @@ class InCustomFormat
         $this->format = $format;
     }
 
-    public function value()
+    public function value(): string
     {
         return (new PHPDateTime($this->dt->value()))->format($this->format);
     }

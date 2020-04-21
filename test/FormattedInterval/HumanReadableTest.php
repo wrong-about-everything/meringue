@@ -15,10 +15,10 @@ class HumanReadableTest extends TestCase
     /**
      * @dataProvider rangesAndFormattedIntervals
      */
-    public function testWithOmittedZeroIntervalParts(WithFixedStartDateTime $range, $expectedMinutes)
+    public function testWithOmittedZeroIntervalParts(WithFixedStartDateTime $range, string $humanReadableInterval)
     {
         $this->assertEquals(
-            $expectedMinutes,
+            $humanReadableInterval,
             (new HumanReadable($range))
                 ->value()
         );

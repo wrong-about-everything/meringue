@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Meringue\FormattedInterval;
 
-use Meringue\FormattedDateTime\ToSeconds;
+use Meringue\FormattedDateTime\SecondsSinceJanuary1st1970;
 use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
 class SingularOrPlural

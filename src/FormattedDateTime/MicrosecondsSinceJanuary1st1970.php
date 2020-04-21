@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Meringue\FormattedDateTime;
 
+use DateTimeImmutable as PHPDateTime;
 use Meringue\ISO8601DateTime;
 
-class ToISO8601
+class MicrosecondsSinceJanuary1st1970
 {
     private $s;
 
@@ -15,8 +16,8 @@ class ToISO8601
         $this->s = $s;
     }
 
-    public function value(): string
+    public function value(): int
     {
-        return $this->s->value();
+        return (int) (new PHPDateTime($this->s->value()))->format('Uu');
     }
 }

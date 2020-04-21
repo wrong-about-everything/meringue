@@ -14,7 +14,7 @@ class GivenDayDateTimeTest extends TestCase
     /**
      * @dataProvider correctlyFormattedDateTimes
      */
-    public function testCorrectFormat(ISO8601DateTime $dateTime, $hours, $minutes, $seconds, $expected)
+    public function testCorrectFormat(ISO8601DateTime $dateTime, int $hours, int $minutes, int $seconds, string $expected)
     {
         $this->assertEquals(
             (new GivenDayDateTime(

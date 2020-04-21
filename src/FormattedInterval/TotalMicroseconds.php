@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Meringue\FormattedInterval;
 
-use Meringue\FormattedDateTime\ToMicroseconds;
+use Meringue\FormattedDateTime\MicrosecondsSinceJanuary1st1970;
 use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
 class TotalMicroseconds
@@ -18,6 +18,6 @@ class TotalMicroseconds
 
     public function value(): int
     {
-        return (new ToMicroseconds($this->interval->ends()))->value() - (new ToMicroseconds($this->interval->starts()))->value();
+        return (new MicrosecondsSinceJanuary1st1970($this->interval->ends()))->value() - (new MicrosecondsSinceJanuary1st1970($this->interval->starts()))->value();
     }
 }

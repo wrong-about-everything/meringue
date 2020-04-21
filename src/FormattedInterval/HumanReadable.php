@@ -6,12 +6,11 @@ namespace Meringue\FormattedInterval;
 
 use DateInterval;
 use Meringue\ISO8601Interval;
-use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
 class HumanReadable
 {
     /**
-     * @var WithFixedStartDateTime $interval
+     * @var ISO8601Interval $interval
      */
     private $interval;
 

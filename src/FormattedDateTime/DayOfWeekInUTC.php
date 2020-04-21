@@ -25,16 +25,16 @@ class DayOfWeekInUTC
      */
     public function numeric()
     {
-        return strftime('%u', (int) (new ToSeconds($this->dt))->value());
+        return strftime('%u', (int) (new SecondsSinceJanuary1st1970($this->dt))->value());
     }
 
     public function fullName()
     {
-        return strftime('%A', (int) (new ToSeconds($this->dt))->value());
+        return strftime('%A', (int) (new SecondsSinceJanuary1st1970($this->dt))->value());
     }
 
     public function abbreviated()
     {
-        return strftime('%a', (int) (new ToSeconds($this->dt))->value());
+        return strftime('%a', (int) (new SecondsSinceJanuary1st1970($this->dt))->value());
     }
 }

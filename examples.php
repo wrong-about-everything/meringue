@@ -8,7 +8,7 @@ require_once 'vendor/autoload.php';
 
 use Meringue\Comparison\DateTimeComparisonResult;
 use Meringue\ISO8601DateTime\Max;
-use Meringue\FormattedDateTime\ToSeconds;
+use Meringue\FormattedDateTime\SecondsSinceJanuary1st1970;
 use Meringue\ISO8601DateTime\FromTimestamp;
 use Meringue\ISO8601Interval\WithFixedStartDateTime\FromRange;
 use Meringue\Timeline\Point\Future;
@@ -25,7 +25,7 @@ var_dump(
         new Future(
             new Past(
                 new FromTimestamp(
-                    (new ToSeconds(
+                    (new SecondsSinceJanuary1st1970(
                         new FromISO8601('2017-08-18T15:08:13+04:00')
                     ))
                         ->value()

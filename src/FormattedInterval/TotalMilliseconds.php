@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Meringue\FormattedInterval;
 
-use Meringue\FormattedDateTime\ToMicroseconds as Microseconds;
+use Meringue\FormattedDateTime\MicrosecondsSinceJanuary1st1970 as Microseconds;
 use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
 class TotalMilliseconds

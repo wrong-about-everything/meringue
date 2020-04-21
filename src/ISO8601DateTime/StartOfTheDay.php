@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Meringue\FormattedDateTime;
+namespace Meringue\ISO8601DateTime;
 
 use Meringue\ISO8601DateTime;
 use DateTimeImmutable as PHPDateTime;
 
-class Minute
+class StartOfTheDay extends ISO8601DateTime
 {
     private $dt;
 
@@ -16,8 +16,8 @@ class Minute
         $this->dt = $dateTime;
     }
 
-    public function value()
+    public function value(): string
     {
-        return (new PHPDateTime($this->dt->value()))->format('i');
+        return (new PHPDateTime($this->dt->value()))->format('Y-m-d 00:00:00P');
     }
 }
