@@ -8,7 +8,8 @@ use Meringue\ISO8601DateTime;
 use DateTimeZone;
 use DateTimeImmutable as PhpDateTime;
 
-class InTimeZone extends ISO8601DateTime
+// @todo: fixed datetime in timezone
+class AdjustedAccordingToTimeZone extends ISO8601DateTime
 {
     private $dateTime;
     private $timeZone;

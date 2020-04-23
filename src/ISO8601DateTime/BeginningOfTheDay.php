@@ -7,7 +7,7 @@ namespace Meringue\ISO8601DateTime;
 use Meringue\ISO8601DateTime;
 use DateTimeImmutable as PHPDateTime;
 
-class StartOfTheDay extends ISO8601DateTime
+class BeginningOfTheDay extends ISO8601DateTime
 {
     private $dt;
 
@@ -18,6 +18,12 @@ class StartOfTheDay extends ISO8601DateTime
 
     public function value(): string
     {
-        return (new PHPDateTime($this->dt->value()))->format('Y-m-d 00:00:00P');
+        return
+            (new FromISO8601(
+                (new PHPDateTime($this->dt->value()))
+                    ->format('Y-m-d 00:00:00P')
+            ))
+                ->value()
+        ;
     }
 }

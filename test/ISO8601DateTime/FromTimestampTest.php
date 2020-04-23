@@ -13,9 +13,9 @@ class FromTimestampTest extends TestCase
     public function testCorrectFormat()
     {
         $this->assertEquals(
+            '2017-09-04T14:14:00+00:00',
             (new FromTimestamp(1504534440))
-                ->value(),
-            '2017-09-04T14:14:00+00:00'
+                ->value()
         );
     }
 

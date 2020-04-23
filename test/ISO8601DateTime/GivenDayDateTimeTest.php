@@ -17,14 +17,14 @@ class GivenDayDateTimeTest extends TestCase
     public function testCorrectFormat(ISO8601DateTime $dateTime, int $hours, int $minutes, int $seconds, string $expected)
     {
         $this->assertEquals(
+            $expected,
             (new GivenDayDateTime(
                 $dateTime,
                 $hours,
                 $minutes,
                 $seconds
             ))
-                ->value(),
-            $expected
+                ->value()
         );
     }
 

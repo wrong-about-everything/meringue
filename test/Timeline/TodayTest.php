@@ -14,13 +14,13 @@ class TodayTest extends TestCase
     public function test()
     {
         $this->assertEquals(
-            (new Today())->value(),
             (new FromCustomFormat(
                 'd.m.Y H:i:s',
                 (new DateTimeImmutable('now'))
                     ->format('d.m.Y 00:00:00')
             ))
-                ->value()
+                ->value(),
+            (new Today())->value()
         );
     }
 }

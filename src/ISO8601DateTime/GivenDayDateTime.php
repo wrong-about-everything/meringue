@@ -9,6 +9,7 @@ use Meringue\FormattedDateTime\Date;
 use Meringue\ISO8601DateTime;
 use DateTimeImmutable;
 
+// @todo: pass Time instead of three separate parameters; consider passing a Timezone (not necessary: FixedDateTimeInTimeZone is enough.)
 class GivenDayDateTime extends ISO8601DateTime
 {
     private $givenDay;

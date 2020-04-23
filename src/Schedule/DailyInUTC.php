@@ -6,7 +6,7 @@ namespace Meringue\Schedule;
 
 use Meringue\ISO8601DateTime;
 use Meringue\ISO8601DateTime\TimeZone\UTC;
-use Meringue\ISO8601DateTime\InTimeZone;
+use Meringue\ISO8601DateTime\AdjustedAccordingToTimeZone;
 use Meringue\Schedule;
 
 class DailyInUTC implements Schedule
@@ -22,7 +22,7 @@ class DailyInUTC implements Schedule
     {
         /** @var TimePeriod $timePeriod */
         foreach ($this->timePeriods as $timePeriod) {
-            if ($timePeriod->isHit(new InTimeZone($dateTime, new UTC()))) {
+            if ($timePeriod->isHit(new AdjustedAccordingToTimeZone($dateTime, new UTC()))) {
                 return true;
             }
         }

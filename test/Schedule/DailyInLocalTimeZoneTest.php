@@ -54,6 +54,7 @@ class DailyInLocalTimeZoneTest extends TestCase
     public function testWithDateTimeInMoscowTimeZone(string $dateTime, bool $isHit)
     {
         $this->assertEquals(
+            $isHit,
             (new DailyInLocalTimeZone(
                 new TimePeriod(
                     new DefaultTime(7, 0, 0),
@@ -64,8 +65,7 @@ class DailyInLocalTimeZoneTest extends TestCase
                     new DefaultTime(2, 0, 0)
                 )
             ))
-                ->isHit(new FromISO8601($dateTime)),
-            $isHit
+                ->isHit(new FromISO8601($dateTime))
         );
     }
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Meringue\Schedule;
 
-use Meringue\FormattedDateTime\DayOfWeekInUTC;
+use Meringue\WeekDay\DayOfWeekInUTC;
 use Meringue\ISO8601DateTime;
 use Meringue\Schedule;
 use Exception;
@@ -49,7 +49,7 @@ class UTCScheduleByWeekDays implements Schedule
 
     public function isHit(ISO8601DateTime $dateTime): bool
     {
-        switch ((int) (new DayOfWeekInUTC($dateTime))->numeric()) {
+        switch ((int) (new DayOfWeekInUTC($dateTime))->value()) {
             case 7:
                 return $this->sunday->isHit($dateTime);
 
@@ -78,7 +78,7 @@ class UTCScheduleByWeekDays implements Schedule
 
     public function for(ISO8601DateTime $dateTime): array
     {
-        switch ((int) (new DayOfWeekInUTC($dateTime))->numeric()) {
+        switch ((int) (new DayOfWeekInUTC($dateTime))->value()) {
             case 7:
                 return $this->sunday->for($dateTime);
 

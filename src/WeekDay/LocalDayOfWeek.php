@@ -2,15 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Meringue\FormattedDateTime;
+namespace Meringue\WeekDay;
 
+use Meringue\FormattedDateTime\CustomFormatted;
 use Meringue\ISO8601DateTime;
+use Meringue\WeekDay;
 
 /**
  * Day of week in a $dateTime's timezone.
  * Also check DayOfWeekInUTC out, as well as DayOfWeekInUTCTest.
  */
-class LocalDayOfWeek
+class LocalDayOfWeek extends WeekDay
 {
     private $dt;
 
@@ -22,20 +24,10 @@ class LocalDayOfWeek
     /**
      * ISO-8601 numeric representation of the day of the week.
      * 1 for Monday, 7 for Sunday.
-     * @return string
+     * @return int
      */
-    public function numeric()
+    public function value(): int
     {
-        return (new CustomFormatted($this->dt, 'N'))->value();
-    }
-
-    public function fullName()
-    {
-        return (new CustomFormatted($this->dt, 'N'))->value();
-    }
-
-    public function abbreviated()
-    {
-        return (new CustomFormatted($this->dt, 'N'))->value();
+        return (int) (new CustomFormatted($this->dt, 'N'))->value();
     }
 }

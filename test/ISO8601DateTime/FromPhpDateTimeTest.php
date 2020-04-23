@@ -16,11 +16,11 @@ class FromPhpDateTimeTest extends TestCase
     public function testEquals(string $dateTime, string $canonical)
     {
         $this->assertEquals(
+            $canonical,
             (new FromPhpDateTime(
                 new PhpDateTime($dateTime)
             ))
-                ->value(),
-            $canonical
+                ->value()
         );
     }
 

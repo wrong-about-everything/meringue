@@ -20,16 +20,16 @@ class FromStartDateTimeAndIntervalTest extends TestCase
             );
 
         $this->assertEquals(
-            $interval->value(),
-            'P1YT1S'
+            'P1YT1S',
+            $interval->value()
         );
         $this->assertEquals(
-            $interval->starts()->value(),
-            '2020-04-20T21:01:19+03:00'
+            '2020-04-20T21:01:19+03:00',
+            $interval->starts()->value()
         );
         $this->assertEquals(
-            $interval->ends()->value(),
-            '2021-04-20T21:01:20+03:00'
+            '2021-04-20T21:01:20+03:00',
+            $interval->ends()->value()
         );
     }
 }

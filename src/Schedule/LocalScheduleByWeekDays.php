@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Meringue\Schedule;
 
-use Meringue\FormattedDateTime\LocalDayOfWeek;
+use Meringue\WeekDay\LocalDayOfWeek;
 use Meringue\ISO8601DateTime;
 use Meringue\Schedule;
 use Exception;
@@ -50,7 +50,7 @@ class LocalScheduleByWeekDays implements Schedule
 
     public function isHit(ISO8601DateTime $dateTime): bool
     {
-        switch ((int) (new LocalDayOfWeek($dateTime))->numeric()) {
+        switch ((int) (new LocalDayOfWeek($dateTime))->value()) {
             case 7:
                 return $this->sunday->isHit($dateTime);
 
@@ -79,7 +79,7 @@ class LocalScheduleByWeekDays implements Schedule
 
     public function for(ISO8601DateTime $dateTime): array
     {
-        switch ((int) (new LocalDayOfWeek($dateTime))->numeric()) {
+        switch ((int) (new LocalDayOfWeek($dateTime))->value()) {
             case 7:
                 return $this->sunday->for($dateTime);
 

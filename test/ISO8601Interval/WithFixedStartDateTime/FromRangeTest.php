@@ -19,12 +19,12 @@ class FromRangeTest extends TestCase
     public function testCorrectFormat(string $startDate, string $endDate, string $interval)
     {
         $this->assertEquals(
+            $interval,
             (new FromRange(
                 new FromISO8601($startDate),
                 new FromISO8601($endDate)
             ))
-                ->value(),
-            $interval
+                ->value()
         );
     }
 
@@ -73,16 +73,16 @@ class FromRangeTest extends TestCase
             );
 
         $this->assertEquals(
-            $interval->value(),
-            'P1Y2M4DT0H1M59S'
+            'P1Y2M4DT0H1M59S',
+            $interval->value()
         );
         $this->assertEquals(
-            $interval->starts()->value(),
-            '2020-04-20T21:01:19+03:00'
+            '2020-04-20T21:01:19+03:00',
+            $interval->starts()->value()
         );
         $this->assertEquals(
-            $interval->ends()->value(),
-            '2021-06-24T21:03:18+03:00'
+            '2021-06-24T21:03:18+03:00',
+            $interval->ends()->value()
         );
     }
 }

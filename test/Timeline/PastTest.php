@@ -14,12 +14,12 @@ class PastTest extends TestCase
     public function testCorrectFormat()
     {
         $this->assertEquals(
+            '2013-08-30T05:08:05+00:00',
             (new Past(
                 new DateTimeFromISO8601String('2014-11-21T06:04:31+00:00'),
                 new FromISO8601('P1Y2M21DT24H56M26S')
             ))
-                ->value(),
-            '2013-08-30T05:08:05+00:00'
+                ->value()
         );
     }
 }
