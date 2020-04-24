@@ -7,7 +7,7 @@ namespace Meringue\FormattedInterval;
 use DateInterval;
 use Meringue\ISO8601Interval;
 
-class CustomFormatted
+class ISO8601Formatted
 {
     /**
      * @var ISO8601Interval $interval

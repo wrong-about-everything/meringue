@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Meringue\Timeline\Point;
+namespace Meringue\ISO8601DateTime;
 
 use DateTimeImmutable as PHPDateTime;
 use Meringue\ISO8601DateTime\FromPhpDateTime;

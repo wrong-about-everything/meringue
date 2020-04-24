@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Meringue\WeekDay;
 
-use Meringue\FormattedDateTime\CustomFormatted;
+use Meringue\FormattedDateTime\ISO8601Formatted;
 use Meringue\ISO8601DateTime;
 use Meringue\WeekDay;
 

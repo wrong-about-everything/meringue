@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Meringue\Tests\FormattedInterval;
 
-use Meringue\FormattedInterval\CustomFormatted;
+use Meringue\FormattedInterval\ISO8601Formatted;
 use PHPUnit\Framework\TestCase;
 use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\ISO8601Interval\WithFixedStartDateTime\FromRange;
 use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
-class CustomFormattedTest extends TestCase
+class ISO8601FormattedTest extends TestCase
 {
     /**
      * @dataProvider rangesAndFormattedIntervals
@@ -19,7 +19,7 @@ class CustomFormattedTest extends TestCase
     {
         $this->assertEquals(
             $formattedInterval,
-            (new CustomFormatted($range, $callback))
+            (new ISO8601Formatted($range, $callback))
                 ->value()
         );
     }

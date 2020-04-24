@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Meringue\Tests\Timeline;
+namespace Meringue\Tests\ISO8601DateTime;
 
 use DateTimeImmutable;
 use Meringue\ISO8601DateTime\FromCustomFormat;
-use Meringue\Timeline\Point\Today;
+use Meringue\ISO8601DateTime\Today;
 use PHPUnit\Framework\TestCase;
 
 class TodayTest extends TestCase
