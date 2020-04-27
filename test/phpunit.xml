@@ -1,4 +1,9 @@
-<phpunit bootstrap="../vendor/autoload.php">
+<phpunit
+        bootstrap="../vendor/autoload.php"
+        convertErrorsToExceptions="true"
+        convertNoticesToExceptions="true"
+        convertWarningsToExceptions="true"
+>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./../src</directory>

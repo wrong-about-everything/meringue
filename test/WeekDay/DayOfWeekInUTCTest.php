@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Meringue\Tests\FormattedDateTime;
+namespace Meringue\Tests\WeekDay;
 
 use Meringue\WeekDay\Tuesday;
 use PHPUnit\Framework\TestCase;
