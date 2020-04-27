@@ -25,7 +25,7 @@
    faq/how_to_convert_a_string_to_date
    faq/how_to_substract_seconds_minutes_hours_days_and_all_from_a_given_datetime
    faq/how_to_get_the_last_day_of_a_month
-   
+
 
 .. toctree::
    :hidden:
