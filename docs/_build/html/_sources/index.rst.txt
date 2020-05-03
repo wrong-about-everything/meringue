@@ -1,8 +1,9 @@
 .. toctree::
    :hidden:
+   :maxdepth: 2
 
-   quick_start
    meringue_philosophy
+   quick_start
 
 .. toctree::
    :hidden:
