@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>&lt;no title&gt; &#8212; meringue  documentation</title>
+    <title>How to get a timestamp in php &#8212; meringue  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -16,7 +16,7 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="how_do_you_get_a_current_datetime.html" />
+    <link rel="next" title="How do you get a current datetime" href="how_do_you_get_a_current_datetime.html" />
     <link rel="prev" title="Quick start" href="../quick_start.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,7 +34,31 @@
 
           <div class="body" role="main">
             
-  
+  <div class="section" id="how-to-get-a-timestamp-in-php">
+<h1>How to get a timestamp in php<a class="headerlink" href="#how-to-get-a-timestamp-in-php" title="Permalink to this headline">¶</a></h1>
+<p>First of all, what is a unix timestamp? It’s a number of seconds since 00:00:00, January 1st, 1970 UTC.
+When you already know <strong>what</strong> you want, instead of <strong>how</strong> you want it, you’re good to go and discover if there is a class that serves your needs.
+In the case of a timestamp, there is one, and it’s called <code class="code docutils literal notranslate"><span class="pre">SecondsSinceJanuary1st1970</span></code>. If you want to find out current unix timestamp,
+you can pass current datetime as an argument:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">$c = new SecondsSinceJanuary1st1970(new Now());</span>
+</pre></div>
+</div>
+<p>In the same vein, you can pass any other ISO8601 datetime:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">$c =</span>
+<span class="x">   new SecondsSinceJanuary1st1970(</span>
+<span class="x">      new Max(</span>
+<span class="x">         new Now(),</span>
+<span class="x">         new Future(</span>
+<span class="x">            new FromISO8601(&#39;1986-05-04 00:30:00+03&#39;),</span>
+<span class="x">            new NYears(34)</span>
+<span class="x">         )</span>
+<span class="x">      )</span>
+<span class="x">   );</span>
+</pre></div>
+</div>
+<p>As usual, if you want a textual representation, <code class="code docutils literal notranslate"><span class="pre">value()</span></code> method is just for that.</p>
+</div>
+
 
           </div>
           
@@ -56,13 +80,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../meringue_philosophy.html">Meringue Philosophy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quick_start.html">Quick start</a></li>
 </ul>
+<p class="caption"><span class="caption-text">FAQ</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to get a timestamp in php</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_do_you_get_a_current_datetime.html">How do you get a current datetime</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_calculate_a_difference_between_two_dates.html">How to calculate a difference between to dates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_add_seconds_minutes_hours_days_and_all_to_php_datetime.html">How to add seconds, minutes, hours, days and all to php datetime</a></li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
       <li>Previous: <a href="../quick_start.html" title="previous chapter">Quick start</a></li>
-      <li>Next: <a href="how_do_you_get_a_current_datetime.html" title="next chapter">&lt;no title&gt;</a></li>
+      <li>Next: <a href="how_do_you_get_a_current_datetime.html" title="next chapter">How do you get a current datetime</a></li>
   </ul></li>
 </ul>
 </div>
