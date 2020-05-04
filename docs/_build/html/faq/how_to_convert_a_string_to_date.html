@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>&lt;no title&gt; &#8212; meringue  documentation</title>
+    <title>How to convert a string to date &#8212; meringue  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -34,7 +34,27 @@
 
           <div class="body" role="main">
             
-  
+  <div class="section" id="how-to-convert-a-string-to-date">
+<h1>How to convert a string to date<a class="headerlink" href="#how-to-convert-a-string-to-date" title="Permalink to this headline">¶</a></h1>
+<p>So, what you really need is an ISO8601 date. In other words, you need an ISO8601 object. Thus you need a class which creates
+this object from string. That is a meringe way of thinking, reinforced by <a class="reference internal" href="../meringue_philosophy.html"><span class="doc">metaphysics</span></a>.</p>
+<p>So if you have an ISO8601-compliant string, it’s as simple as that:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">$m = new FromISO8601(&#39;1986-05-04 00:30:00+03&#39;);</span>
+</pre></div>
+</div>
+<p>If you have a string in some arbitrary format, you can use <code class="code docutils literal notranslate"><span class="pre">FromCustomFormat</span></code> class. For example,</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">$customFormatDateTime = new FromCustomFormat(&#39;mY--d\T\T\!H:i:sO&#39;, &#39;122018--31TT!23:12:59+0200&#39;);</span>
+
+<span class="x">$this-&gt;assertTrue($customFormatDateTime-&gt;isValid());</span>
+<span class="x">$this-&gt;assertEquals(</span>
+<span class="x">   &#39;2018-12-31T23:12:59+02:00&#39;,</span>
+<span class="x">   $customFormatDateTime-&gt;value()</span>
+<span class="x">);</span>
+</pre></div>
+</div>
+<p>As usual, checking out tests is always a good idea.</p>
+</div>
+
 
           </div>
           
@@ -57,11 +77,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../quick_start.html">Quick start</a></li>
 </ul>
 <p class="caption"><span class="caption-text">FAQ</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="how_to_get_a_timestamp_in_php.html">How to get a timestamp in php</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_do_you_get_a_current_datetime.html">How do you get a current datetime</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_compare_two_dates.html">How to compare two dates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_to_calculate_a_difference_between_two_dates.html">How to calculate a difference between to dates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_to_add_seconds_minutes_hours_days_and_all_to_php_datetime.html">How to add seconds, minutes, hours, days and all to php datetime</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to convert a string to date</a></li>
 </ul>
 
 <div class="relations">

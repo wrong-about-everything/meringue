@@ -33,7 +33,6 @@ class FromCustomFormat extends ISO8601DateTime
             ;
     }
 
-    // @todo Move validation in constructor
     public function isValid(): bool
     {
         $date = PHPDateTime::createFromFormat($this->format, $this->dateTime);
