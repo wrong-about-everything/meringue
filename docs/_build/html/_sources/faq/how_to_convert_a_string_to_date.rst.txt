@@ -22,4 +22,4 @@ If you have a string in some arbitrary format, you can use :code:`FromCustomForm
       $customFormatDateTime->value()
    );
 
-As usual, checking out tests is always a good idea.
+As usual, checking out `tests <https://github.com/wrong-about-everything/meringue/tree/master/test>`_ is always a good idea.
