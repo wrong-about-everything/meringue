@@ -6,8 +6,11 @@ namespace Meringue\Tests\FormattedInterval;
 
 use Meringue\FormattedInterval\TotalCeiledSeconds;
 use Meringue\ISO8601DateTime\FromISO8601;
+use Meringue\ISO8601Interval\Floating\FromISO8601 as IntervalFromISO8601String;
+use Meringue\ISO8601Interval\Floating\OneDay;
 use Meringue\ISO8601Interval\WithFixedStartDateTime\FromRange;
 use Meringue\ISO8601Interval\WithFixedStartDateTime;
+use Meringue\Timeline\Point\Future;
 use PHPUnit\Framework\TestCase;
 
 class TotalCeiledSecondsTest extends TestCase

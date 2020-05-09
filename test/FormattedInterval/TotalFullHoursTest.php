@@ -19,10 +19,7 @@ class TotalFullHoursTest extends TestCase
     {
         $this->assertEquals(
             $days,
-            (new TotalFullHours(
-                $range
-            ))
-                ->value()
+            (new TotalFullHours($range))->value()
         );
     }
 

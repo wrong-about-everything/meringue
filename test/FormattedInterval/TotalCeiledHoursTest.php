@@ -19,10 +19,7 @@ class TotalCeiledHoursTest extends TestCase
     {
         $this->assertEquals(
             $days,
-            (new TotalCeiledHours(
-                $range
-            ))
-                ->value()
+            (new TotalCeiledHours($range))->value()
         );
     }
 
@@ -50,6 +47,27 @@ class TotalCeiledHoursTest extends TestCase
                         new FromISO8601('2017-07-05T14:27:40+00:00')
                     ),
                     49
+                ],
+                [
+                    new FromRange(
+                        new FromISO8601('2017-06-05T14:27:39+00:00'),
+                        new FromISO8601('2017-07-05T14:27:39+00:00')
+                    ),
+                    720
+                ],
+                [
+                    new FromRange(
+                        new FromISO8601('2017-02-14T14:27:39+00:00'),
+                        new FromISO8601('2017-03-14T14:27:39+00:00')
+                    ),
+                    672
+                ],
+                [
+                    new FromRange(
+                        new FromISO8601('2020-02-14T14:27:39+00:00'),
+                        new FromISO8601('2020-03-14T14:27:39+00:00')
+                    ),
+                    696
                 ],
             ];
     }
