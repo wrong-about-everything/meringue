@@ -12,8 +12,6 @@ class LocalDayOfWeekTest extends TestCase
 {
     public function testInUTC()
     {
-        $this->setLocale(LC_ALL, 'nl_NL');
-
         $this->assertEquals(
             2,
             (new LocalDayOfWeek(new FromISO8601('2018-08-14T14:27:39+00:00')))->value()

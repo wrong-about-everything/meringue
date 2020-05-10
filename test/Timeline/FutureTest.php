@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace Meringue\Tests\Timeline;
 
 use Meringue\ISO8601DateTime\FromISO8601 as DateTimeFromISO8601String;
+use Meringue\ISO8601DateTime\FromISO8601 as DateTimeParsedFromISO8601String;
+use Meringue\ISO8601DateTime\TheFirstDayOfNMonthsLater;
 use Meringue\ISO8601Interval\Floating\FromISO8601;
+use Meringue\ISO8601Interval\Floating\OneMonth;
 use Meringue\Timeline\Point\Future;
 use PHPUnit\Framework\TestCase;
 
