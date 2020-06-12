@@ -41,6 +41,17 @@ You need a current datetime, that is, now. Here goes the object – <code class=
 <p>You can work with this datetime further: you can get datetimes <a class="reference internal" href="how_to_add_seconds_minutes_hours_days_and_all_to_php_datetime.html"><span class="doc">in the future</span></a>
 or <span class="xref std std-doc">in the past</span>,
 or <a class="reference internal" href="how_to_format_a_php_date.html"><span class="doc">format it to your taste</span></a>.</p>
+<p>Often times, you want to know what time it is in some other timezone. For example, it’s 15:08 in Moscow, and you want to know what time it is in Central Europe.
+In other words, you want to know specific point in time adjusted according to some other timezone, in our case it could be Berlin, Paris or Rome.
+Hence the class: <code class="code docutils literal notranslate"><span class="pre">AdjustedAccordingToTimeZone</span></code>. So here is how you can convert a datetime to another timezone:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new AdjustedAccordingToTimeZone(</span>
+<span class="x">    new FromISO8601(&#39;2018-04-25 15:08:01+03:00&#39;),</span>
+<span class="x">    new CET()</span>
+<span class="x">))</span>
+<span class="x">    -&gt;value()</span>
+</pre></div>
+</div>
+<p>Currently there are a few of <a class="reference external" href="https://github.com/wrong-about-everything/meringue/tree/master/src/ISO8601DateTime/TimeZone">built-in meringue timezones</a>, feel free to add yours.</p>
 </div>
 
 
@@ -111,7 +122,7 @@ or <a class="reference internal" href="how_to_format_a_php_date.html"><span clas
       &copy;2020, Vadim Samokhin.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

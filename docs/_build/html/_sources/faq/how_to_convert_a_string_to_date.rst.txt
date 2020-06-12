@@ -2,7 +2,7 @@ How to convert a string to date
 =================================
 
 So, what you really need is an ISO8601 date. In other words, you need an ISO8601 object. Thus you need a class which creates
-this object from string. That is a meringe way of thinking, reinforced by :doc:`metaphysics <../meringue_philosophy>`.
+this object from string. That is a meringue way of thinking, reinforced by :doc:`metaphysics <../meringue_philosophy>`.
 
 So if you have an ISO8601-compliant string, it's as simple as that:
 

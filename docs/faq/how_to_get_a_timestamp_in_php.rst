@@ -26,3 +26,5 @@ In the same vein, you can pass any other ISO8601 datetime:
       );
 
 As usual, if you want a textual representation, :code:`value()` method is just for that.
+
+Also note that timestamp doesn't depend on a timezone, since it's the number of seconds since January 1st midnight 1970 in **UTC** timezone. This timezone is embedded into the very definition of a timestamp.
