@@ -41,4 +41,4 @@ Here is how you can adjust your datetime according to specific timezone:
    ))
        ->value();
 
-You can find some more about an overall approach used in meringue in a .:doc:`quick start entry <../quick_start>`.
+You can find some more about an overall approach used in meringue in a :doc:`quick start entry <../quick_start>`.
