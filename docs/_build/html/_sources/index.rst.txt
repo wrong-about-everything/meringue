@@ -16,6 +16,7 @@
    :maxdepth: 1
 
    faq/how_to_get_a_timestamp_in_php
+   faq/how_to_convert_a_datetime_to_specific_timezone
    faq/how_do_you_get_a_current_datetime
    faq/how_to_format_a_php_date
    faq/how_to_compare_two_dates
