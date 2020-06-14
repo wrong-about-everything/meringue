@@ -6,7 +6,7 @@ namespace Meringue\Schedule;
 
 use Meringue\ISO8601DateTime;
 use Meringue\Schedule;
-use Meringue\Time\DefaultTime;
+use Meringue\Time\FromIntegers;
 
 class TwentyFourSeven implements Schedule
 {
@@ -19,8 +19,8 @@ class TwentyFourSeven implements Schedule
     {
         return [
             new TimePeriod(
-                new DefaultTime(0, 0, 0),
-                new DefaultTime(23, 59, 59)
+                new FromIntegers(0, 0, 0),
+                new FromIntegers(23, 59, 59)
             )
         ];
     }

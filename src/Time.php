@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Meringue;
 
-use Meringue\FormattedDateTime\Date;
+use Meringue\Date\FromISO8601DateTime;
 use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\Timeline\Point\Now;
 
@@ -22,7 +22,7 @@ abstract class Time
 
     public function greaterThan(Time $time)
     {
-        $currentDate = new Date(new Now());
+        $currentDate = new FromISO8601DateTime(new Now());
 
         return
             (new FromISO8601(
@@ -32,8 +32,7 @@ abstract class Time
                     new FromISO8601(
                         $currentDate->value() . ' '. $time->value()
                     )
-                )
-            ;
+                );
 
     }
 

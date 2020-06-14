@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Meringue\Time;
 
-use Exception;
 use Meringue\Time;
 
 class DefaultTime extends Time
@@ -13,25 +12,15 @@ class DefaultTime extends Time
     private $minutes;
     private $seconds;
 
-    public function __construct(int $hours, int $minutes, int $seconds)
+    public function __construct(Hour $hours, Minute $minutes, Second $seconds)
     {
-        if ($hours < 0 || $hours > 23) {
-            throw new Exception(sprintf('Hours should be greater or equals than zero and less than 24. %s given', $hours));
-        }
-        if ($minutes < 0 || $minutes > 59) {
-            throw new Exception(sprintf('Minutes should be greater or equals than zero and less than 60. %s given', $hours));
-        }
-        if ($seconds < 0 || $seconds > 59) {
-            throw new Exception(sprintf('Seconds should be greater or equals than zero and less than 60. %s given', $hours));
-        }
-
         $this->hours = $hours;
         $this->minutes = $minutes;
-        $this->seconds = floor($seconds);
+        $this->seconds = $seconds;
     }
 
     public function value(): string
     {
-        return sprintf('%02d:%02d:%02d', $this->hours, $this->minutes, $this->seconds);
+        return sprintf('%02d:%02d:%02d', $this->hours->value(), $this->minutes->value(), $this->seconds->value());
     }
 }

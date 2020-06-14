@@ -8,7 +8,7 @@ use Meringue\ISO8601DateTime;
 use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\Schedule\TimePeriod;
 use Meringue\Time;
-use Meringue\Time\DefaultTime;
+use Meringue\Time\FromIntegers;
 use PHPUnit\Framework\TestCase;
 use Throwable;
 
@@ -29,23 +29,23 @@ class TimePeriodTest extends TestCase
     {
         return [
             [
-                new DefaultTime(11, 30, 0),
-                new DefaultTime(18, 30, 0),
+                new FromIntegers(11, 30, 0),
+                new FromIntegers(18, 30, 0),
                 new FromISO8601('2019-01-01 14:27:59-08:00')
             ],
             [
-                new DefaultTime(11, 30, 10),
-                new DefaultTime(11, 30, 11),
+                new FromIntegers(11, 30, 10),
+                new FromIntegers(11, 30, 11),
                 new FromISO8601('2019-01-31 11:30:10+11:30')
             ],
             [
-                new DefaultTime(11, 30, 10),
-                new DefaultTime(11, 30, 11),
+                new FromIntegers(11, 30, 10),
+                new FromIntegers(11, 30, 11),
                 new FromISO8601('2019-01-31 11:30:11-01:00')
             ],
             [
-                new DefaultTime(23, 00, 00),
-                new DefaultTime(23, 59, 59),
+                new FromIntegers(23, 00, 00),
+                new FromIntegers(23, 59, 59),
                 new FromISO8601('2019-01-31 23:59:59.5')
             ],
         ];
@@ -66,13 +66,13 @@ class TimePeriodTest extends TestCase
     {
         return [
             [
-                new DefaultTime(11, 30, 0),
-                new DefaultTime(18, 30, 0),
+                new FromIntegers(11, 30, 0),
+                new FromIntegers(18, 30, 0),
                 new FromISO8601('2019-01-01 11:29:59')
             ],
             [
-                new DefaultTime(11, 30, 0),
-                new DefaultTime(18, 30, 0),
+                new FromIntegers(11, 30, 0),
+                new FromIntegers(18, 30, 0),
                 new FromISO8601('2019-01-01 18:30:01')
             ],
         ];
@@ -82,8 +82,8 @@ class TimePeriodTest extends TestCase
     {
         try {
             (new TimePeriod(
-                new DefaultTime(11, 30, 0),
-                new DefaultTime(10, 30, 0)
+                new FromIntegers(11, 30, 0),
+                new FromIntegers(10, 30, 0)
             ))
                 ->isHit(
                     new FromISO8601('2019-01-01 11:29:59')

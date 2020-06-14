@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Meringue\Tests\Schedule;
 
 use Meringue\Schedule\DailyInLocalTimeZone;
-use Meringue\Time\DefaultTime;
+use Meringue\Time\FromIntegers;
 use PHPUnit\Framework\TestCase;
 use Meringue\Schedule\TimePeriod;
 use Meringue\ISO8601DateTime\FromISO8601;
@@ -57,12 +57,12 @@ class DailyInLocalTimeZoneTest extends TestCase
             $isHit,
             (new DailyInLocalTimeZone(
                 new TimePeriod(
-                    new DefaultTime(7, 0, 0),
-                    new DefaultTime(23, 59, 59)
+                    new FromIntegers(7, 0, 0),
+                    new FromIntegers(23, 59, 59)
                 ),
                 new TimePeriod(
-                    new DefaultTime(0, 0, 0),
-                    new DefaultTime(2, 0, 0)
+                    new FromIntegers(0, 0, 0),
+                    new FromIntegers(2, 0, 0)
                 )
             ))
                 ->isHit(new FromISO8601($dateTime))
@@ -99,8 +99,8 @@ class DailyInLocalTimeZoneTest extends TestCase
     {
         return
             new TimePeriod(
-                new DefaultTime($fromHour, 0, 0),
-                new DefaultTime($toHour, 0, 0)
+                new FromIntegers($fromHour, 0, 0),
+                new FromIntegers($toHour, 0, 0)
             );
     }
 }

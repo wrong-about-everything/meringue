@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Meringue\ISO8601DateTime;
 
 use Exception;
-use Meringue\FormattedDateTime\Date;
+use Meringue\Date\FromISO8601DateTime;
 use Meringue\WeekDay\LocalDayOfWeek;
 use Meringue\ISO8601DateTime;
 use DateTimeImmutable;
@@ -27,7 +27,7 @@ class StartOfTheWeek extends ISO8601DateTime
             (new Past(
                 new FromPhpDateTime(
                     new DateTimeImmutable(
-                        (new Date($this->dateTime))->value() . 'T00:00:00',
+                        (new FromISO8601DateTime($this->dateTime))->value() . 'T00:00:00',
                         (new DateTimeImmutable($this->dateTime->value()))->getTimezone()
                     )
                 ),

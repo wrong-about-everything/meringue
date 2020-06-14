@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Meringue\FormattedDateTime;
+namespace Meringue\Time\Second;
 
 use Meringue\ISO8601DateTime;
 use DateTimeImmutable as PHPDateTime;
+use Meringue\Time\Second;
 
-class Hour
+class FromISO8601DateTime extends Second
 {
     private $dt;
 
@@ -16,8 +17,8 @@ class Hour
         $this->dt = $dateTime;
     }
 
-    public function value()
+    public function value(): int
     {
-        return (new PHPDateTime($this->dt->value()))->format('H');
+        return (int) (new PHPDateTime($this->dt->value()))->format('s');
     }
 }

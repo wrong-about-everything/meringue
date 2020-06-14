@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Meringue\ISO8601DateTime;
 
 use Exception;
-use Meringue\FormattedDateTime\Date;
+use Meringue\Date\FromISO8601DateTime;
 use Meringue\ISO8601DateTime;
 use DateTimeImmutable;
 
@@ -40,7 +40,7 @@ class GivenDayDateTime extends ISO8601DateTime
         return
             (new FromPhpDateTime(
                 new DateTimeImmutable(
-                    (new Date($this->givenDay))->value() . sprintf('T%02d:%02d:%02d', $this->hours, $this->minutes, $this->seconds),
+                    (new FromISO8601DateTime($this->givenDay))->value() . sprintf('T%02d:%02d:%02d', $this->hours, $this->minutes, $this->seconds),
                     (new DateTimeImmutable($this->givenDay->value()))->getTimezone()
                 )
             ))

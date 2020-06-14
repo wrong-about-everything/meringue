@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Meringue\Tests\TimeTest;
 
-use Meringue\Time\DefaultTime;
+use Meringue\Time\FromIntegers;
 use PHPUnit\Framework\TestCase;
 use Throwable;
 
@@ -16,7 +16,7 @@ class DefaultTimeTest extends TestCase
     public function testInvalidTime($hours, $minutes, $seconds)
     {
         try {
-            new DefaultTime($hours, $minutes, $seconds);
+            new FromIntegers($hours, $minutes, $seconds);
         } catch (Throwable $e) {
             return $this->assertTrue(true);
         }
@@ -43,7 +43,7 @@ class DefaultTimeTest extends TestCase
     {
         $this->assertEquals(
             '01:15:27',
-            (new DefaultTime(1, 15, 27))
+            (new FromIntegers(1, 15, 27))
                 ->value()
         );
     }
