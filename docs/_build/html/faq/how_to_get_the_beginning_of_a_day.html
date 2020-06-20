@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>How to compare two dates &#8212; meringue  documentation</title>
+    <title>How to get the beginning of a day &#8212; meringue  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -16,8 +16,8 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="How to convert a string to date" href="how_to_convert_a_string_to_date.html" />
-    <link rel="prev" title="How to convert a Unix timestamp to DateTime" href="how_to_format_a_unix_timestamp_to_datetime.html" />
+    <link rel="next" title="How to create a datetime from a custom format" href="how_to_create_a_datetime_from_a_custom_format.html" />
+    <link rel="prev" title="How to convert a datetime to specific timezone" href="how_to_convert_a_datetime_to_specific_timezone.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -34,23 +34,38 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="how-to-compare-two-dates">
-<h1>How to compare two dates<a class="headerlink" href="#how-to-compare-two-dates" title="Permalink to this headline">¶</a></h1>
-<p>You can use built-in <code class="code docutils literal notranslate"><span class="pre">ISO8601DateTime</span></code> methods for that: <code class="code docutils literal notranslate"><span class="pre">equalsTo()</span></code>, <code class="code docutils literal notranslate"><span class="pre">laterThan()</span></code>, and <code class="code docutils literal notranslate"><span class="pre">earlierThan()</span></code>.</p>
-<p>But, as usual, ask yourself a question what you really need. Chances are you don’t need to compare; you need a maximum or minimum date instead.
-If so, I’ve got you covered: <code class="code docutils literal notranslate"><span class="pre">Min</span></code> and <code class="code docutils literal notranslate"><span class="pre">Max</span></code> are what you’re looking for:</p>
-<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">$m =</span>
-<span class="x">   new Max(</span>
-<span class="x">      new Now(),</span>
-<span class="x">      new Future(</span>
-<span class="x">         new FromISO8601(&#39;1986-05-04 00:30:00+03&#39;),</span>
-<span class="x">         new NYears(34)</span>
-<span class="x">      )</span>
-<span class="x">   );</span>
+  <div class="section" id="how-to-get-the-beginning-of-a-day">
+<h1>How to get the beginning of a day<a class="headerlink" href="#how-to-get-the-beginning-of-a-day" title="Permalink to this headline">¶</a></h1>
+<p>Just like with any other development task, first I try to identify <em>what</em> I need. As the title goes, “how to get <em>the beginning of a day</em>”.
+Thus, I need the beginning of any given day. As a result, there is a class which is called exactly like that:
+<code class="code docutils literal notranslate"><span class="pre">TheBeginningOfADay</span></code>. In turn, what is it? It’s a specific datetime actually. Hence no wonder that this class extends <code class="code docutils literal notranslate"><span class="pre">ISO8601DateTime</span></code> abstract class.</p>
+<p>So, obtaining the beginning of any given day from a datetime goes like the following:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new TheBeginningOfADay(</span>
+<span class="x">    new FromISO8601(&#39;2014-11-21 08:12:54-11:30&#39;)</span>
+<span class="x">))</span>
+<span class="x">    -&gt;value();</span>
 </pre></div>
 </div>
-<p>After you got what you need, you can proceed to textual representation. <code class="code docutils literal notranslate"><span class="pre">value()</span></code> method returns an ISO8601 string value.
-There are <a class="reference internal" href="how_to_format_a_php_date.html"><span class="doc">fancier ways</span></a> to format datetime either.</p>
+<p>If you need the beginning of <span class="xref std std-doc">a current datetime</span>, it goes like that:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new TheBeginningOfADay(</span>
+<span class="x">    new Now()</span>
+<span class="x">))</span>
+<span class="x">    -&gt;value();</span>
+</pre></div>
+</div>
+<p>If you want to get just a date from a datetime, things change. What you need is a <em>date</em>, not a datetime. Thus, the class
+you should use definitely implements a <code class="code docutils literal notranslate"><span class="pre">Date</span></code> interface (or a corresponding abstract class). The class we need in our case
+is a <code class="code docutils literal notranslate"><span class="pre">FromISO8601DateTime</span></code>. It’s read as <code class="code docutils literal notranslate"><span class="pre">A</span> <span class="pre">date</span> <span class="pre">obtained</span> <span class="pre">from</span> <span class="pre">an</span> <span class="pre">ISO8601</span> <span class="pre">datetime</span></code>, and an abstract class implies that
+there is a single property that an object can tell you about: it is its textual representation, or <code class="code docutils literal notranslate"><span class="pre">value</span></code>, which is just more concise.</p>
+<p>Here goes the code:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new FromISO8601DateTime(</span>
+<span class="x">    new FromISO8601(&#39;2017-07-03T00:00:00+00:00&#39;)</span>
+<span class="x">))</span>
+<span class="x">    -&gt;value(); // results into &#39;2017-07-03&#39; string</span>
+</pre></div>
+</div>
+<p>If you want to format it some peculiar way, you have two options: either built-in php ISO8601 formatting facility, or, if you want
+to localize your datetime, you’d want to opt into <a class="reference external" href="https://www.php.net/manual/en/class.intldateformatter.php">the IntlDateFormatter class</a>.</p>
 </div>
 
 
@@ -77,11 +92,11 @@ There are <a class="reference internal" href="how_to_format_a_php_date.html"><sp
 <p class="caption"><span class="caption-text">Features: datetime creation</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="how_to_convert_a_datetime_to_specific_timezone.html">How to convert a datetime to specific timezone</a></li>
-<li class="toctree-l1"><a class="reference internal" href="how_to_get_the_beginning_of_a_day.html">How to get the beginning of a day</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to get the beginning of a day</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_to_create_a_datetime_from_a_custom_format.html">How to create a datetime from a custom format</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_do_you_get_a_current_datetime.html">How do you get a current datetime</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_to_format_a_unix_timestamp_to_datetime.html">How to convert a Unix timestamp to DateTime</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">How to compare two dates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_compare_two_dates.html">How to compare two dates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_to_convert_a_string_to_date.html">How to convert a string to date</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Features: datetime manipulations</span></p>
@@ -98,8 +113,8 @@ There are <a class="reference internal" href="how_to_format_a_php_date.html"><sp
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="how_to_format_a_unix_timestamp_to_datetime.html" title="previous chapter">How to convert a Unix timestamp to DateTime</a></li>
-      <li>Next: <a href="how_to_convert_a_string_to_date.html" title="next chapter">How to convert a string to date</a></li>
+      <li>Previous: <a href="how_to_convert_a_datetime_to_specific_timezone.html" title="previous chapter">How to convert a datetime to specific timezone</a></li>
+      <li>Next: <a href="how_to_create_a_datetime_from_a_custom_format.html" title="next chapter">How to create a datetime from a custom format</a></li>
   </ul></li>
 </ul>
 </div>
@@ -135,7 +150,7 @@ There are <a class="reference internal" href="how_to_format_a_php_date.html"><sp
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="../_sources/faq/how_to_compare_two_dates.rst.txt"
+      <a href="../_sources/faq/how_to_get_the_beginning_of_a_day.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

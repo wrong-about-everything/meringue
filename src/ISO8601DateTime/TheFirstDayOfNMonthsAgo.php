@@ -21,7 +21,7 @@ class TheFirstDayOfNMonthsAgo extends ISO8601DateTime
     public function value(): string
     {
         return
-            (new BeginningOfTheDay(
+            (new TheBeginningOfADay(
                 new FromPhpDateTime(
                     (new DateTimeImmutable(
                         $this->givenDay->value(),

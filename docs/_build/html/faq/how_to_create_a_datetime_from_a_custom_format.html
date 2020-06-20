@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>How to compare two dates &#8212; meringue  documentation</title>
+    <title>How to create a datetime from a custom format &#8212; meringue  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -16,8 +16,8 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="How to convert a string to date" href="how_to_convert_a_string_to_date.html" />
-    <link rel="prev" title="How to convert a Unix timestamp to DateTime" href="how_to_format_a_unix_timestamp_to_datetime.html" />
+    <link rel="next" title="How do you get a current datetime" href="how_do_you_get_a_current_datetime.html" />
+    <link rel="prev" title="How to get the beginning of a day" href="how_to_get_the_beginning_of_a_day.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -34,23 +34,31 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="how-to-compare-two-dates">
-<h1>How to compare two dates<a class="headerlink" href="#how-to-compare-two-dates" title="Permalink to this headline">¶</a></h1>
-<p>You can use built-in <code class="code docutils literal notranslate"><span class="pre">ISO8601DateTime</span></code> methods for that: <code class="code docutils literal notranslate"><span class="pre">equalsTo()</span></code>, <code class="code docutils literal notranslate"><span class="pre">laterThan()</span></code>, and <code class="code docutils literal notranslate"><span class="pre">earlierThan()</span></code>.</p>
-<p>But, as usual, ask yourself a question what you really need. Chances are you don’t need to compare; you need a maximum or minimum date instead.
-If so, I’ve got you covered: <code class="code docutils literal notranslate"><span class="pre">Min</span></code> and <code class="code docutils literal notranslate"><span class="pre">Max</span></code> are what you’re looking for:</p>
-<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">$m =</span>
-<span class="x">   new Max(</span>
-<span class="x">      new Now(),</span>
-<span class="x">      new Future(</span>
-<span class="x">         new FromISO8601(&#39;1986-05-04 00:30:00+03&#39;),</span>
-<span class="x">         new NYears(34)</span>
-<span class="x">      )</span>
-<span class="x">   );</span>
+  <div class="section" id="how-to-create-a-datetime-from-a-custom-format">
+<h1>How to create a datetime from a custom format<a class="headerlink" href="#how-to-create-a-datetime-from-a-custom-format" title="Permalink to this headline">¶</a></h1>
+<p>With built-in <a class="reference external" href="https://www.php.net/manual/en/function.date.php">php formatting facilities</a>, you can create a datetime from however crazy sign sequence.</p>
+<p>First, consider pretty standard ISO8601 string: <code class="code docutils literal notranslate"><span class="pre">2018-12-31T23:12:59+0200</span></code>. It has an <code class="code docutils literal notranslate"><span class="pre">Y-m-d\TH:i:sO</span></code> ISO8601 format.
+So, the following code results into almost identical datetime string (mind last colon sign in timezone offset):</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new FromCustomFormat(</span>
+<span class="x">    &#39;Y-m-d\TH:i:sO&#39;,</span>
+<span class="x">    &#39;2018-12-31T23:12:59+0200&#39;</span>
+<span class="x">))</span>
+<span class="x">    -&gt;value(); // returns a &#39;2018-12-31T23:12:59+02:00&#39; string</span>
 </pre></div>
 </div>
-<p>After you got what you need, you can proceed to textual representation. <code class="code docutils literal notranslate"><span class="pre">value()</span></code> method returns an ISO8601 string value.
-There are <a class="reference internal" href="how_to_format_a_php_date.html"><span class="doc">fancier ways</span></a> to format datetime either.</p>
+<p>Now consider a more esoteric sequence, say, <code class="code docutils literal notranslate"><span class="pre">122018--31TT!23:12:59+0200</span></code>. If you take a close look, it has a <code class="code docutils literal notranslate"><span class="pre">mY--d\T\T\!H:i:sO</span></code> format.
+Indeed, the following code returns <code class="code docutils literal notranslate"><span class="pre">2018-12-31T23:12:59+02:00</span></code>:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new FromCustomFormat(</span>
+<span class="x">    &#39;mY--d\T\T\!H:i:sO&#39;,</span>
+<span class="x">    &#39;122018--31TT!23:12:59+0200&#39;</span>
+<span class="x">))</span>
+<span class="x">    -&gt;value();</span>
+</pre></div>
+</div>
+<p>After you’ve obtained an <code class="code docutils literal notranslate"><span class="pre">ISO8601DateTime</span></code> object, you can do lots of stuff:
+<a class="reference internal" href="how_to_add_seconds_minutes_hours_days_and_all_to_php_datetime.html"><span class="doc">add seconds, minutes, hours, days, months, years</span></a> to it,
+<a class="reference internal" href="how_to_calculate_a_difference_between_two_dates.html"><span class="doc">calculate a difference between datetimes</span></a>, <a class="reference internal" href="how_to_convert_a_datetime_to_specific_timezone.html"><span class="doc">convert it into any other timezone</span></a>,
+and much more. Consider <a class="reference internal" href="../quick_start.html"><span class="doc">quick start entry</span></a> for more info.</p>
 </div>
 
 
@@ -78,10 +86,10 @@ There are <a class="reference internal" href="how_to_format_a_php_date.html"><sp
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="how_to_convert_a_datetime_to_specific_timezone.html">How to convert a datetime to specific timezone</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_to_get_the_beginning_of_a_day.html">How to get the beginning of a day</a></li>
-<li class="toctree-l1"><a class="reference internal" href="how_to_create_a_datetime_from_a_custom_format.html">How to create a datetime from a custom format</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to create a datetime from a custom format</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_do_you_get_a_current_datetime.html">How do you get a current datetime</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_to_format_a_unix_timestamp_to_datetime.html">How to convert a Unix timestamp to DateTime</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">How to compare two dates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_compare_two_dates.html">How to compare two dates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_to_convert_a_string_to_date.html">How to convert a string to date</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Features: datetime manipulations</span></p>
@@ -98,8 +106,8 @@ There are <a class="reference internal" href="how_to_format_a_php_date.html"><sp
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="how_to_format_a_unix_timestamp_to_datetime.html" title="previous chapter">How to convert a Unix timestamp to DateTime</a></li>
-      <li>Next: <a href="how_to_convert_a_string_to_date.html" title="next chapter">How to convert a string to date</a></li>
+      <li>Previous: <a href="how_to_get_the_beginning_of_a_day.html" title="previous chapter">How to get the beginning of a day</a></li>
+      <li>Next: <a href="how_do_you_get_a_current_datetime.html" title="next chapter">How do you get a current datetime</a></li>
   </ul></li>
 </ul>
 </div>
@@ -135,7 +143,7 @@ There are <a class="reference internal" href="how_to_format_a_php_date.html"><sp
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="../_sources/faq/how_to_compare_two_dates.rst.txt"
+      <a href="../_sources/faq/how_to_create_a_datetime_from_a_custom_format.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

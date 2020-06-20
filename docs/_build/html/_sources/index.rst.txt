@@ -7,11 +7,6 @@
 
 .. toctree::
    :hidden:
-   :caption: Features
-   :maxdepth: 3
-
-.. toctree::
-   :hidden:
    :caption: Features: datetime creation
    :maxdepth: 1
 
@@ -56,6 +51,7 @@
    faq/how_to_get_a_minute_from_a_datetime
    faq/how_to_get_a_current_second
    faq/how_to_get_a_current_time
+   faq/how_to_get_a_weekday_from_date
 
 .. toctree::
    :hidden:
@@ -67,7 +63,7 @@
 
 .. toctree::
    :hidden:
-   :caption: Features: formatted intervals
+   :caption: Features: format intervals
    :maxdepth: 1
 
    faq/how_to_calculate_how_many_days_between_dates
@@ -83,5 +79,12 @@
    faq/how_to_setup_a_daily_schedule
    faq/how_to_setup_a_schedule_by_weekdays
    faq/how_to_setup_a_schedule_for_a_month
+
+.. toctree::
+   :hidden:
+   :caption: Misc
+   :maxdepth: 1
+
+   faq/how_to_mock_current_time
 
 .. include:: ../README.rst

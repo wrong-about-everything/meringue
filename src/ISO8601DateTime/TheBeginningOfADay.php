@@ -7,7 +7,7 @@ namespace Meringue\ISO8601DateTime;
 use Meringue\ISO8601DateTime;
 use DateTimeImmutable as PHPDateTime;
 
-class BeginningOfTheDay extends ISO8601DateTime
+class TheBeginningOfADay extends ISO8601DateTime
 {
     private $dt;
 
