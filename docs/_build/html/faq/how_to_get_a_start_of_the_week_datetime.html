@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>How to convert a Unix timestamp to DateTime &#8212; meringue  documentation</title>
+    <title>How to obtain the first day of a week &#8212; meringue  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -16,8 +16,8 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="How to compare two dates" href="how_to_compare_two_dates.html" />
-    <link rel="prev" title="How do you get a current datetime" href="how_do_you_get_a_current_datetime.html" />
+    <link rel="next" title="How to convert a string to date" href="how_to_convert_a_string_to_date.html" />
+    <link rel="prev" title="How to compare two dates" href="how_to_compare_two_dates.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -34,53 +34,50 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="how-to-convert-a-unix-timestamp-to-datetime">
-<h1>How to convert a Unix timestamp to DateTime<a class="headerlink" href="#how-to-convert-a-unix-timestamp-to-datetime" title="Permalink to this headline">¶</a></h1>
-<p>Since I always try to find <em>what</em> I need instead of <em>how</em> to get there, I don’t use the lingo from the title, like “how to <em>do</em> anything”.
-In case of the current post, I create a datetime from Unix timestamp, or, in other words, a datetime <em>converted</em> from Unix timestamp.</p>
-<div class="section" id="how-to-create-a-datetime-object-from-unix-timestamp">
-<h2>How to create a datetime object from Unix timestamp<a class="headerlink" href="#how-to-create-a-datetime-object-from-unix-timestamp" title="Permalink to this headline">¶</a></h2>
-<p>First off, <a class="reference external" href="https://en.wikipedia.org/wiki/Unix_time">Unix timestamp</a> is a number of seconds since January, 1st, 1970, UTC. If you’ve skimmed through that date,
-mind that it contains a timezone, and it is UTC. Thus, there is no such thing as Unix timestamp in CET or Los-Angeles timezone.
-There is always the single Unix timestamp. It’s like the single moment in absolute timescale, but it just happens so that
-different countries have different local time.</p>
-<p>To bring my point home, consider a timestamp which equals to <code class="code docutils literal notranslate"><span class="pre">1504534440</span></code>. If you wonder what time it is in UTC, here you go:</p>
-<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new FromTimestamp(1504534440))-&gt;value(); // returns 2017-09-04T14:14:00+00:00</span>
-</pre></div>
-</div>
-<p>At the same moment in time, most people in Kalinigrad already have had a dinner:</p>
-<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new AdjustedAccordingToTimeZone(</span>
-<span class="x">    new FromTimestamp(1504534440),</span>
-<span class="x">    new Kaliningrad()</span>
+  <div class="section" id="how-to-obtain-the-first-day-of-a-week">
+<h1>How to obtain the first day of a week<a class="headerlink" href="#how-to-obtain-the-first-day-of-a-week" title="Permalink to this headline">¶</a></h1>
+<p>Start of a week <em>is a</em> specific datetime. Looking at this sentence, I can draw two points. The first one is that I need a class called
+<code class="code docutils literal notranslate"><span class="pre">StartOfTheWeek</span></code> which denotes a subject in a proposition <code class="code docutils literal notranslate"><span class="pre">Start</span> <span class="pre">of</span> <span class="pre">a</span> <span class="pre">week</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">specific</span> <span class="pre">datetime</span></code>. The predicate,
+<cite>is a specific datetime</cite>, clearly tells me that this class should either implement some sort of <code class="code docutils literal notranslate"><span class="pre">DateTime</span></code> interface or extend the same sort
+of abstract class. And you know what? There is one already, and it’s called an <code class="code docutils literal notranslate"><span class="pre">ISO8601DateTime</span></code>.</p>
+<p>Alright, <a class="reference internal" href="../meringue_philosophy.html"><span class="doc">no more philosophy</span></a>, let’s just get right into it.
+Which weekday is the first day of the week? Since this datetime is in ISO8601 format, it dictates us that a week starts on Monday.
+It might differ depending on cultural traditions of course, but this standard is culture-agnostic, so it’s always Monday.</p>
+<p>Here is how you can actually get the start of a week in code:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new StartOfTheWeek(</span>
+<span class="x">    new FromISO8601(&#39;2020-04-23T01:28:04+07:00&#39;)</span>
 <span class="x">))</span>
-<span class="x">    -&gt;value(); // it&#39;s 2017-09-04T16:14:00+02:00</span>
+<span class="x">    -&gt;value(); // returns 2020-04-20T00:00:00+07:00, which is Monday indeed</span>
 </pre></div>
 </div>
-<p>And still at the same moment in time, it’s an early morning in Honolulu:</p>
-<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new AdjustedAccordingToTimeZone(</span>
-<span class="x">    new FromTimestamp(1504534440),</span>
-<span class="x">    new HawaiiWithNoDST()</span>
+<p>If you need to obtain the first day of the <em>current</em> week, just pass the <span class="xref std std-doc">current datetime</span>:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new StartOfTheWeek(</span>
+<span class="x">    new Now()</span>
 <span class="x">))</span>
-<span class="x">    -&gt;value(); // 2017-09-04T04:14:00-10:00</span>
+<span class="x">    -&gt;value();</span>
 </pre></div>
 </div>
-<p>After you’ve got an <code class="code docutils literal notranslate"><span class="pre">ISO8601DateTime</span></code> object, you can do some more:
-<a class="reference internal" href="how_to_subtract_seconds_minutes_hours_days_and_all_from_a_given_datetime.html"><span class="doc">subtract seconds, minutes, hours, days, months, years</span></a> from it,
-<a class="reference internal" href="how_to_calculate_a_difference_between_two_dates.html"><span class="doc">calculate a difference between datetimes</span></a>, <a class="reference internal" href="how_to_format_a_php_date.html"><span class="doc">format it anyway you like</span></a>,
-and much more. Consider <a class="reference internal" href="../quick_start.html"><span class="doc">quick start entry</span></a> for more info.</p>
-</div>
-<div class="section" id="and-the-other-way-round">
-<h2>And the other way round<a class="headerlink" href="#and-the-other-way-round" title="Permalink to this headline">¶</a></h2>
-<p>What if you need to <a class="reference internal" href="how_to_get_a_timestamp_in_php.html"><span class="doc">convert a datetime object into Unix timestamp</span></a>? Since <em>what</em> you need is a number of seconds since January, 1st, 1970 UTC,
-there is a special class for that: <code class="code docutils literal notranslate"><span class="pre">SecondsSinceJanuary1st1970</span></code>. Here is how it’s invoked:</p>
-<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new SecondsSinceJanuary1st1970(</span>
-<span class="x">    new FromISO8601(&#39;2014-11-21T06:04:31+00:00&#39;)</span>
+<p>And if you want just a <a class="reference external" href="https://github.com/wrong-about-everything/meringue/blob/master/src/Date/FromISO8601DateTime.php">date</a> of the beginning of the week, instead of a datetime, you can do the following:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new FromISO8601DateTime(</span>
+<span class="x">    new StartOfTheWeek(</span>
+<span class="x">        new FromISO8601(&#39;2020-04-23T01:28:04+07:00&#39;)</span>
+<span class="x">    )</span>
 <span class="x">))</span>
-<span class="x">    -&gt;value(); // returns 1416549871</span>
+<span class="x">    -&gt;value(); // returns &#39;2017-04-20&#39; string</span>
 </pre></div>
 </div>
-<p>If you wonder why I have so many classes, check out <a class="reference internal" href="../meringue_philosophy.html"><span class="doc">my philosophy</span></a>.</p>
+<p>Finally, in case you want to find the last day of the week, you can do simple math. Just get the first day, and then <a class="reference internal" href="how_to_add_seconds_minutes_hours_days_and_all_to_php_datetime.html"><span class="doc">add six days to it</span></a>:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new Future(</span>
+<span class="x">    new StartOfTheWeek(</span>
+<span class="x">        new FromISO8601(&#39;2020-04-23T01:28:04+07:00&#39;)</span>
+<span class="x">    ),</span>
+<span class="x">    new NDays(6)</span>
+<span class="x">))</span>
+<span class="x">    -&gt;value() // returns 2020-04-26T00:00:00+07:00</span>
+</pre></div>
 </div>
+<p>If you find that having a distinct class for getting the last day of a week would be more convenient, you can write it and <a class="reference external" href="https://github.com/wrong-about-everything/meringue">create a pull request</a>.
+If tests are in place and code is OK, I’ll merge it pretty soon.</p>
 </div>
 
 
@@ -110,9 +107,9 @@ there is a special class for that: <code class="code docutils literal notranslat
 <li class="toctree-l1"><a class="reference internal" href="how_to_get_the_beginning_of_a_day.html">How to get the beginning of a day</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_to_create_a_datetime_from_a_custom_format.html">How to create a datetime from a custom format</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_do_you_get_a_current_datetime.html">How do you get a current datetime</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">How to convert a Unix timestamp to DateTime</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_format_a_unix_timestamp_to_datetime.html">How to convert a Unix timestamp to DateTime</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_to_compare_two_dates.html">How to compare two dates</a></li>
-<li class="toctree-l1"><a class="reference internal" href="how_to_get_a_start_of_the_week_datetime.html">How to obtain the first day of a week</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to obtain the first day of a week</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_to_convert_a_string_to_date.html">How to convert a string to date</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Features: datetime manipulations</span></p>
@@ -129,8 +126,8 @@ there is a special class for that: <code class="code docutils literal notranslat
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="how_do_you_get_a_current_datetime.html" title="previous chapter">How do you get a current datetime</a></li>
-      <li>Next: <a href="how_to_compare_two_dates.html" title="next chapter">How to compare two dates</a></li>
+      <li>Previous: <a href="how_to_compare_two_dates.html" title="previous chapter">How to compare two dates</a></li>
+      <li>Next: <a href="how_to_convert_a_string_to_date.html" title="next chapter">How to convert a string to date</a></li>
   </ul></li>
 </ul>
 </div>
@@ -166,7 +163,7 @@ there is a special class for that: <code class="code docutils literal notranslat
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="../_sources/faq/how_to_format_a_unix_timestamp_to_datetime.rst.txt"
+      <a href="../_sources/faq/how_to_get_a_start_of_the_week_datetime.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

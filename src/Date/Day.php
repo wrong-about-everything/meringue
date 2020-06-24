@@ -8,18 +8,18 @@ abstract class Day
 {
     abstract public function value(): int;
 
-    public function equals(Day $month): bool
+    public function equals(Day $day): bool
     {
-        return $this->value() === $month->value();
+        return $this->value() === $day->value();
     }
 
-    public function greaterThan(Day $month): bool
+    public function greaterThan(Day $day): bool
     {
-        return $this->value() > $month->value();
+        return $this->value() > $day->value();
     }
 
-    public function lessThan(Day $month): bool
+    public function lessThan(Day $day): bool
     {
-        return $this->value() < $month->value();
+        return $this->value() < $day->value();
     }
 }
