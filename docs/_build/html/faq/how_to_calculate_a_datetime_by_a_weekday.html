@@ -16,6 +16,8 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="How to get a timestamp in php" href="how_to_get_a_timestamp_in_php.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="how_to_get_the_last_day_of_a_month.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -35,11 +37,47 @@
   <div class="section" id="how-to-calculate-a-datetime-by-a-day-of-any-week">
 <h1>How to calculate a datetime by a day of any week<a class="headerlink" href="#how-to-calculate-a-datetime-by-a-day-of-any-week" title="Permalink to this headline">¶</a></h1>
 <p>Say, you want to know what date was on some particular Tuesday. Now the question is, how’s that Tuesday identified?</p>
+<div class="section" id="by-specific-week-and-day-of-week">
+<h2>By specific week and day of week<a class="headerlink" href="#by-specific-week-and-day-of-week" title="Permalink to this headline">¶</a></h2>
 <p>The first option is that you know that June, 5th, 2020 happened to belong to the week you’re interested in.
-In this case, we could solve an easier task: find the specific week you’re interested in, and after that, we can find which date was Tuesday.</p>
+In this case, we could split this problem into two easier tasks: first, we find the specific week you’re interested in, and after that, we can find which date was Tuesday.
+The first task can be carried out by the <code class="code docutils literal notranslate"><span class="pre">Meringue\Date\Week\FromISO8601DateTime</span></code> class, which <em>is a</em> <code class="code docutils literal notranslate"><span class="pre">Week</span></code>.
+In other words, it represents a week that the passed datetime falls under:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new FromISO8601DateTime(</span>
+<span class="x">    new FromISO8601(&#39;2020-06-27T15:47:11+07:30&#39;)</span>
+<span class="x">))</span>
+<span class="x">    -&gt;value();</span>
+</pre></div>
+</div>
+<p>The week above starts at 2020-06-22T00:00:00+07:30. Semantics of the <code class="code docutils literal notranslate"><span class="pre">value()</span></code> method is exactly that: it’s the <a class="reference internal" href="how_to_get_a_start_of_the_week_datetime.html"><span class="doc">beginning of the week</span></a>.
+Actually, it doesn’t really matter. What matters is that <code class="code docutils literal notranslate"><span class="pre">FromISO8601DateTime</span></code> represents the week we need.</p>
+<p>After that, we can find a datetime of that week’s Tuesday. Once again, what we need is a datetime which is identified by a week and a day of a week. Here it goes:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new FromWeekAndDayOfAWeek(</span>
+<span class="x">    new FromISO8601DateTime(</span>
+<span class="x">        new FromISO8601(&#39;2020-06-27T15:47:11+07:30&#39;)</span>
+<span class="x">    ),</span>
+<span class="x">    new Tuesday()</span>
+<span class="x">))</span>
+<span class="x">    -&gt;value(); // voila, 2020-06-23T00:00:00+07:30</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>By specific week and day of week<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>The second option is when you know exactly how many weeks ago was your Tuesday. In this case, you can find Tuesday of your current week,
-and then calculate a datetime which was N weeks ago:</p>
-<p>new</p>
+and then calculate a datetime which was N weeks ago. For example, today is June 24th, and I want to find out a datetime of Tuesday that was three weeks ago.
+Here’s how it can be done:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new FromWeekAndDayOfAWeek(</span>
+<span class="x">    new FromISO8601DateTime(</span>
+<span class="x">        new FromISO8601(&#39;2020-06-27T15:47:11+07:30&#39;)</span>
+<span class="x">    ),</span>
+<span class="x">    new Tuesday()</span>
+<span class="x">))</span>
+<span class="x">    -&gt;value(); // voila, 2020-06-23T00:00:00+07:30</span>
+</pre></div>
+</div>
+<p>I’m sure there are many more interesting cases. Most of them though can be solved with basic building blocks from this library.</p>
+</div>
 </div>
 
 
@@ -75,9 +113,10 @@ and then calculate a datetime which was N weeks ago:</p>
 <li class="toctree-l1"><a class="reference internal" href="how_to_convert_a_string_to_date.html">How to convert a string to date</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Features: datetime manipulations</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="how_to_calculate_a_difference_between_two_dates.html">How to calculate a difference between to dates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_to_add_seconds_minutes_hours_days_and_all_to_php_datetime.html">How to add seconds, minutes, hours, days and all to php datetime</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to calculate a datetime by a day of any week</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Features: formatted datetime</span></p>
 <ul>
@@ -88,6 +127,8 @@ and then calculate a datetime which was N weeks ago:</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="how_to_get_the_last_day_of_a_month.html" title="previous chapter">&lt;no title&gt;</a></li>
+      <li>Next: <a href="how_to_get_a_timestamp_in_php.html" title="next chapter">How to get a timestamp in php</a></li>
   </ul></li>
 </ul>
 </div>

@@ -29,6 +29,7 @@
    faq/how_to_subtract_seconds_minutes_hours_days_and_all_from_a_given_datetime
    faq/how_to_get_the_last_day_of_a_month
    faq/how_to_get_the_first_day_of_a_month
+   faq/how_to_calculate_a_datetime_by_a_weekday
 
 .. toctree::
    :hidden:

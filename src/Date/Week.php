@@ -9,9 +9,9 @@ use Meringue\ISO8601DateTime;
 abstract class Week
 {
     /**
-     * @return ISO8601DateTime This week's Monday.
+     * @return ISO8601DateTime This week's Monday in ISO8601.
      */
-    abstract public function value(): ISO8601DateTime;
+    abstract public function value(): string;
 
     public function equals(Week $week): bool
     {

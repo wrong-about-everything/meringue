@@ -6,6 +6,7 @@ namespace Meringue\Date\Week;
 
 use Meringue\Date\Week;
 use Meringue\ISO8601DateTime;
+use Meringue\ISO8601DateTime\StartOfTheWeek;
 
 class FromISO8601DateTime extends Week
 {
@@ -16,8 +17,8 @@ class FromISO8601DateTime extends Week
         $this->dateTime = $dateTime;
     }
 
-    public function value(): ISO8601DateTime
+    public function value(): string
     {
-
+        return (new StartOfTheWeek($this->dateTime))->value();
     }
 }

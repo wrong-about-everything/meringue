@@ -9,7 +9,7 @@ use Meringue\ISO8601DateTime;
 use Meringue\ISO8601DateTime\FromISO8601;
 use PHPUnit\Framework\TestCase;
 
-class ByDateTimeTest extends TestCase
+class FromISO8601DateTimeTest extends TestCase
 {
     /**
      * @dataProvider dateTimes
