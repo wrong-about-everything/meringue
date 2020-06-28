@@ -6,4 +6,7 @@ div.sphinxsidebarwrapper li.toctree-l1 {
 div.sphinxsidebarwrapper p.caption {
     margin-top: 25px;
     margin-bottom: -10px;
+    color: #333;
+    font-size: 1.3em;
+    font-weight: bold;
 }

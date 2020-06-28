@@ -8,7 +8,7 @@ use Meringue\ISO8601DateTime;
 use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\ISO8601DateTime\GivenDayDateTime;
 use Meringue\ISO8601DateTime\TheFirstDayOfNMonthsLater;
-use Meringue\ISO8601DateTime\TheFirstDayOfThisMonth;
+use Meringue\ISO8601DateTime\TheFirstDayOfAMonth;
 use PHPUnit\Framework\TestCase;
 
 class TheFirstDayOfNMonthsLaterTest extends TestCase

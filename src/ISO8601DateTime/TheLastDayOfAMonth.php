@@ -7,7 +7,7 @@ namespace Meringue\ISO8601DateTime;
 use Meringue\ISO8601DateTime;
 use DateTimeImmutable;
 
-class TheFirstDayOfThisMonth extends ISO8601DateTime
+class TheLastDayOfAMonth extends ISO8601DateTime
 {
     private $givenDay;
 
@@ -25,7 +25,7 @@ class TheFirstDayOfThisMonth extends ISO8601DateTime
                         $this->givenDay->value(),
                         (new DateTimeImmutable($this->givenDay->value()))->getTimezone()
                     ))
-                        ->modify('first day of this month')
+                        ->modify('last day of this month')
                 )
             ))
                 ->value();

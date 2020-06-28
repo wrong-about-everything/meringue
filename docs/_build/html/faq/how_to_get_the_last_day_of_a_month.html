@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>&lt;no title&gt; &#8212; meringue  documentation</title>
+    <title>How to get the last day of a month &#8212; meringue  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -34,7 +34,44 @@
 
           <div class="body" role="main">
             
-  
+  <div class="section" id="how-to-get-the-last-day-of-a-month">
+<h1>How to get the last day of a month<a class="headerlink" href="#how-to-get-the-last-day-of-a-month" title="Permalink to this headline">¶</a></h1>
+<p>If you know <em>what</em> it is that you need, you’re halfway there. If you want to find the last day of a month, there must
+be a class of the same name. Besides, this class must implement some kind of <code class="code docutils literal notranslate"><span class="pre">DateTime</span></code> interface or extend the same kind of abstract class.
+This fact indicates that the last day of a month <em>is a</em> datetime. And here you go, there is a <code class="code docutils literal notranslate"><span class="pre">TheLastDayOfAMonth</span></code> indeed.
+That’s how you can obtain a last day of some datetime’s month:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new TheLastDayOfAMonth(</span>
+<span class="x">    new FromISO8601(&#39;2020-02-21T23:28:04+07:00&#39;)</span>
+<span class="x">))</span>
+<span class="x">    -&gt;value(); // returns 2020-02-29T00:00:00+07:00</span>
+</pre></div>
+</div>
+<p>If you want to find the last day of the current month, simply pass a <a class="reference internal" href="how_do_you_get_a_current_datetime.html"><span class="doc">current datetime</span></a>:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new TheLastDayOfAMonth(</span>
+<span class="x">    new Now()</span>
+<span class="x">))</span>
+<span class="x">    -&gt;value();</span>
+</pre></div>
+</div>
+<p>Besides, you might want to find the first day of a month. It’s carried out with <code class="code docutils literal notranslate"><span class="pre">TheFirstDayOfAMonth</span></code> and is pretty much the same with the above:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new TheFirstDayOfAMonth(</span>
+<span class="x">    new FromISO8601(&#39;2020-02-21T23:28:04+07:00&#39;)</span>
+<span class="x">))</span>
+<span class="x">    -&gt;value(); // returns 2020-02-01T00:00:00+07:00</span>
+</pre></div>
+</div>
+<p>Getting the first day of the current month is as easy as</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new TheFirstDayOfAMonth(</span>
+<span class="x">    new Now()</span>
+<span class="x">))</span>
+<span class="x">    -&gt;value();</span>
+</pre></div>
+</div>
+<p>There are similar cases covered when you need to find the beginning of something or the end of something.
+For example, you can <a class="reference internal" href="how_to_get_the_beginning_of_a_day.html"><span class="doc">find the beginning of a day</span></a> and
+<a class="reference internal" href="how_to_get_a_start_of_the_week_datetime.html"><span class="doc">a start of a week</span></a>. Besides, you can add your own shortcut class for that.</p>
+</div>
+
 
           </div>
           
@@ -68,9 +105,10 @@
 <li class="toctree-l1"><a class="reference internal" href="how_to_convert_a_string_to_date.html">How to convert a string to date</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Datetime manipulations</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="how_to_calculate_a_difference_between_two_dates.html">How to calculate a difference between to dates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_to_add_seconds_minutes_hours_days_and_all_to_php_datetime.html">How to add seconds, minutes, hours, days and all to php datetime</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to get the last day of a month</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_to_calculate_a_datetime_by_a_weekday.html">How to calculate a datetime by a day of any week</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Formatted datetime</span></p>
