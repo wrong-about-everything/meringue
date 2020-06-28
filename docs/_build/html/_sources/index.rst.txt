@@ -7,7 +7,7 @@
 
 .. toctree::
    :hidden:
-   :caption: Features: datetime creation
+   :caption: Datetime creation
    :maxdepth: 1
 
    faq/how_to_convert_a_datetime_to_specific_timezone
@@ -21,7 +21,7 @@
 
 .. toctree::
    :hidden:
-   :caption: Features: datetime manipulations
+   :caption: Datetime manipulations
    :maxdepth: 1
 
    faq/how_to_calculate_a_difference_between_two_dates
@@ -33,7 +33,7 @@
 
 .. toctree::
    :hidden:
-   :caption: Features: formatted datetime
+   :caption: Formatted datetime
    :maxdepth: 1
 
    faq/how_to_get_a_timestamp_in_php
@@ -41,7 +41,7 @@
 
 .. toctree::
    :hidden:
-   :caption: Features: datetime parts
+   :caption: Datetime parts
    :maxdepth: 1
 
    faq/how_to_get_a_current_year
@@ -56,7 +56,7 @@
 
 .. toctree::
    :hidden:
-   :caption: Features: datetime intervals
+   :caption: Datetime intervals
    :maxdepth: 1
 
    faq/how_to_add_two_date_intervals
@@ -64,7 +64,7 @@
 
 .. toctree::
    :hidden:
-   :caption: Features: format intervals
+   :caption: Formatted intervals
    :maxdepth: 1
 
    faq/how_to_calculate_how_many_days_between_dates
@@ -74,7 +74,7 @@
 
 .. toctree::
    :hidden:
-   :caption: Features: work with schedules
+   :caption: Work with schedules
    :maxdepth: 1
 
    faq/how_to_setup_a_daily_schedule
@@ -83,7 +83,7 @@
 
 .. toctree::
    :hidden:
-   :caption: Misc
+   :caption: Testing facilities
    :maxdepth: 1
 
    faq/how_to_mock_current_time
