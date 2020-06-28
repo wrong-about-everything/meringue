@@ -19,7 +19,7 @@ Here is how you can actually get the start of a week in code:
    ))
        ->value(); // returns 2020-04-20T00:00:00+07:00, which is Monday indeed
 
-If you need to obtain the first day of the *current* week, just pass the :doc:`current datetime <../how_do_you_get_a_current_datetime>`:
+If you need to obtain the first day of the *current* week, just pass the :doc:`current datetime <./how_do_you_get_a_current_datetime>`:
 
 .. code-block:: php
 

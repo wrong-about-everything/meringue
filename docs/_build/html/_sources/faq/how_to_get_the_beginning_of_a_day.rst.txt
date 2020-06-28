@@ -14,7 +14,7 @@ So, obtaining the beginning of any given day from a datetime goes like the follo
    ))
        ->value();
 
-If you need the beginning of :doc:`a current datetime <../how_do_you_get_a_current_datetime>`, it goes like that:
+If you need the beginning of :doc:`a current datetime <./how_do_you_get_a_current_datetime>`, it goes like that:
 
 .. code-block:: php
 

@@ -45,3 +45,6 @@ Chances are you'd like to convert it to some human-readable format. If so, I got
         )
     ))
         ->value(); // returns 1 day, 23 hours, 59 minutes and 59 seconds
+
+Or, you can use that difference for getting some datetime :doc:`in the past <./how_to_subtract_seconds_minutes_hours_days_and_all_from_a_given_datetime>`
+or :doc:`in the future <./how_to_add_seconds_minutes_hours_days_and_all_to_php_datetime>`.

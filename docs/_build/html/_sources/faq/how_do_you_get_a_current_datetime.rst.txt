@@ -5,7 +5,7 @@ Following :doc:`meringue philosophy <../meringue_philosophy>`, it's a piece of c
 You need a current datetime, that is, now. Here goes the object -- :code:`$currentDatetime = new Now();`.
 
 You can work with this datetime further: you can get datetimes :doc:`in the future <how_to_add_seconds_minutes_hours_days_and_all_to_php_datetime>`
-or :doc:`in the past <how_to_substract_seconds_minutes_hours_days_and_all_from_a_given_datetime>`,
+or :doc:`in the past <how_to_subtract_seconds_minutes_hours_days_and_all_from_a_given_datetime>`,
 or :doc:`format it to your taste <how_to_format_a_php_date>`.
 
 Often times, you want to know what time it is in some other timezone. For example, it's 15:08 in Moscow, and you want to know what time it is in Central Europe.
