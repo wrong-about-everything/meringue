@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>&lt;no title&gt; &#8212; meringue  documentation</title>
+    <title>How to subtract seconds, minutes, hours, days and all from a given datetime &#8212; meringue  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -34,7 +34,63 @@
 
           <div class="body" role="main">
             
-  
+  <div class="section" id="how-to-subtract-seconds-minutes-hours-days-and-all-from-a-given-datetime">
+<h1>How to subtract seconds, minutes, hours, days and all from a given datetime<a class="headerlink" href="#how-to-subtract-seconds-minutes-hours-days-and-all-from-a-given-datetime" title="Permalink to this headline">¶</a></h1>
+<p>First of all, you don’t want to subtract actually. What you need is some point in the past. You can identify it by
+a datetime that acts as a starting point relative to which you want to calculate the past, and an interval you want to shift your starting point by.
+Here is how it might look:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">use Meringue\ISO8601DateTime\FromISO8601 as DateTimeFromISO8601String;</span>
+<span class="x">use Meringue\ISO8601Interval\Floating\FromISO8601 as IntervalFromISO8601String;</span>
+
+<span class="x">new Past(</span>
+<span class="x">    new DateTimeFromISO8601String(&#39;2014-11-21T06:04:31+00:00&#39;),</span>
+<span class="x">    new IntervalFromISO8601String(&#39;P1Y2M21DT24H56M26S&#39;)</span>
+<span class="x">);</span>
+</pre></div>
+</div>
+<p>If you don’t want any further transformation, you can invoke a <code class="code docutils literal notranslate"><span class="pre">value()</span></code> method and output the result:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new Past(</span>
+<span class="x">    new DateTimeFromISO8601String(&#39;2014-11-21T06:04:31+00:00&#39;),</span>
+<span class="x">    new IntervalFromISO8601String(&#39;P1Y2M21DT24H56M26S&#39;)</span>
+<span class="x">))</span>
+<span class="x">    -&gt;value(); // returns 2013-08-30T05:08:05+00:00</span>
+</pre></div>
+</div>
+<p>There are some shortcuts for most typical intervals. You might benefit from <code class="code docutils literal notranslate"><span class="pre">OneMinute</span></code>, <code class="code docutils literal notranslate"><span class="pre">OneHour</span></code>, <code class="code docutils literal notranslate"><span class="pre">OneDay</span></code>, <code class="code docutils literal notranslate"><span class="pre">OneMonth</span></code>, and <code class="code docutils literal notranslate"><span class="pre">OneYear</span></code>.
+Besides, there are <code class="code docutils literal notranslate"><span class="pre">N</span></code>-counterparts, just in case you need two years for example:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new Past(</span>
+<span class="x">    new DateTimeFromISO8601String(&#39;2014-11-21T06:04:31+00:00&#39;),</span>
+<span class="x">    new NYears(2)</span>
+<span class="x">))</span>
+<span class="x">    -&gt;value(); // returns 2012-11-21T06:04:31+00:00</span>
+</pre></div>
+</div>
+<p>There are at least two ways actually to define an interval. The first one is already covered above: you can use standard ISO8601 interval notation, like <code class="code docutils literal notranslate"><span class="pre">P1Y2M21DT24H56M26S</span></code>,
+or shortcut meringue classes. The second option is to <a class="reference internal" href="how_to_calculate_a_difference_between_two_dates.html"><span class="doc">identify an interval by two dates</span></a>.
+For example, I have to significant points in time, I have their absolute values, but I don’t know an interval in advance. So I can write:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">use Meringue\ISO8601Interval\WithFixedStartDateTime\FromRange as IntervalFromRange;</span>
+
+<span class="x">(new IntervalFromRange(</span>
+<span class="x">    new FromISO8601(&#39;2017-07-03T14:27:39+00:00&#39;),</span>
+<span class="x">    new FromISO8601(&#39;2017-08-28T14:29:47+00:00&#39;)</span>
+<span class="x">))</span>
+<span class="x">    -&gt;value(); // returns P0Y1M25DT0H2M8S</span>
+</pre></div>
+</div>
+<p>In the same vein, you can <a class="reference internal" href="how_to_add_seconds_minutes_hours_days_and_all_to_php_datetime.html"><span class="doc">obtain any datetime in the future</span></a>.</p>
+<p>If you want to <a class="reference internal" href="how_to_convert_a_datetime_to_specific_timezone.html"><span class="doc">convert it to specific timezone</span></a>, you can use <code class="code docutils literal notranslate"><span class="pre">AdjustedAccordingToTimeZone</span></code> class:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new AdjustedAccordingToTimeZone(</span>
+<span class="x">    new Past(</span>
+<span class="x">        new DateTimeFromISO8601String(&#39;2014-11-21T06:04:31+00:00&#39;),</span>
+<span class="x">        new NYears(2)</span>
+<span class="x">    ),</span>
+<span class="x">    new CET()</span>
+<span class="x">))</span>
+<span class="x">    -&gt;value(); // returns 2012-11-21T07:04:31+01:00</span>
+</pre></div>
+</div>
+</div>
+
 
           </div>
           
@@ -68,9 +124,10 @@
 <li class="toctree-l1"><a class="reference internal" href="how_to_convert_a_string_to_date.html">How to convert a string to date</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Datetime manipulations</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="how_to_calculate_a_difference_between_two_dates.html">How to calculate a difference between to dates</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="how_to_calculate_a_difference_between_two_dates.html">How to calculate a difference between two dates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_to_add_seconds_minutes_hours_days_and_all_to_php_datetime.html">How to add seconds, minutes, hours, days and all to php datetime</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to subtract seconds, minutes, hours, days and all from a given datetime</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_to_get_the_last_day_of_a_month.html">How to get the last day of a month</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_to_calculate_a_datetime_by_a_weekday.html">How to calculate a datetime by a day of any week</a></li>
 </ul>

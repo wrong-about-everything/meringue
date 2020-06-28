@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>How to calculate a difference between to dates &#8212; meringue  documentation</title>
+    <title>How to calculate a difference between two dates &#8212; meringue  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -34,8 +34,8 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="how-to-calculate-a-difference-between-to-dates">
-<h1>How to calculate a difference between to dates<a class="headerlink" href="#how-to-calculate-a-difference-between-to-dates" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="how-to-calculate-a-difference-between-two-dates">
+<h1>How to calculate a difference between two dates<a class="headerlink" href="#how-to-calculate-a-difference-between-two-dates" title="Permalink to this headline">¶</a></h1>
 <p>The question in the header implies that the question is formulated correctly. Instead of subtracting two dates, you want a difference.
 Instead of focusing on how, you focus in what. Instead of posing a a problem in terms of implied solution, you pose a problem in terms of what you really need.
 And that is a good thing indeed. It even has a name: <a class="reference external" href="https://tylermcginnis.com/imperative-vs-declarative-programming/">declarative programming</a>. Sql is known for that, for example.
@@ -52,6 +52,24 @@ it came to be, or how it will evolve. It doesn’t really matter. There are only
 </pre></div>
 </div>
 <p>So, <code class="code docutils literal notranslate"><span class="pre">WithFixedStartDateTime</span></code> <strong>is a</strong> ISO8601 interval with the following property that I wanted to highlight: it has fixed start datetime.</p>
+<p>So, that’s how the difference between two datetimes in php looks like:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new FromRange(</span>
+<span class="x">    new FromISO8601(&#39;2017-07-03T14:27:39+00:00&#39;),</span>
+<span class="x">    new FromISO8601(&#39;2017-08-28T14:29:47+00:00&#39;)</span>
+<span class="x">))</span>
+<span class="x">    -&gt;value(); // returns P0Y1M25DT0H2M8S</span>
+</pre></div>
+</div>
+<p>Chances are you’d like to convert it to some human-readable format. If so, I got you covered. Here is how this can be done:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new HumanReadable(</span>
+<span class="x">    new FromRange(</span>
+<span class="x">        new FromISO8601(&#39;2017-07-03T14:27:39+00:00&#39;),</span>
+<span class="x">        new FromISO8601(&#39;2017-07-05T14:27:38+00:00&#39;)</span>
+<span class="x">    )</span>
+<span class="x">))</span>
+<span class="x">    -&gt;value(); // returns 1 day, 23 hours, 59 minutes and 59 seconds</span>
+</pre></div>
+</div>
 </div>
 
 
@@ -88,8 +106,9 @@ it came to be, or how it will evolve. It doesn’t really matter. There are only
 </ul>
 <p class="caption"><span class="caption-text">Datetime manipulations</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">How to calculate a difference between to dates</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to calculate a difference between two dates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_to_add_seconds_minutes_hours_days_and_all_to_php_datetime.html">How to add seconds, minutes, hours, days and all to php datetime</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_subtract_seconds_minutes_hours_days_and_all_from_a_given_datetime.html">How to subtract seconds, minutes, hours, days and all from a given datetime</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_to_get_the_last_day_of_a_month.html">How to get the last day of a month</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_to_calculate_a_datetime_by_a_weekday.html">How to calculate a datetime by a day of any week</a></li>
 </ul>
