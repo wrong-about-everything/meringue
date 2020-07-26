@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>How to get a current year &#8212; meringue  documentation</title>
+    <title>How to get a month in a datetime in php &#8212; meringue  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -16,8 +16,7 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="How to get a month in a datetime in php" href="how_to_get_a_month_from_a_datetime.html" />
-    <link rel="prev" title="How to format a date" href="how_to_format_a_php_date.html" />
+    <link rel="prev" title="How to get a current year" href="how_to_get_a_current_year.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -34,35 +33,37 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="how-to-get-a-current-year">
-<h1>How to get a current year<a class="headerlink" href="#how-to-get-a-current-year" title="Permalink to this headline">¶</a></h1>
-<p>As usual, if a current year is what you need, chances are there should be an entity in code which represents exactly this abstraction.
-Look for an interface or abstract class called <code class="code docutils literal notranslate"><span class="pre">Year</span></code>, is there any? In meringue, there is one.</p>
-<p>There are currently two ways you can get a year: from some datetime and from integer.
-Hence, two classes: <code class="code docutils literal notranslate"><span class="pre">FromISO8601DateTime</span></code> and <code class="code docutils literal notranslate"><span class="pre">FromInt</span></code>.
-If you’re up to find a current year, I believe you could already know what to do: pass a current datetime to <code class="code docutils literal notranslate"><span class="pre">FromISO8601DateTime</span></code>:</p>
+  <div class="section" id="how-to-get-a-month-in-a-datetime-in-php">
+<h1>How to get a month in a datetime in php<a class="headerlink" href="#how-to-get-a-month-in-a-datetime-in-php" title="Permalink to this headline">¶</a></h1>
+<p>Following meringue philosophy, the key is to know <em>what</em> you need. With this approach, you end up with objects having counterparts
+in real life. Usually, the most simple way is to follow the language someone uses to describe a problem. Words refer to existing
+objects, otherwise, those words wouldn’t exist. So listen carefully to the words your domain expert uses.</p>
+<p>In the domain of dates and times, it’s all quite simple. If you hear “month”, most probably you need a class whose objects are referred by this word.
+Is it a single class or multiple classes? A “month” is a general term. There are a lot of things actually fall under this concept,
+and they all have different properties. Month can be plainly May or June. Or it can be identified by an ISO8601 datetime.
+Or by ordinal number. Thus, I’ve created a <cite>Month</cite> interface indicating this category.</p>
+<p>One concrete implementation put in a title of this entry is characterized by the specific datetime. Say, you have an ISO8601
+datetime, like 2020-07-20T10:45:21+03:00. And you want to obtain a month from it. the resulting object, falling under the “Month” category,
+as a very specific property: it’s obtained from, or identified by, a datetime. Hence the name: <cite>FromISO8601DateTime</cite>.</p>
+<p>If you want to have a current month, you can pass a current datetime to it:</p>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new FromISO8601DateTime(</span>
 <span class="x">    new Now()</span>
 <span class="x">))</span>
 <span class="x">    -&gt;value();</span>
 </pre></div>
 </div>
-<p>If you want to get a year from some datetime, you can do the following:</p>
+<p>Similarly, if you want to create a month from any other datetime, it looks like the following:</p>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new FromISO8601DateTime(</span>
 <span class="x">    new FromISO8601(&#39;2020-02-11 15:21:47+03&#39;)</span>
 <span class="x">))</span>
-<span class="x">    -&gt;value(); // returns 2020</span>
+<span class="x">    -&gt;value(); // returns 2</span>
 </pre></div>
 </div>
-<p>It finds a current year in local timezone, not UTC. For example, the output in the following case would be 2020 already:</p>
-<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new FromISO8601DateTime(</span>
-<span class="x">    new FromISO8601(&#39;2020-01-01 00:01:47+03&#39;)</span>
-<span class="x">))</span>
-<span class="x">    -&gt;value();</span>
+<p>In the same vein, you can create a month object not with a datetime, but from its ordinal number:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">(new FromInt(7))-&gt;value(); // no surprises, it&#39;s 7</span>
 </pre></div>
 </div>
-<p>If you want to obtain a year in some other timezone, you’d want to <a class="reference internal" href="how_to_convert_a_datetime_to_specific_timezone.html"><span class="doc">adjust the time to that timezone</span></a> first,
-and then construct a <code class="code docutils literal notranslate"><span class="pre">Year</span></code> object.</p>
+<p>Other datetime parts have pretty much the same functionality and approach.</p>
 </div>
 
 
@@ -112,16 +113,15 @@ and then construct a <code class="code docutils literal notranslate"><span class
 </ul>
 <p class="caption"><span class="caption-text">Datetime parts</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">How to get a current year</a></li>
-<li class="toctree-l1"><a class="reference internal" href="how_to_get_a_month_from_a_datetime.html">How to get a month in a datetime in php</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_get_a_current_year.html">How to get a current year</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to get a month in a datetime in php</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="how_to_format_a_php_date.html" title="previous chapter">How to format a date</a></li>
-      <li>Next: <a href="how_to_get_a_month_from_a_datetime.html" title="next chapter">How to get a month in a datetime in php</a></li>
+      <li>Previous: <a href="how_to_get_a_current_year.html" title="previous chapter">How to get a current year</a></li>
   </ul></li>
 </ul>
 </div>
@@ -157,7 +157,7 @@ and then construct a <code class="code docutils literal notranslate"><span class
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="../_sources/faq/how_to_get_a_current_year.rst.txt"
+      <a href="../_sources/faq/how_to_get_a_month_from_a_datetime.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

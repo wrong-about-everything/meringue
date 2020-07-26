@@ -24,7 +24,7 @@ If you want to get a year from some datetime, you can do the following:
     ))
         ->value(); // returns 2020
 
-It find a current year in local timezone, not UTC. For example, the output in the following case would be 2020 already:
+It finds a current year in local timezone, not UTC. For example, the output in the following case would be 2020 already:
 
 .. code-block:: php
 
