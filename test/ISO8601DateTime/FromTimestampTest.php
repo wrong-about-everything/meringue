@@ -6,8 +6,8 @@ namespace Meringue\Tests\ISO8601DateTime;
 
 use Meringue\ISO8601DateTime\AdjustedAccordingToTimeZone;
 use Meringue\ISO8601DateTime\FromTimestamp;
-use Meringue\ISO8601DateTime\TimeZone\HawaiiWithNoDST;
-use Meringue\ISO8601DateTime\TimeZone\Kaliningrad;
+use Meringue\ISO8601DateTime\PhpSpecificTimeZone\HawaiiWithNoDST;
+use Meringue\ISO8601DateTime\PhpSpecificTimeZone\Kaliningrad;
 use PHPUnit\Framework\TestCase;
 use \Throwable;
 

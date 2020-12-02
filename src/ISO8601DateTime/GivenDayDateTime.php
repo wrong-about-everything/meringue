@@ -4,35 +4,27 @@ declare(strict_types=1);
 
 namespace Meringue\ISO8601DateTime;
 
-use Exception;
 use Meringue\Date\FromISO8601DateTime;
 use Meringue\ISO8601DateTime;
 use DateTimeImmutable;
+use Meringue\Time\Hour\FromInt as Hour;
+use Meringue\Time\Minute\FromInt as Minute;
+use Meringue\Time\Second\FromInt as Second;
 
 // @todo: pass Time instead of three separate parameters; consider passing a Timezone (not necessary: FixedDateTimeInTimeZone is enough.)
 class GivenDayDateTime extends ISO8601DateTime
 {
-    private $givenDay;
+    private $givenDaysDateTime;
     private $hours;
     private $minutes;
     private $seconds;
 
-    public function __construct(ISO8601DateTime $givenDay, int $hours, int $minutes, int $seconds)
+    public function __construct(ISO8601DateTime $givenDaysDateTime, int $hours, int $minutes, int $seconds)
     {
-        if ($hours < 0 || $hours > 23) {
-            throw new Exception('Invalid hours given: ' . $hours);
-        }
-        if ($minutes < 0 || $minutes > 59) {
-            throw new Exception('Invalid minutes given: ' . $minutes);
-        }
-        if ($seconds < 0 || $seconds > 59) {
-            throw new Exception('Invalid seconds given: ' . $seconds);
-        }
-
-        $this->givenDay = $givenDay;
-        $this->hours = $hours;
-        $this->minutes = $minutes;
-        $this->seconds = $seconds;
+        $this->givenDaysDateTime = $givenDaysDateTime;
+        $this->hours = new Hour($hours);
+        $this->minutes = new Minute($minutes);
+        $this->seconds = new Second($seconds);
     }
 
     public function value(): string
@@ -40,8 +32,8 @@ class GivenDayDateTime extends ISO8601DateTime
         return
             (new FromPhpDateTime(
                 new DateTimeImmutable(
-                    (new FromISO8601DateTime($this->givenDay))->value() . sprintf('T%02d:%02d:%02d', $this->hours, $this->minutes, $this->seconds),
-                    (new DateTimeImmutable($this->givenDay->value()))->getTimezone()
+                    (new FromISO8601DateTime($this->givenDaysDateTime))->value() . sprintf('T%02d:%02d:%02d', $this->hours->value(), $this->minutes->value(), $this->seconds->value()),
+                    (new DateTimeImmutable($this->givenDaysDateTime->value()))->getTimezone()
                 )
             ))
                 ->value()

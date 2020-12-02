@@ -6,7 +6,7 @@ namespace Meringue\Tests\ISO8601DateTime;
 
 use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\ISO8601DateTime\AdjustedAccordingToTimeZone;
-use Meringue\ISO8601DateTime\TimeZone\CET;
+use Meringue\ISO8601DateTime\PhpSpecificTimeZone\CET;
 use PHPUnit\Framework\TestCase;
 
 class AdjustedAccordingToTimeZoneTest extends TestCase

@@ -10,30 +10,53 @@ use Throwable;
 
 class FromStringTest extends TestCase
 {
-    /** @dataProvider timezones */
-    public function testSuccessful(string $timezone)
+    /**
+     * @dataProvider validTimeZones
+     */
+    public function testValidTimeZones(string $timezone)
     {
         $result = (new FromString($timezone))->value();
         $this->assertEquals($timezone, $result);
     }
 
-    public function timezones()
+    public function validTimeZones()
     {
         return [
-            ['Africa/Addis_Ababa'],
-            ['Atlantic/Reykjavik'],
-            ['Europe/Moscow'],
+            ['Z'],
+            ['+07'],
+            ['+0730'],
+            ['+0000'],
+            ['+0700'],
+            ['+00:00'],
+            ['+03:00'],
+            ['-07:40'],
+            ['+11:55'],
         ];
     }
 
-    public function testNonExistentTimeZone()
+    /**
+     * @dataProvider invalidTimeZones
+     */
+    public function testInvalidTimeZones(string $timezone)
     {
-        $timezone = 'non existent';
         try {
             (new FromString($timezone))->value();
             $this->fail('Exception expected');
         } catch (Throwable $exception) {
-            $this->assertEquals("Timezone {{{$timezone}}} does not exists", $exception->getMessage());
+            $this->assertEquals("Offset {$timezone} is invalid", $exception->getMessage());
         }
+    }
+
+    public function invalidTimeZones()
+    {
+        return [
+            ['vasya'],
+            ['a'],
+            ['=00:00'],
+            ['+20:00'],
+            ['+10:60'],
+            ['+10;50'],
+            ['+10:591'],
+        ];
     }
 }

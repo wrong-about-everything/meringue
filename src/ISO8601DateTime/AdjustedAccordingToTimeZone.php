@@ -14,7 +14,7 @@ class AdjustedAccordingToTimeZone extends ISO8601DateTime
     private $dateTime;
     private $timeZone;
 
-    public function __construct(ISO8601DateTime $dateTime, TimeZone $timeZone)
+    public function __construct(ISO8601DateTime $dateTime, PhpSpecificTimeZone $timeZone)
     {
         $this->dateTime = $dateTime;
         $this->timeZone = $timeZone;
