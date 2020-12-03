@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Meringue\Tests\Schedule;
+namespace Meringue\Tests\Schedule\TimePeriod;
 
 use Meringue\ISO8601DateTime;
 use Meringue\ISO8601DateTime\FromISO8601;
-use Meringue\Schedule\TimePeriod;
+use Meringue\Schedule\TimePeriod\DefaultTimePeriod;
 use Meringue\Time;
 use Meringue\Time\FromIntegers;
 use PHPUnit\Framework\TestCase;
 use Throwable;
 
-class TimePeriodTest extends TestCase
+class DefaultTimePeriodTest extends TestCase
 {
     /**
      * @dataProvider dateTimesOnSchedule
@@ -20,7 +20,7 @@ class TimePeriodTest extends TestCase
     public function testIsHit(Time $from, Time $till, ISO8601DateTime $dateTime)
     {
         $this->assertTrue(
-            (new TimePeriod($from, $till))
+            (new DefaultTimePeriod($from, $till))
                 ->isHit($dateTime)
         );
     }
@@ -57,7 +57,7 @@ class TimePeriodTest extends TestCase
     public function testIsNotHit(Time $from, Time $till, ISO8601DateTime $dateTime)
     {
         $this->assertFalse(
-            (new TimePeriod($from, $till))
+            (new DefaultTimePeriod($from, $till))
                 ->isHit($dateTime)
         );
     }
@@ -81,7 +81,7 @@ class TimePeriodTest extends TestCase
     public function testWithGreaterFromTime()
     {
         try {
-            (new TimePeriod(
+            (new DefaultTimePeriod(
                 new FromIntegers(11, 30, 0),
                 new FromIntegers(10, 30, 0)
             ))

@@ -8,7 +8,7 @@ use Meringue\ISO8601DateTime;
 use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\Schedule\UTCScheduleByWeekDays;
 use Meringue\Schedule\DailyInUTC;
-use Meringue\Schedule\TimePeriod;
+use Meringue\Schedule\TimePeriod\DefaultTimePeriod;
 use Meringue\Time;
 use Meringue\Time\FromIntegers;
 use PHPUnit\Framework\TestCase;
@@ -23,51 +23,51 @@ class UTCScheduleByWeekDaysTest extends TestCase
         $this->assertTrue(
             (new UTCScheduleByWeekDays(
                 new DailyInUTC(
-                    new TimePeriod(
+                    new DefaultTimePeriod(
                         new FromIntegers(2, 0, 0),
                         new FromIntegers(5, 0, 0)
                     ),
-                    new TimePeriod(
+                    new DefaultTimePeriod(
                         new FromIntegers(11, 0, 0),
                         new FromIntegers(12, 30, 0)
                     )
                 ),
                 new DailyInUTC(
-                    new TimePeriod(
+                    new DefaultTimePeriod(
                         new FromIntegers(12, 31, 0),
                         new FromIntegers(13, 47, 0)
                     )
                 ),
                 new DailyInUTC(
-                    new TimePeriod(
+                    new DefaultTimePeriod(
                         new FromIntegers(14, 8, 0),
                         new FromIntegers(15, 17, 0)
                     )
                 ),
                 new DailyInUTC(
-                    new TimePeriod(
+                    new DefaultTimePeriod(
                         new FromIntegers(15, 18, 0),
                         new FromIntegers(15, 59, 0)
                     )
                 ),
                 new DailyInUTC(
-                    new TimePeriod(
+                    new DefaultTimePeriod(
                         new FromIntegers(16, 0, 0),
                         new FromIntegers(17, 30, 0)
                     )
                 ),
                 new DailyInUTC(
-                    new TimePeriod(
+                    new DefaultTimePeriod(
                         new FromIntegers(17, 31, 0),
                         new FromIntegers(18, 30, 0)
                     )
                 ),
                 new DailyInUTC(
-                    new TimePeriod(
+                    new DefaultTimePeriod(
                         new FromIntegers(0, 0, 0),
                         new FromIntegers(3, 0, 0)
                     ),
-                    new TimePeriod(
+                    new DefaultTimePeriod(
                         new FromIntegers(18, 31, 0),
                         new FromIntegers(23, 59, 59)
                     )
@@ -102,51 +102,51 @@ class UTCScheduleByWeekDaysTest extends TestCase
         $this->assertFalse(
             (new UTCScheduleByWeekDays(
                 new DailyInUTC(
-                    new TimePeriod(
+                    new DefaultTimePeriod(
                         new FromIntegers(0, 0, 0),
                         new FromIntegers(5, 0, 0)
                     ),
-                    new TimePeriod(
+                    new DefaultTimePeriod(
                         new FromIntegers(11, 0, 0),
                         new FromIntegers(12, 30, 0)
                     )
                 ),
                 new DailyInUTC(
-                    new TimePeriod(
+                    new DefaultTimePeriod(
                         new FromIntegers(12, 31, 0),
                         new FromIntegers(13, 47, 0)
                     )
                 ),
                 new DailyInUTC(
-                    new TimePeriod(
+                    new DefaultTimePeriod(
                         new FromIntegers(14, 8, 0),
                         new FromIntegers(15, 17, 0)
                     )
                 ),
                 new DailyInUTC(
-                    new TimePeriod(
+                    new DefaultTimePeriod(
                         new FromIntegers(15, 18, 0),
                         new FromIntegers(15, 59, 0)
                     )
                 ),
                 new DailyInUTC(
-                    new TimePeriod(
+                    new DefaultTimePeriod(
                         new FromIntegers(16, 0, 0),
                         new FromIntegers(17, 30, 0)
                     )
                 ),
                 new DailyInUTC(
-                    new TimePeriod(
+                    new DefaultTimePeriod(
                         new FromIntegers(17, 31, 0),
                         new FromIntegers(18, 30, 0)
                     )
                 ),
                 new DailyInUTC(
-                    new TimePeriod(
+                    new DefaultTimePeriod(
                         new FromIntegers(0, 0, 0),
                         new FromIntegers(3, 0, 0)
                     ),
-                    new TimePeriod(
+                    new DefaultTimePeriod(
                         new FromIntegers(18, 31, 0),
                         new FromIntegers(23, 59, 59)
                     )
@@ -195,7 +195,7 @@ class UTCScheduleByWeekDaysTest extends TestCase
         $this->assertEquals(
             $expectedSchedule,
             array_map(
-                function (TimePeriod $timePeriod) {
+                function (DefaultTimePeriod $timePeriod) {
                     return
                         array_map(
                             function (Time $time) {
@@ -206,51 +206,51 @@ class UTCScheduleByWeekDaysTest extends TestCase
                 },
                 (new UTCScheduleByWeekDays(
                     new DailyInUTC(
-                        new TimePeriod(
+                        new DefaultTimePeriod(
                             new FromIntegers(12, 31, 0),
                             new FromIntegers(13, 47, 0)
                         )
                     ),
                     new DailyInUTC(
-                        new TimePeriod(
+                        new DefaultTimePeriod(
                             new FromIntegers(22, 28, 0),
                             new FromIntegers(22, 29, 0)
                         ),
-                        new TimePeriod(
+                        new DefaultTimePeriod(
                             new FromIntegers(11, 0, 0),
                             new FromIntegers(12, 30, 0)
                         )
                     ),
                     new DailyInUTC(
-                        new TimePeriod(
+                        new DefaultTimePeriod(
                             new FromIntegers(14, 8, 0),
                             new FromIntegers(15, 17, 0)
                         )
                     ),
                     new DailyInUTC(
-                        new TimePeriod(
+                        new DefaultTimePeriod(
                             new FromIntegers(15, 18, 0),
                             new FromIntegers(15, 59, 0)
                         )
                     ),
                     new DailyInUTC(
-                        new TimePeriod(
+                        new DefaultTimePeriod(
                             new FromIntegers(16, 0, 0),
                             new FromIntegers(17, 30, 0)
                         )
                     ),
                     new DailyInUTC(
-                        new TimePeriod(
+                        new DefaultTimePeriod(
                             new FromIntegers(17, 31, 0),
                             new FromIntegers(18, 30, 0)
                         )
                     ),
                     new DailyInUTC(
-                        new TimePeriod(
+                        new DefaultTimePeriod(
                             new FromIntegers(0, 0, 0),
                             new FromIntegers(3, 0, 0)
                         ),
-                        new TimePeriod(
+                        new DefaultTimePeriod(
                             new FromIntegers(18, 31, 0),
                             new FromIntegers(23, 59, 59)
                         )

@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Meringue;
 
-use Meringue\Schedule\TimePeriod;
+use Meringue\Schedule\TimePeriod\DefaultTimePeriod;
 
 interface Schedule
 {
     public function isHit(ISO8601DateTime $dateTime): bool;
 
     /**
-     * @return TimePeriod[]
+     * @return DefaultTimePeriod[]
      */
     public function for(ISO8601DateTime $dateTime): array;
 }

@@ -6,6 +6,7 @@ namespace Meringue\Schedule;
 
 use Meringue\ISO8601DateTime;
 use Meringue\Schedule;
+use Meringue\Schedule\TimePeriod\DefaultTimePeriod;
 use Meringue\Time\FromIntegers;
 
 class TwentyFourSeven implements Schedule
@@ -18,7 +19,7 @@ class TwentyFourSeven implements Schedule
     public function for(ISO8601DateTime $dateTime): array
     {
         return [
-            new TimePeriod(
+            new DefaultTimePeriod(
                 new FromIntegers(0, 0, 0),
                 new FromIntegers(23, 59, 59)
             )

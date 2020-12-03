@@ -7,7 +7,7 @@ namespace Meringue\Schedule;
 use Meringue\ISO8601DateTime;
 use Meringue\Schedule;
 
-class ClosedForever implements Schedule
+class Closed implements Schedule
 {
     public function isHit(ISO8601DateTime $dateTime): bool
     {

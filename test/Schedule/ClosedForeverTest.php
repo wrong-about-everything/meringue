@@ -7,7 +7,7 @@ namespace Meringue\Tests\Schedule;
 use Meringue\ISO8601DateTime;
 use Meringue\ISO8601DateTime\FromTimestamp;
 use Meringue\ISO8601DateTime\FromISO8601;
-use Meringue\Schedule\ClosedForever;
+use Meringue\Schedule\Closed;
 use PHPUnit\Framework\TestCase;
 
 class ClosedForeverTest extends TestCase
@@ -18,7 +18,7 @@ class ClosedForeverTest extends TestCase
     public function testIsNotHit(ISO8601DateTime $dateTime)
     {
         $this->assertFalse(
-            (new ClosedForever())
+            (new Closed())
                 ->isHit($dateTime)
         );
     }
