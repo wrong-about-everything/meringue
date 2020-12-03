@@ -8,20 +8,19 @@ use Meringue\ISO8601DateTime;
 use Meringue\ISO8601DateTime\PhpSpecificTimeZone\UTC;
 use Meringue\ISO8601DateTime\AdjustedAccordingToTimeZone;
 use Meringue\Schedule;
-use Meringue\Schedule\TimePeriod\DefaultTimePeriod;
 
 class DailyInUTC implements Schedule
 {
     private $timePeriods;
 
-    public function __construct(DefaultTimePeriod ...$timePeriods)
+    public function __construct(TimePeriod ...$timePeriods)
     {
         $this->timePeriods = $timePeriods;
     }
 
     public function isHit(ISO8601DateTime $dateTime): bool
     {
-        /** @var DefaultTimePeriod $timePeriod */
+        /** @var TimePeriod $timePeriod */
         foreach ($this->timePeriods as $timePeriod) {
             if ($timePeriod->isHit(new AdjustedAccordingToTimeZone($dateTime, new UTC()))) {
                 return true;

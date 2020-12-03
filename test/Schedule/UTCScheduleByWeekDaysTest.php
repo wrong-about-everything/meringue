@@ -6,6 +6,7 @@ namespace Meringue\Tests\ScheduleTest;
 
 use Meringue\ISO8601DateTime;
 use Meringue\ISO8601DateTime\FromISO8601;
+use Meringue\Schedule\TimePeriod;
 use Meringue\Schedule\UTCScheduleByWeekDays;
 use Meringue\Schedule\DailyInUTC;
 use Meringue\Schedule\TimePeriod\DefaultTimePeriod;
@@ -195,7 +196,7 @@ class UTCScheduleByWeekDaysTest extends TestCase
         $this->assertEquals(
             $expectedSchedule,
             array_map(
-                function (DefaultTimePeriod $timePeriod) {
+                function (TimePeriod $timePeriod) {
                     return
                         array_map(
                             function (Time $time) {
