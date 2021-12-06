@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Meringue\ISO8601DateTime;
 
+use DateTime;
 use Meringue\ISO8601DateTime;
 use DateTimeZone;
 use DateTimeImmutable as PhpDateTime;
 
-class AdjustedAccordingToTimeZone extends ISO8601DateTime
+class FixedDateTimeWithSpecifiedTimeZone extends ISO8601DateTime
 {
     private $dateTime;
     private $timeZone;
@@ -23,10 +24,10 @@ class AdjustedAccordingToTimeZone extends ISO8601DateTime
     {
         return
             (new FromPhpDateTime(
-                (new PhpDateTime($this->dateTime->value()))
-                    ->setTimezone(
-                        new DateTimeZone($this->timeZone->value())
-                    )
+                new DateTime(
+                    (new PhpDateTime($this->dateTime->value()))->format('Y-m-d H:i:s'),
+                    new DateTimeZone($this->timeZone->value())
+                )
             ))
                 ->value();
     }
