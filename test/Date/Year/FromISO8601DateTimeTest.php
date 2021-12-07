@@ -15,7 +15,7 @@ class FromISO8601DateTimeTest extends TestCase
         $this->assertEquals(
             2020,
             (new FromISO8601DateTime(
-                new FromISO8601('2020-01-01 00:01:47+03')
+                new FromISO8601('2020-01-01 00:01:47+11')
             ))
                 ->value()
         );
