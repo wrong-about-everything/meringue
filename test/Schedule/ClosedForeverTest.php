@@ -7,7 +7,7 @@ namespace Meringue\Tests\Schedule;
 use Meringue\ISO8601DateTime;
 use Meringue\ISO8601DateTime\FromTimestamp;
 use Meringue\ISO8601DateTime\FromISO8601;
-use Meringue\Schedule\Closed;
+use Meringue\Schedule\Daily\Closed;
 use PHPUnit\Framework\TestCase;
 
 class ClosedForeverTest extends TestCase

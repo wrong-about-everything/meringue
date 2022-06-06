@@ -7,8 +7,8 @@ namespace Meringue\Tests\ScheduleTest;
 use Meringue\ISO8601DateTime;
 use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\Schedule\TimePeriod;
-use Meringue\Schedule\UTCScheduleByWeekDays;
-use Meringue\Schedule\DailyInUTC;
+use Meringue\Schedule\Weekly\UTCWeeklyScheduleByWeekDays;
+use Meringue\Schedule\Daily\DailyInUTC;
 use Meringue\Schedule\TimePeriod\DefaultTimePeriod;
 use Meringue\Time;
 use Meringue\Time\FromIntegers;
@@ -22,7 +22,7 @@ class UTCScheduleByWeekDaysTest extends TestCase
     public function testIsHit(ISO8601DateTime $dateTime)
     {
         $this->assertTrue(
-            (new UTCScheduleByWeekDays(
+            (new UTCWeeklyScheduleByWeekDays(
                 new DailyInUTC(
                     new DefaultTimePeriod(
                         new FromIntegers(2, 0, 0),
@@ -101,7 +101,7 @@ class UTCScheduleByWeekDaysTest extends TestCase
     public function testIsMissing(ISO8601DateTime $dateTime)
     {
         $this->assertFalse(
-            (new UTCScheduleByWeekDays(
+            (new UTCWeeklyScheduleByWeekDays(
                 new DailyInUTC(
                     new DefaultTimePeriod(
                         new FromIntegers(0, 0, 0),
@@ -205,7 +205,7 @@ class UTCScheduleByWeekDaysTest extends TestCase
                             $timePeriod->fromTillPair()
                         );
                 },
-                (new UTCScheduleByWeekDays(
+                (new UTCWeeklyScheduleByWeekDays(
                     new DailyInUTC(
                         new DefaultTimePeriod(
                             new FromIntegers(12, 31, 0),

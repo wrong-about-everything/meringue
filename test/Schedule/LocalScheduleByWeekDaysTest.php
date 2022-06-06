@@ -6,8 +6,8 @@ namespace Meringue\Tests\ScheduleTest;
 
 use Meringue\ISO8601DateTime;
 use Meringue\ISO8601DateTime\FromISO8601;
-use Meringue\Schedule\DailyInLocalTimeZone;
-use Meringue\Schedule\LocalScheduleByWeekDays;
+use Meringue\Schedule\Daily\DailyInLocalTimeZone;
+use Meringue\Schedule\Weekly\LocalWeeklyScheduleByWeekDays;
 use Meringue\Schedule\TimePeriod;
 use Meringue\Schedule\TimePeriod\DefaultTimePeriod;
 use Meringue\Time;
@@ -22,7 +22,7 @@ class LocalScheduleByWeekDaysTest extends TestCase
     public function testIsHit(ISO8601DateTime $dateTime)
     {
         $this->assertTrue(
-            (new LocalScheduleByWeekDays(
+            (new LocalWeeklyScheduleByWeekDays(
                 new DailyInLocalTimeZone(
                     new DefaultTimePeriod(
                         new FromIntegers(22, 28, 0),
@@ -101,7 +101,7 @@ class LocalScheduleByWeekDaysTest extends TestCase
     public function testIsMissing(ISO8601DateTime $dateTime)
     {
         $this->assertFalse(
-            (new LocalScheduleByWeekDays(
+            (new LocalWeeklyScheduleByWeekDays(
                 new DailyInLocalTimeZone(
                     new DefaultTimePeriod(
                         new FromIntegers(0, 0, 0),
@@ -205,7 +205,7 @@ class LocalScheduleByWeekDaysTest extends TestCase
                             $timePeriod->fromTillPair()
                         );
                 },
-                (new LocalScheduleByWeekDays(
+                (new LocalWeeklyScheduleByWeekDays(
                     new DailyInLocalTimeZone(
                         new DefaultTimePeriod(
                             new FromIntegers(12, 31, 0),

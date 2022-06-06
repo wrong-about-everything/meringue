@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Meringue\Schedule;
+namespace Meringue\Schedule\Daily;
 
 use Meringue\ISO8601DateTime;
-use Meringue\Schedule;
+use Meringue\Schedule\TimePeriod;
+use Meringue\Schedule\Type\DailyInLocalTimeZone as DailyInLocalTimeZoneScheduleType;
+use Meringue\Schedule\Type\Type;
 
-class DailyInLocalTimeZone implements Schedule
+class DailyInLocalTimeZone extends Daily
 {
     private $timePeriods;
 
@@ -29,6 +31,16 @@ class DailyInLocalTimeZone implements Schedule
     }
 
     public function for(ISO8601DateTime $dateTime): array
+    {
+        return $this->timePeriods;
+    }
+
+    public function type(): Type
+    {
+        return new DailyInLocalTimeZoneScheduleType();
+    }
+
+    public function timePeriods(): array
     {
         return $this->timePeriods;
     }

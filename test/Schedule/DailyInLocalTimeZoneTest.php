@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Meringue\Tests\Schedule;
 
-use Meringue\Schedule\DailyInLocalTimeZone;
+use Meringue\Schedule\Daily\DailyInLocalTimeZone;
 use Meringue\Time\FromIntegers;
 use PHPUnit\Framework\TestCase;
 use Meringue\Schedule\TimePeriod\DefaultTimePeriod;
@@ -27,7 +27,7 @@ class DailyInLocalTimeZoneTest extends TestCase
     public function testWithSomeSuccessfulSchedules()
     {
         $this->assertTrue(
-            (new DailyInLocalTimeZone(
+            (new \Meringue\Schedule\Daily\DailyInLocalTimeZone(
                 $this->timePeriod(12, 13),
                 $this->timePeriod(14, 15),
                 $this->timePeriod(17, 18)

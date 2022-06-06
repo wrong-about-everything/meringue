@@ -2,13 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Meringue\Schedule;
+namespace Meringue\Schedule\Weekly;
 
+use Meringue\Schedule\Daily\DailyInLocalTimeZone;
+use Meringue\Schedule\Type\ByWeekDaysInLocalTimeZone;
+use Meringue\Schedule\Type\Type;
+use Meringue\Schedule\Weekly;
 use Meringue\WeekDay\LocalDayOfWeek;
 use Meringue\ISO8601DateTime;
-use Meringue\Schedule;
 use Exception;
-use Meringue\ISO8601Interval\WithFixedStartDateTime;
 
 /**
  * isHit()'s argument, $dateTime, should be in the same timezone that is implied by daily schedules.
@@ -19,7 +21,7 @@ use Meringue\ISO8601Interval\WithFixedStartDateTime;
  *
  * This class is implied to have all the daily schedules in the same timezone that passed $dateTime has.
  */
-class LocalScheduleByWeekDays implements Schedule
+class LocalWeeklyScheduleByWeekDays extends Weekly\WeeklySchedule
 {
     private $sunday;
     private $monday;
@@ -30,13 +32,13 @@ class LocalScheduleByWeekDays implements Schedule
     private $saturday;
 
     public function __construct(
-        Schedule $sunday,
-        Schedule $monday,
-        Schedule $tuesday,
-        Schedule $wednesday,
-        Schedule $thursday,
-        Schedule $friday,
-        Schedule $saturday
+        DailyInLocalTimeZone $sunday,
+        DailyInLocalTimeZone $monday,
+        DailyInLocalTimeZone $tuesday,
+        DailyInLocalTimeZone $wednesday,
+        DailyInLocalTimeZone $thursday,
+        DailyInLocalTimeZone $friday,
+        DailyInLocalTimeZone $saturday
     )
     {
         $this->sunday = $sunday;
@@ -50,7 +52,7 @@ class LocalScheduleByWeekDays implements Schedule
 
     public function isHit(ISO8601DateTime $dateTime): bool
     {
-        switch ((int) (new LocalDayOfWeek($dateTime))->value()) {
+        switch ((new LocalDayOfWeek($dateTime))->value()) {
             case 7:
                 return $this->sunday->isHit($dateTime);
 
@@ -104,5 +106,29 @@ class LocalScheduleByWeekDays implements Schedule
             default:
                 throw new Exception();
         }
+    }
+
+    public function type(): Type
+    {
+        return new ByWeekDaysInLocalTimeZone();
+    }
+
+    protected function allTimePeriodsSplitByDay(): array
+    {
+        return
+            array_map(
+                function (DailyInLocalTimeZone $schedule) {
+                    return $schedule->timePeriods();
+                },
+                [
+                    $this->sunday,
+                    $this->monday,
+                    $this->tuesday,
+                    $this->wednesday,
+                    $this->thursday,
+                    $this->friday,
+                    $this->saturday
+                ]
+            );
     }
 }

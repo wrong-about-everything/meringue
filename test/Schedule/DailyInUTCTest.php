@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Meringue\Tests\Schedule;
 
-use Meringue\Schedule\DailyInUTC;
+use Meringue\Schedule\Daily\DailyInUTC;
 use Meringue\Time\FromIntegers;
 use PHPUnit\Framework\TestCase;
 use Meringue\Schedule\TimePeriod\DefaultTimePeriod;
@@ -15,7 +15,7 @@ class DailyInUTCTest extends TestCase
     public function testWithOneSuccessfulSchedule()
     {
         $this->assertTrue(
-            (new DailyInUTC(
+            (new \Meringue\Schedule\Daily\DailyInUTC(
                 $this->timePeriod(10, 12)
             ))
                 ->isHit(
@@ -39,7 +39,7 @@ class DailyInUTCTest extends TestCase
     public function testWithSeveralSchedulesAndOnlyOneIsSuccessful()
     {
         $this->assertTrue(
-            (new DailyInUTC(
+            (new \Meringue\Schedule\Daily\DailyInUTC(
                 $this->timePeriod(0, 7),
                 $this->timePeriod(11, 12),
                 $this->timePeriod(14, 19)

@@ -2,11 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Meringue\Schedule;
+namespace Meringue\Schedule\Weekly;
 
+use Meringue\Schedule\Daily\DailyInUTC;
+use Meringue\Schedule\Type\ByWeekDaysInUTC;
+use Meringue\Schedule\Type\Type;
 use Meringue\WeekDay\DayOfWeekInUTC;
 use Meringue\ISO8601DateTime;
-use Meringue\Schedule;
 use Exception;
 
 /**
@@ -18,7 +20,7 @@ use Exception;
  *
  * This class is implied to have all the daily schedules in UTC. Passed dateTime is first converted to UTC, then day of week is extracted
  */
-class UTCScheduleByWeekDays implements Schedule
+class UTCWeeklyScheduleByWeekDays extends WeeklySchedule
 {
     private $sunday;
     private $monday;
@@ -29,13 +31,13 @@ class UTCScheduleByWeekDays implements Schedule
     private $saturday;
 
     public function __construct(
-        Schedule $sunday,
-        Schedule $monday,
-        Schedule $tuesday,
-        Schedule $wednesday,
-        Schedule $thursday,
-        Schedule $friday,
-        Schedule $saturday
+        DailyInUTC $sunday,
+        DailyInUTC $monday,
+        DailyInUTC $tuesday,
+        DailyInUTC $wednesday,
+        DailyInUTC $thursday,
+        DailyInUTC $friday,
+        DailyInUTC $saturday
     )
     {
         $this->sunday = $sunday;
@@ -103,5 +105,29 @@ class UTCScheduleByWeekDays implements Schedule
             default:
                 throw new Exception();
         }
+    }
+
+    public function type(): Type
+    {
+        return new ByWeekDaysInUTC();
+    }
+
+    protected function allTimePeriodsSplitByDay(): array
+    {
+        return
+            array_map(
+                function (DailyInUTC $schedule) {
+                    return $schedule->timePeriods();
+                },
+                [
+                    $this->sunday,
+                    $this->monday,
+                    $this->tuesday,
+                    $this->wednesday,
+                    $this->thursday,
+                    $this->friday,
+                    $this->saturday
+                ]
+            );
     }
 }
