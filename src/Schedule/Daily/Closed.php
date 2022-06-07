@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Meringue\Schedule\Daily;
 
 use Meringue\ISO8601DateTime;
-use Meringue\Schedule\Type\Daily as DailyType;
+use Meringue\Schedule\Type\Closed as ClosedType;
 use Meringue\Schedule\Type\Type;
 
 class Closed extends Daily
@@ -22,7 +22,7 @@ class Closed extends Daily
 
     public function type(): Type
     {
-        return new DailyType();
+        return new ClosedType();
     }
 
     public function timePeriods(): array

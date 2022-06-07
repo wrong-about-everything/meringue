@@ -8,7 +8,7 @@ use Meringue\ISO8601DateTime;
 use Meringue\Schedule\TimePeriod\DefaultTimePeriod;
 use Meringue\Schedule\Type\Type;
 use Meringue\Time\FromIntegers;
-use Meringue\Schedule\Type\Daily as DailyType;
+use Meringue\Schedule\Type\TwentyFourSeven as TwentyFourSevenType;
 
 class TwentyFourSeven extends Daily
 {
@@ -39,6 +39,6 @@ class TwentyFourSeven extends Daily
 
     public function type(): Type
     {
-        return new DailyType();
+        return new TwentyFourSevenType();
     }
 }

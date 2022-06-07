@@ -9,7 +9,7 @@ use Meringue\ISO8601DateTime;
 use Meringue\Schedule\TimePeriod;
 use Meringue\Schedule\Type\Type;
 
-abstract class WeeklySchedule
+abstract class Weekly
 {
     abstract public function isHit(ISO8601DateTime $dateTime): bool;
 
@@ -25,9 +25,9 @@ abstract class WeeklySchedule
      */
     abstract protected function allTimePeriodsSplitByDay(): array;
 
-    final public function equals(WeeklySchedule $other): bool
+    final public function equals(Weekly $other): bool
     {
-        if (!$this->type()->equals($other->type())) {
+        if (!$this->type()->isComparableWith($other->type())) {
             throw new Exception('You can not compare schedules of different types.');
         }
 

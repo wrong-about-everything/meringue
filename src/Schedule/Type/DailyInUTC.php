@@ -8,6 +8,11 @@ class DailyInUTC extends Type
 {
     public function value(): int
     {
-        return 3;
+        return 4;
+    }
+
+    protected function comparableWith(): array
+    {
+        return [new Closed(), new TwentyFourSeven()];
     }
 }

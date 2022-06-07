@@ -20,7 +20,7 @@ use Exception;
  *
  * This class is implied to have all the daily schedules in UTC. Passed dateTime is first converted to UTC, then day of week is extracted
  */
-class UTCWeeklyScheduleByWeekDays extends WeeklySchedule
+class UTCWeeklyByWeekDays extends Weekly
 {
     private $sunday;
     private $monday;

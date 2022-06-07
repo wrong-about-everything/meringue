@@ -8,8 +8,22 @@ abstract class Type
 {
     abstract public function value(): int;
 
-    public function equals(Type $type)
+    abstract protected function comparableWith(): array;
+
+    final public function isComparableWith(Type $type): bool
     {
-        return $this->value() === $type->value();
+        return
+            in_array(
+                $type->value(),
+                array_merge(
+                    [$type->value()],
+                    array_map(
+                        function (Type $type) {
+                            return $type->value();
+                        },
+                        $this->comparableWith()
+                    )
+                )
+            );
     }
 }

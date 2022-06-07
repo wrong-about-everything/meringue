@@ -10,4 +10,9 @@ class DailyInLocalTimeZone extends Type
     {
         return 1;
     }
+
+    protected function comparableWith(): array
+    {
+        return [new Closed(), new TwentyFourSeven()];
+    }
 }

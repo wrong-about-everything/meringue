@@ -10,4 +10,9 @@ class ByWeekDaysInUTC extends Type
     {
         return 0;
     }
+
+    protected function comparableWith(): array
+    {
+        return [];
+    }
 }

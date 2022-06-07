@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Meringue\Tests\ScheduleTest;
+namespace Meringue\Tests\Schedule\Weekly;
 
 use Meringue\ISO8601DateTime;
 use Meringue\ISO8601DateTime\FromISO8601;
-use Meringue\Schedule\TimePeriod;
-use Meringue\Schedule\Weekly\UTCWeeklyScheduleByWeekDays;
 use Meringue\Schedule\Daily\DailyInUTC;
+use Meringue\Schedule\TimePeriod;
 use Meringue\Schedule\TimePeriod\DefaultTimePeriod;
+use Meringue\Schedule\Weekly\UTCWeeklyByWeekDays;
 use Meringue\Time;
 use Meringue\Time\FromIntegers;
 use PHPUnit\Framework\TestCase;
@@ -22,7 +22,7 @@ class UTCScheduleByWeekDaysTest extends TestCase
     public function testIsHit(ISO8601DateTime $dateTime)
     {
         $this->assertTrue(
-            (new UTCWeeklyScheduleByWeekDays(
+            (new UTCWeeklyByWeekDays(
                 new DailyInUTC(
                     new DefaultTimePeriod(
                         new FromIntegers(2, 0, 0),
@@ -101,7 +101,7 @@ class UTCScheduleByWeekDaysTest extends TestCase
     public function testIsMissing(ISO8601DateTime $dateTime)
     {
         $this->assertFalse(
-            (new UTCWeeklyScheduleByWeekDays(
+            (new UTCWeeklyByWeekDays(
                 new DailyInUTC(
                     new DefaultTimePeriod(
                         new FromIntegers(0, 0, 0),
@@ -205,7 +205,7 @@ class UTCScheduleByWeekDaysTest extends TestCase
                             $timePeriod->fromTillPair()
                         );
                 },
-                (new UTCWeeklyScheduleByWeekDays(
+                (new UTCWeeklyByWeekDays(
                     new DailyInUTC(
                         new DefaultTimePeriod(
                             new FromIntegers(12, 31, 0),
@@ -274,5 +274,135 @@ class UTCScheduleByWeekDaysTest extends TestCase
                 [['15:18:00', '15:59:00'],]
             ],
         ];
+    }
+
+    public function testSchedulesAreEqual()
+    {
+        $this->assertTrue(
+            $this->firstSchedule()
+                ->equals($this->firstSchedule())
+        );
+    }
+
+    public function testSchedulesAreNotEqual()
+    {
+        $this->assertFalse(
+            $this->firstSchedule()
+                ->equals($this->secondSchedule())
+        );
+    }
+
+    private function firstSchedule()
+    {
+        return
+            new UTCWeeklyByWeekDays(
+                new DailyInUTC(
+                    new DefaultTimePeriod(
+                        new FromIntegers(12, 31, 0),
+                        new FromIntegers(13, 47, 0)
+                    )
+                ),
+                new DailyInUTC(
+                    new DefaultTimePeriod(
+                        new FromIntegers(22, 28, 0),
+                        new FromIntegers(22, 29, 0)
+                    ),
+                    new DefaultTimePeriod(
+                        new FromIntegers(11, 0, 0),
+                        new FromIntegers(12, 30, 0)
+                    )
+                ),
+                new DailyInUTC(
+                    new DefaultTimePeriod(
+                        new FromIntegers(14, 8, 0),
+                        new FromIntegers(15, 17, 0)
+                    )
+                ),
+                new DailyInUTC(
+                    new DefaultTimePeriod(
+                        new FromIntegers(15, 18, 0),
+                        new FromIntegers(15, 59, 0)
+                    )
+                ),
+                new DailyInUTC(
+                    new DefaultTimePeriod(
+                        new FromIntegers(16, 0, 0),
+                        new FromIntegers(17, 30, 0)
+                    )
+                ),
+                new DailyInUTC(
+                    new DefaultTimePeriod(
+                        new FromIntegers(17, 31, 0),
+                        new FromIntegers(18, 30, 0)
+                    )
+                ),
+                new DailyInUTC(
+                    new DefaultTimePeriod(
+                        new FromIntegers(0, 0, 0),
+                        new FromIntegers(3, 0, 0)
+                    ),
+                    new DefaultTimePeriod(
+                        new FromIntegers(18, 31, 0),
+                        new FromIntegers(23, 59, 59)
+                    )
+                )
+            );
+    }
+
+    private function secondSchedule()
+    {
+        return
+            new UTCWeeklyByWeekDays(
+                new DailyInUTC(
+                    new DefaultTimePeriod(
+                        new FromIntegers(12, 31, 0),
+                        new FromIntegers(13, 47, 0)
+                    )
+                ),
+                new DailyInUTC(
+                    new DefaultTimePeriod(
+                        new FromIntegers(22, 28, 0),
+                        new FromIntegers(22, 29, 0)
+                    ),
+                    new DefaultTimePeriod(
+                        new FromIntegers(11, 0, 0),
+                        new FromIntegers(12, 30, 0)
+                    )
+                ),
+                new DailyInUTC(
+                    new DefaultTimePeriod(
+                        new FromIntegers(14, 8, 0),
+                        new FromIntegers(15, 17, 0)
+                    )
+                ),
+                new DailyInUTC(
+                    new DefaultTimePeriod(
+                        new FromIntegers(15, 18, 0),
+                        new FromIntegers(15, 59, 0)
+                    )
+                ),
+                new DailyInUTC(
+                    new DefaultTimePeriod(
+                        new FromIntegers(16, 0, 0),
+                        new FromIntegers(17, 30, 0)
+                    )
+                ),
+                new DailyInUTC(
+                    new DefaultTimePeriod(
+                        new FromIntegers(17, 32, 0),
+                        new FromIntegers(18, 30, 0)
+                    )
+                ),
+                new DailyInUTC(
+                    new DefaultTimePeriod(
+                        new FromIntegers(0, 0, 0),
+                        new FromIntegers(3, 0, 0)
+                    ),
+                    new DefaultTimePeriod(
+                        new FromIntegers(18, 31, 0),
+                        new FromIntegers(23, 59, 59)
+                    )
+                )
+            );
     }
 }

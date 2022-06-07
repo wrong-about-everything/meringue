@@ -8,6 +8,11 @@ class ByWeekDaysInLocalTimeZone extends Type
 {
     public function value(): int
     {
-        return 4;
+        return 5;
+    }
+
+    protected function comparableWith(): array
+    {
+        return [];
     }
 }

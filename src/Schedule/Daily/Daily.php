@@ -27,7 +27,7 @@ abstract class Daily
 
     final public function equals(Daily $other): bool
     {
-        if (!$this->type()->equals($other->type())) {
+        if (!$this->type()->isComparableWith($other->type())) {
             throw new Exception('You can not compare schedules of different types.');
         }
 

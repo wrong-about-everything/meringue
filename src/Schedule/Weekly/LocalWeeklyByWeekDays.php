@@ -21,7 +21,7 @@ use Exception;
  *
  * This class is implied to have all the daily schedules in the same timezone that passed $dateTime has.
  */
-class LocalWeeklyScheduleByWeekDays extends Weekly\WeeklySchedule
+class LocalWeeklyByWeekDays extends Weekly\Weekly
 {
     private $sunday;
     private $monday;
