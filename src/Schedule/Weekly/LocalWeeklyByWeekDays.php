@@ -8,6 +8,7 @@ use Meringue\Schedule\Daily\DailyInLocalTimeZone;
 use Meringue\Schedule\Type\ByWeekDaysInLocalTimeZone;
 use Meringue\Schedule\Type\Type;
 use Meringue\Schedule\Weekly;
+use Meringue\Schedule\Weekly\Weekly as WeeklySchedule;
 use Meringue\WeekDay\LocalDayOfWeek;
 use Meringue\ISO8601DateTime;
 use Exception;
@@ -21,7 +22,7 @@ use Exception;
  *
  * This class is implied to have all the daily schedules in the same timezone that passed $dateTime has.
  */
-class LocalWeeklyByWeekDays extends Weekly\Weekly
+class LocalWeeklyByWeekDays extends WeeklySchedule
 {
     private $sunday;
     private $monday;
