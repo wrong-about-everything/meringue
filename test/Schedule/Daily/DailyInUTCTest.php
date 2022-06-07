@@ -2,13 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Meringue\Tests\Schedule;
+namespace Meringue\Tests\Schedule\Daily;
 
-use Meringue\Schedule\DailyInUTC;
+use Meringue\ISO8601DateTime\FromISO8601;
+use Meringue\Schedule\Daily\Closed;
+use Meringue\Schedule\Daily\Daily;
+use Meringue\Schedule\Daily\DailyInUTC;
+use Meringue\Schedule\Daily\TwentyFourSeven;
+use Meringue\Schedule\TimePeriod\DefaultTimePeriod;
 use Meringue\Time\FromIntegers;
 use PHPUnit\Framework\TestCase;
-use Meringue\Schedule\TimePeriod\DefaultTimePeriod;
-use Meringue\ISO8601DateTime\FromISO8601;
 
 class DailyInUTCTest extends TestCase
 {
@@ -101,6 +104,50 @@ class DailyInUTCTest extends TestCase
             new DefaultTimePeriod(
                 new FromIntegers($fromHour, 0, 0),
                 new FromIntegers($toHour, 0, 0)
+            );
+    }
+
+    public function testSchedulesAreEqual()
+    {
+        $this->assertTrue(
+            $this->firstSchedule()->equals($this->firstSchedule())
+        );
+    }
+
+    /**
+     * @dataProvider schedulesNonEqualToFirstOne
+     */
+    public function testSchedulesAreNotEqual(Daily $dailySchedule)
+    {
+        $this->assertFalse(
+            $this->firstSchedule()->equals($dailySchedule)
+        );
+    }
+
+    public function schedulesNonEqualToFirstOne()
+    {
+        return [
+            [new TwentyFourSeven()],
+            [new Closed()],
+            [
+                new DailyInUTC(
+                    new DefaultTimePeriod(
+                        new FromIntegers(1, 2, 3),
+                        new FromIntegers(4, 5, 7)
+                    )
+                )
+            ],
+        ];
+    }
+
+    private function firstSchedule()
+    {
+        return
+            new DailyInUTC(
+                new DefaultTimePeriod(
+                    new FromIntegers(1, 2, 3),
+                    new FromIntegers(4, 5, 6)
+                )
             );
     }
 }
