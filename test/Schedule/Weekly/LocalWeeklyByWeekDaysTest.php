@@ -9,12 +9,13 @@ use Meringue\ISO8601DateTime\FromISO8601;
 use Meringue\Schedule\Daily\DailyInLocalTimeZone;
 use Meringue\Schedule\TimePeriod;
 use Meringue\Schedule\TimePeriod\DefaultTimePeriod;
+use Meringue\Schedule\TimePeriod\VoidTimePeriod;
 use Meringue\Schedule\Weekly\LocalWeeklyByWeekDays;
 use Meringue\Time;
 use Meringue\Time\FromIntegers;
 use PHPUnit\Framework\TestCase;
 
-class LocalScheduleByWeekDaysTest extends TestCase
+class LocalWeeklyByWeekDaysTest extends TestCase
 {
     /**
      * @dataProvider hitDateTimes
@@ -319,10 +320,7 @@ class LocalScheduleByWeekDaysTest extends TestCase
                     )
                 ),
                 new DailyInLocalTimeZone(
-                    new DefaultTimePeriod(
-                        new FromIntegers(15, 18, 0),
-                        new FromIntegers(15, 59, 0)
-                    )
+                    new VoidTimePeriod()
                 ),
                 new DailyInLocalTimeZone(
                     new DefaultTimePeriod(

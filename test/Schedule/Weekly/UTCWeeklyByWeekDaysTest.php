@@ -14,7 +14,7 @@ use Meringue\Time;
 use Meringue\Time\FromIntegers;
 use PHPUnit\Framework\TestCase;
 
-class UTCScheduleByWeekDaysTest extends TestCase
+class UTCWeeklyByWeekDaysTest extends TestCase
 {
     /**
      * @dataProvider hitDateTimes
