@@ -82,7 +82,7 @@ class LocalWeeklyByWeekDays extends WeeklySchedule
 
     public function for(ISO8601DateTime $dateTime): array
     {
-        switch ((int) (new LocalDayOfWeek($dateTime))->value()) {
+        switch ((new LocalDayOfWeek($dateTime))->value()) {
             case 7:
                 return $this->sunday->for($dateTime);
 

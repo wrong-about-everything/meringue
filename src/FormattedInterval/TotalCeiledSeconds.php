@@ -20,7 +20,7 @@ class TotalCeiledSeconds
     {
         return
             (int) ceil(
-                bcsub(
+                (float) bcsub(
                     (new Seconds($this->interval->ends()))->value(),
                     (new Seconds($this->interval->starts()))->value(),
                     6

@@ -20,7 +20,7 @@ class TotalFullSeconds
     {
         return
             (int) floor(
-                bcsub(
+                (float) bcsub(
                     (new Seconds($this->interval->ends()))->value(),
                     (new Seconds($this->interval->starts()))->value()
                 )

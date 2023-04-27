@@ -37,7 +37,10 @@ abstract class Weekly
                     return
                         array_map(
                             function (TimePeriod $timePeriod) {
-                                return [$timePeriod->fromTillPair()[0]->value(), $timePeriod->fromTillPair()[1]->value()];
+                                return
+                                    $timePeriod->isVoid()
+                                        ? ['vasya', 'fedya']
+                                        : [$timePeriod->fromTillPair()[0]->value(), $timePeriod->fromTillPair()[1]->value()];
                             },
                             $timePeriods
                         );
@@ -50,7 +53,10 @@ abstract class Weekly
                     return
                         array_map(
                             function (TimePeriod $timePeriod) {
-                                return [$timePeriod->fromTillPair()[0]->value(), $timePeriod->fromTillPair()[1]->value()];
+                                return
+                                    $timePeriod->isVoid()
+                                        ? ['vasya', 'fedya']
+                                        : [$timePeriod->fromTillPair()[0]->value(), $timePeriod->fromTillPair()[1]->value()];
                             },
                             $timePeriods
                         );
